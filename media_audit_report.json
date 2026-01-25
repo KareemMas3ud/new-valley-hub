@@ -1,0 +1,434 @@
+[
+  {
+    "name_en": "Al-Bagawat Cemetery",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": null
+  },
+  {
+    "name_en": "Al-Nadora Fortress",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/nadora_fortress_eATaPfY.jpg"
+  },
+  {
+    "name_en": "Al-Qasr Islamic Village",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/dakhla_village_TTbcQPD.jpg"
+  },
+  {
+    "name_en": "Badr Museum",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": null
+  },
+  {
+    "name_en": "Balat Village",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/dakhla_village_4vOoTYa.jpg"
+  },
+  {
+    "name_en": "Bashendi Village",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": null
+  },
+  {
+    "name_en": "Bir Sahara Desert Spring",
+    "category": "Attraction",
+    "subcategory": "Natural",
+    "image_url": "http://127.0.0.1:8000/media/locations/hot_spring_AqKlplL.jpg"
+  },
+  {
+    "name_en": "Bir Sitta",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": null
+  },
+  {
+    "name_en": "Black Desert",
+    "category": "Attraction",
+    "subcategory": "Natural",
+    "image_url": "http://127.0.0.1:8000/media/locations/black_desert_dgcRKmf.jpg"
+  },
+  {
+    "name_en": "Crystal Mountain",
+    "category": "Attraction",
+    "subcategory": "Natural",
+    "image_url": "http://127.0.0.1:8000/media/locations/crystal_mountain_hG3hAFI.jpg"
+  },
+  {
+    "name_en": "Dakhla Oasis",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/farafra_oasis_uEr2QmD.jpg"
+  },
+  {
+    "name_en": "Date Palm Farms",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/date_farm_FoUEHUo.jpg"
+  },
+  {
+    "name_en": "Deir El-Hagar",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": null
+  },
+  {
+    "name_en": "Deir El-Hagar Temple",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/hibis_temple_7gxQ2O3.jpg"
+  },
+  {
+    "name_en": "Deir Mustafa Kashef",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/mustafa_kashef_SPJSPUW.jpg"
+  },
+  {
+    "name_en": "Farafra Oasis",
+    "category": "Attraction",
+    "subcategory": "Natural",
+    "image_url": "http://127.0.0.1:8000/media/locations/farafra_oasis_SNeoaKg.jpg"
+  },
+  {
+    "name_en": "Kharga Oasis",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/farafra_oasis_mNNkmtg.jpg"
+  },
+  {
+    "name_en": "Mastaba of Khentika",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": null
+  },
+  {
+    "name_en": "Mut Hot Springs (Bir 3)",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": null
+  },
+  {
+    "name_en": "Mut Village",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/dakhla_village_q0xdK4l.jpg"
+  },
+  {
+    "name_en": "Muzawaka Tombs",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/necropolis_8hbf45m.jpg"
+  },
+  {
+    "name_en": "Necropolis of Al-Bagawat",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/necropolis_kBms0cn.jpg"
+  },
+  {
+    "name_en": "New Valley Museum",
+    "category": "Attraction",
+    "subcategory": "Cultural",
+    "image_url": "http://127.0.0.1:8000/media/locations/new_valley_museum_6fUndmQ.jpg"
+  },
+  {
+    "name_en": "Qasr Al-Ghuwayta",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/qasr_ghuwayta_cPHXFSq.jpg"
+  },
+  {
+    "name_en": "Qasr Al-Zayan",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": null
+  },
+  {
+    "name_en": "Qasr El-Labeka",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/hibis_temple_8Nlc5WI.jpg"
+  },
+  {
+    "name_en": "Temple of Dush",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": null
+  },
+  {
+    "name_en": "Temple of Hibis",
+    "category": "Attraction",
+    "subcategory": "Historical",
+    "image_url": "http://127.0.0.1:8000/media/locations/hibis_temple_0YCAapQ.jpg"
+  },
+  {
+    "name_en": "White Desert National Park",
+    "category": "Attraction",
+    "subcategory": "Natural",
+    "image_url": "http://127.0.0.1:8000/media/locations/white_desert_3XoIuIu.jpg"
+  },
+  {
+    "name_en": "Al Tarfa Desert Sanctuary",
+    "category": "Hotel",
+    "subcategory": "5-Star",
+    "image_url": "http://127.0.0.1:8000/media/locations/budget_hotel_V5Z3RH2.jpg"
+  },
+  {
+    "name_en": "Al-Radwan Hotel",
+    "category": "Hotel",
+    "subcategory": "2-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Al-Waha Hotel",
+    "category": "Hotel",
+    "subcategory": "2-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Amira Hotel",
+    "category": "Hotel",
+    "subcategory": "3-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Aqua Sun Hotel",
+    "category": "Hotel",
+    "subcategory": "3-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Badawiya Hotel Farafra",
+    "category": "Hotel",
+    "subcategory": "3-Star",
+    "image_url": "http://127.0.0.1:8000/media/locations/boutique_hotel.jpg"
+  },
+  {
+    "name_en": "Badr Hotel & Resort",
+    "category": "Hotel",
+    "subcategory": "4-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Desert Lodge",
+    "category": "Hotel",
+    "subcategory": "3-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Desert Lodge Dakhla",
+    "category": "Hotel",
+    "subcategory": "4-Star",
+    "image_url": "http://127.0.0.1:8000/media/locations/luxury_hotel_fQTmI5y.jpg"
+  },
+  {
+    "name_en": "Hamad Allah Hotel",
+    "category": "Hotel",
+    "subcategory": "2-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Kharga Hotel (Mubariz)",
+    "category": "Hotel",
+    "subcategory": "2-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Mut Garden Retreat",
+    "category": "Hotel",
+    "subcategory": "3-Star",
+    "image_url": "http://127.0.0.1:8000/media/locations/boutique_hotel_zR1PiZW.jpg"
+  },
+  {
+    "name_en": "Qasr El-Bagawat Hotel",
+    "category": "Hotel",
+    "subcategory": "3-Star",
+    "image_url": "http://127.0.0.1:8000/media/locations/budget_hotel.jpg"
+  },
+  {
+    "name_en": "Rahala Safari Hotel",
+    "category": "Hotel",
+    "subcategory": "4-Star",
+    "image_url": null
+  },
+  {
+    "name_en": "Sol Y Mar Pioneers Hotel",
+    "category": "Hotel",
+    "subcategory": "4-Star",
+    "image_url": "http://127.0.0.1:8000/media/locations/luxury_hotel.jpg"
+  },
+  {
+    "name_en": "Ahmed Hamdy Restaurant",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Al-Sayyad Restaurant",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Astakoza",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Banque Misr - Dakhla",
+    "category": "Service",
+    "subcategory": "General Services > Bank",
+    "image_url": null
+  },
+  {
+    "name_en": "Bondoka (Crepiano)",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Creativa New Valley",
+    "category": "Service",
+    "subcategory": "General Services > Innovation Hub",
+    "image_url": null
+  },
+  {
+    "name_en": "Dakhla Hospital",
+    "category": "Service",
+    "subcategory": "Medical Infrastructure > Hospital",
+    "image_url": null
+  },
+  {
+    "name_en": "Dakhla Police Station",
+    "category": "Service",
+    "subcategory": "Emergency Services > Police",
+    "image_url": null
+  },
+  {
+    "name_en": "Desert Rose Café",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Dr. Montaser Awad Pharmacy",
+    "category": "Service",
+    "subcategory": "Medical Infrastructure > Pharmacy",
+    "image_url": null
+  },
+  {
+    "name_en": "Farafra Gas Station",
+    "category": "Service",
+    "subcategory": "General Services > Gas Station",
+    "image_url": null
+  },
+  {
+    "name_en": "Haneen Restaurant",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Kharga Bus Station",
+    "category": "Service",
+    "subcategory": "General Services > Transportation",
+    "image_url": null
+  },
+  {
+    "name_en": "Kharga General Hospital",
+    "category": "Service",
+    "subcategory": "Medical Infrastructure > Hospital",
+    "image_url": null
+  },
+  {
+    "name_en": "National Bank of Egypt (NBE)",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "National Bank of Egypt - Kharga",
+    "category": "Service",
+    "subcategory": "General Services > Bank",
+    "image_url": null
+  },
+  {
+    "name_en": "Oasis Bedouin Restaurant",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Orabi Pharmacy",
+    "category": "Service",
+    "subcategory": "Medical Infrastructure > Pharmacy",
+    "image_url": null
+  },
+  {
+    "name_en": "Palm Valley",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Pizza Ibn Al-Balad",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Tourism Police Kharga",
+    "category": "Service",
+    "subcategory": "Emergency Services > Police",
+    "image_url": null
+  },
+  {
+    "name_en": "Wimpy El Basatin",
+    "category": "Service",
+    "subcategory": "Dining & Restaurants > Restaurant",
+    "image_url": null
+  },
+  {
+    "name_en": "Desert Honey (500g)",
+    "category": "Product",
+    "subcategory": "Marketplace",
+    "image_url": "http://127.0.0.1:8000/media/products/dates_dmKXiM6.jpg"
+  },
+  {
+    "name_en": "Embroidered Bedouin Scarf",
+    "category": "Product",
+    "subcategory": "Marketplace",
+    "image_url": "http://127.0.0.1:8000/media/products/dates_cD7yDxK.jpg"
+  },
+  {
+    "name_en": "Handwoven Palm Basket",
+    "category": "Product",
+    "subcategory": "Marketplace",
+    "image_url": "http://127.0.0.1:8000/media/products/dates_N6NSIZJ.jpg"
+  },
+  {
+    "name_en": "Organic Medjool Dates (1kg)",
+    "category": "Product",
+    "subcategory": "Marketplace",
+    "image_url": "http://127.0.0.1:8000/media/products/dates_huw0DAY.jpg"
+  },
+  {
+    "name_en": "Siwi Pottery Set",
+    "category": "Product",
+    "subcategory": "Marketplace",
+    "image_url": "http://127.0.0.1:8000/media/products/dates_lqHOIvg.jpg"
+  },
+  {
+    "name_en": "The Date Complex",
+    "category": "Product",
+    "subcategory": "Marketplace",
+    "image_url": null
+  }
+]
