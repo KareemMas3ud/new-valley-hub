@@ -92,7 +92,7 @@ A unique, interactive feature allowing travelers to create their own digital mem
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/yourusername/new-valley-hub.git](https://github.com/yourusername/new-valley-hub.git)
+    git clone [https://github.com/karim238253/new-valley-hub.git](https://github.com/karim238253/new-valley-hub.git)
     ```
 
 2.  **Run Backend**
