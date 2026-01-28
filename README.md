@@ -112,7 +112,7 @@ Follow these steps to set up the project locally.
 
 | Home Page | Governor's Section |
 | :---: | :---: |
-| ![Home Page](./screenshots/home.png) | ![Governor Profile](./screenshots/governor.png) |
+| ![Home Page](./screenshots/home.jpg) | ![Governor Profile](./screenshots/governor.png) |
 
 | Souvenir Maker | Team Section |
 | :---: | :---: |
