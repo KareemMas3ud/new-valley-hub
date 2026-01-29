@@ -12,6 +12,7 @@ import SouvenirPage from './pages/SouvenirPage';
 import ContactPage from './pages/ContactPage';
 import OfflineIndicator from './components/OfflineIndicator';
 import SOSButton from './components/SOSButton';
+import ChatbotWidget from './components/ChatbotWidget';
 
 import './index.css'
 
@@ -21,6 +22,7 @@ function App() {
       <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
         <OfflineIndicator />
         <SOSButton />
+        <ChatbotWidget />
         <Navbar />
         <main>
           <Routes>
