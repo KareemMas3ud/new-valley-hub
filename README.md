@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="screenshots/Logo.png" alt="New Valley Hub Logo" width="200">
+  <img src="screenshots/Logo.png" alt="New Valley Hub Logo" width="300">
   
   <h1>New Valley Hub (بوابة الوادي الجديد) 🌴</h1>
   
