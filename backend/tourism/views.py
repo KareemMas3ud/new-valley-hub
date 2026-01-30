@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Attraction, DigitalArtifact, TeamMember, GovernorProfile
+from .models import Attraction, DigitalArtifact, TeamMember, GovernorProfile, SiteConfiguration
 from .serializers import AttractionSerializer, DigitalArtifactSerializer, TeamMemberSerializer, GovernorProfileSerializer
 from .ai_planner import generate_itinerary
 
@@ -49,10 +49,14 @@ class ChatAPIView(APIView):
         try:
             user_message = request.data.get('message', '')
             
-            # 1. Setup Gemini
-            api_key = os.environ.get('GEMINI_API_KEY')
+            # 1. Setup Gemini - Check database first, fallback to environment variable
+            site_config = SiteConfiguration.load()
+            api_key = site_config.gemini_api_key if site_config.gemini_api_key else os.environ.get('GEMINI_API_KEY')
+            
             if not api_key:
-                return Response({'error': 'API Key not found'}, status=500)
+                return Response({
+                    'error': 'API Key not configured. Please set it in Django Admin or environment variable.'
+                }, status=500)
             
             genai.configure(api_key=api_key)
             

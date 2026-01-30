@@ -86,3 +86,34 @@ class GovernorProfile(models.Model):
 
     def __str__(self):
         return self.name
+
+class SiteConfiguration(models.Model):
+    """
+    Singleton model to store site-wide configuration settings.
+    Managed through Django Admin for dynamic API key configuration.
+    """
+    gemini_api_key = models.CharField(
+        max_length=500, 
+        blank=True, 
+        null=True,
+        help_text="Google Gemini API Key for AI chatbot. Leave blank to use environment variable."
+    )
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Site Configuration"
+        verbose_name_plural = "Site Configuration"
+    
+    def save(self, *args, **kwargs):
+        """Ensure only one instance exists (singleton pattern)"""
+        self.pk = 1
+        super(SiteConfiguration, self).save(*args, **kwargs)
+    
+    @classmethod
+    def load(cls):
+        """Load or create the singleton instance"""
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+    
+    def __str__(self):
+        return "Site Configuration"
