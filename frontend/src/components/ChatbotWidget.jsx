@@ -53,7 +53,7 @@ const ChatbotWidget = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-24 z-50 overflow-hidden font-sans">
+        <div className="fixed bottom-6 right-24 z-50 overflow-hidden font-sans pointer-events-none">
             {/* Chat Window */}
             <div
                 className={`
@@ -142,9 +142,9 @@ const ChatbotWidget = () => {
 
             {/* Toggle Button */}
             {!isOpen && (
-                <div className="fixed bottom-6 right-24 z-[100] flex items-center gap-3">
+                <div className="fixed bottom-6 right-24 z-[100] flex items-center gap-3 pointer-events-none">
                     {/* Call to Action Label */}
-                    <div className="bg-white px-4 py-2 rounded-lg shadow-md animate-bounce relative">
+                    <div className="bg-white px-4 py-2 rounded-lg shadow-md animate-bounce relative pointer-events-auto">
                         <span className="text-sm font-semibold text-emerald-700">Ask 3m Sa3ed 🐫</span>
                         {/* Arrow pointing to button */}
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full">
@@ -153,7 +153,7 @@ const ChatbotWidget = () => {
                     </div>
 
                     {/* Button & Pulse Wrapper */}
-                    <div className="relative">
+                    <div className="relative pointer-events-auto">
                         {/* The Pulse Effect */}
                         <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
 
