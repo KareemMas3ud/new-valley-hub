@@ -37,6 +37,7 @@ class GovernorProfileViewSet(viewsets.ModelViewSet):
     # Actually, a simple ModelViewSet is fine, frontend will fetch list[0].
 
 import os
+import re
 import google.generativeai as genai
 from rest_framework.views import APIView
 from django.db.models import Q
@@ -82,10 +83,14 @@ class ChatAPIView(APIView):
                 f"Answer nicely and concisely."
             )
             
-            response = model.generate_content(prompt)
+            # Add 30-second timeout to prevent hanging
+            response = model.generate_content(prompt, request_options={'timeout': 30})
             
-            # Return text safely
-            return Response({'response': response.text}, status=status.HTTP_200_OK)
+            # Safety check: ensure response has text before accessing
+            if hasattr(response, 'text') and response.text:
+                return Response({'response': response.text}, status=status.HTTP_200_OK)
+            else:
+                return Response({'response': 'Sorry, I cannot answer that question right now.'}, status=status.HTTP_200_OK)
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -101,11 +106,15 @@ class SearchAPIView(APIView):
         if not query:
             return Response({'results': [], 'message': 'Please provide a search query'}, status=status.HTTP_400_BAD_REQUEST)
         
+        # Sanitize query to prevent SQL wildcard issues with % and _
+        # These characters are treated as wildcards in Django's icontains (LIKE query)
+        sanitized_query = query.replace('%', '\%').replace('_', '\_')
+        
         results = []
         
         # Search Attractions
         attractions = Attraction.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
+            Q(name__icontains=sanitized_query) | Q(description__icontains=sanitized_query)
         )[:10]
         
         for attraction in attractions:
@@ -129,7 +138,7 @@ class SearchAPIView(APIView):
         
         # Search Hotels
         hotels = Hotel.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
+            Q(name__icontains=sanitized_query) | Q(description__icontains=sanitized_query)
         )[:10]
         
         for hotel in hotels:
@@ -153,7 +162,7 @@ class SearchAPIView(APIView):
         
         # Search Products
         products = Product.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
+            Q(name__icontains=sanitized_query) | Q(description__icontains=sanitized_query)
         )[:10]
         
         for product in products:
