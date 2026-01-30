@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaMapMarkedAlt, FaRobot, FaSuitcase, FaBed, FaStore, FaCameraRetro } from 'react-icons/fa';
 import { getAttractions } from '../services/api';
 import WeatherWidget from '../components/WeatherWidget';
 import TeamSection from '../components/TeamSection';
@@ -10,6 +11,46 @@ const HomePage = () => {
     const [totalAttractions, setTotalAttractions] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+
+    // Features data array
+    const features = [
+        {
+            title: "AI Tour Guide (3m Sa3ed)",
+            description: "Chat with our local expert '3m Sa3ed' for instant advice, hidden gems, and 24/7 support in Egyptian dialect.",
+            icon: <FaRobot className="w-8 h-8" />,
+            link: null // Could link to chatbot or about page
+        },
+        {
+            title: "Smart Trip Planner",
+            description: "Get a personalized itinerary tailored to your budget and time in seconds using our AI engine.",
+            icon: <FaSuitcase className="w-8 h-8" />,
+            link: '/planner'
+        },
+        {
+            title: "Interactive Map",
+            description: "Explore all 28+ destinations, hotels, and services on a detailed, easy-to-navigate digital map.",
+            icon: <FaMapMarkedAlt className="w-8 h-8" />,
+            link: '/map'
+        },
+        {
+            title: "Hotels & Eco-Lodges",
+            description: "Find and book the perfect stay, from luxury resorts to authentic traditional mud-brick houses.",
+            icon: <FaBed className="w-8 h-8" />,
+            link: '/hotels'
+        },
+        {
+            title: "Local Marketplace",
+            description: "Support the community and buy authentic handmade crafts and dates directly from local artisans.",
+            icon: <FaStore className="w-8 h-8" />,
+            link: '/market'
+        },
+        {
+            title: "Digital Souvenir Maker",
+            description: "Create personalized digital memories with our custom filters and share your adventure with the world.",
+            icon: <FaCameraRetro className="w-8 h-8" />,
+            link: '/souvenir'
+        }
+    ];
 
     useEffect(() => {
         // Fetch top 3 attractions for highlights
@@ -190,39 +231,69 @@ const HomePage = () => {
             <GovernorSection />
 
             {/* Features Section */}
-            <div className="py-16 bg-gray-900 text-white">
+            <div className="py-20 bg-gradient-to-b from-gray-900 via-slate-900 to-gray-900 text-white">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                        <div className="p-6">
-                            <div className="text-5xl mb-4">🗺️</div>
-                            <h3 className="text-xl font-bold mb-2">Interactive Map</h3>
-                            <p className="text-gray-400 text-sm">Explore all locations on our interactive map</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl mb-4">✨</div>
-                            <h3 className="text-xl font-bold mb-2">Trip Planner</h3>
-                            <p className="text-gray-400 text-sm">Get personalized itineraries powered by AI</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl mb-4">🏨</div>
-                            <h3 className="text-xl font-bold mb-2">Hotels & Services</h3>
-                            <p className="text-gray-400 text-sm">Find accommodation and essential services</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl mb-4">🛍️</div>
-                            <h3 className="text-xl font-bold mb-2">Local Marketplace</h3>
-                            <p className="text-gray-400 text-sm">Shop authentic local products and crafts</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl mb-4">📸</div>
-                            <h3 className="text-xl font-bold mb-2">Digital Souvenir Maker</h3>
-                            <p className="text-gray-400 text-sm">Create and personalize your own digital memories from the New Valley's landmarks</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl mb-4">👥</div>
-                            <h3 className="text-xl font-bold mb-2">Meet the Team</h3>
-                            <p className="text-gray-400 text-sm">Connect with the creators and developers behind the New Valley Hub</p>
-                        </div>
+                    {/* Section Header */}
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                            Platform Features
+                        </h2>
+                        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                            Everything you need to explore the New Valley like a local
+                        </p>
+                    </div>
+
+                    {/* Features Grid */}
+                    <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                        {features.map((feature, index) => {
+                            const CardContent = (
+                                <>
+                                    {/* Gradient Background Effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/10 group-hover:to-transparent transition-all duration-500 rounded-3xl" />
+
+                                    {/* Icon Container */}
+                                    <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 text-orange-400 mb-6 shadow-lg group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-orange-600 group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                                        {feature.icon}
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="relative">
+                                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors duration-300">
+                                            {feature.title}
+                                        </h3>
+                                        <p className="text-slate-300 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                    </div>
+
+                                    {/* Optional Link Indicator */}
+                                    {feature.link && (
+                                        <div className="relative mt-6 flex items-center text-orange-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <span className="text-sm">Explore →</span>
+                                        </div>
+                                    )}
+                                </>
+                            );
+
+                            const cardClasses = "group relative p-8 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-orange-500/20 hover:border-orange-500/50 overflow-hidden";
+
+                            return feature.link ? (
+                                <Link
+                                    key={index}
+                                    to={feature.link}
+                                    className={`${cardClasses} block cursor-pointer`}
+                                >
+                                    {CardContent}
+                                </Link>
+                            ) : (
+                                <div
+                                    key={index}
+                                    className={cardClasses}
+                                >
+                                    {CardContent}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
