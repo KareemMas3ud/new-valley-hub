@@ -42,7 +42,7 @@ const HomePage = () => {
             title: "Local Marketplace",
             description: "Support the community and buy authentic handmade crafts and dates directly from local artisans.",
             icon: <FaStore className="w-8 h-8" />,
-            link: '/market'
+            link: '/marketplace'
         },
         {
             title: "Digital Souvenir Maker",
