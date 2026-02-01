@@ -14,7 +14,7 @@ const SOSButton = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-4">
+        <div className="fixed bottom-24 right-4 md:bottom-6 md:left-6 md:right-auto z-50 flex flex-col items-end md:items-start space-y-4">
             {/* Menu */}
             {isOpen && (
                 <div className="flex flex-col space-y-2 mb-2 animate-fade-in-up">

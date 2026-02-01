@@ -5,6 +5,7 @@ import logo from '../assets/Logo.png';
 const Navbar = () => {
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [showInstallBtn, setShowInstallBtn] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleBeforeInstallPrompt = (e) => {
@@ -101,11 +102,73 @@ const Navbar = () => {
                         </Link>
                     </div>
 
+                    {/* Mobile Menu Button */}
                     <div className="md:hidden">
-                        {/* Mobile menu button placeholder */}
-                        <button className="text-gray-700 hover:text-orange-500 p-2">
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="text-gray-700 hover:text-orange-500 p-2 focus:outline-none"
+                            aria-label="Toggle menu"
+                        >
+                            {isMobileMenuOpen ? (
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            ) : (
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                            )}
                         </button>
+                    </div>
+                </div>
+
+                {/* Mobile Menu Dropdown */}
+                <div
+                    className={`
+                        md:hidden overflow-hidden transition-all duration-300 ease-in-out
+                        ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
+                    `}
+                >
+                    <div className="px-4 py-3 space-y-2 bg-white/95 backdrop-blur-sm border-t border-gray-200">
+                        {[
+                            { path: "/", label: "Home" },
+                            { path: "/attractions", label: "Attractions" },
+                            { path: "/services", label: "Services" },
+                            { path: "/hotels", label: "Hotels" },
+                            { path: "/map", label: "Map" },
+                            { path: "/marketplace", label: "Market" },
+                            { path: "/souvenir", label: "Souvenir Maker 📸" },
+                            { path: "/contact", label: "Contact Us" },
+                        ].map((link) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="block text-gray-700 font-semibold text-lg hover:text-orange-500 hover:bg-orange-50 px-4 py-3 rounded-lg transition-all duration-200"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+
+                        <Link
+                            to="/planner"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-bold text-center shadow-lg hover:shadow-orange-500/30 transition-all duration-300"
+                        >
+                            Trip Planner ✨
+                        </Link>
+
+                        {/* Mobile Install Button */}
+                        {showInstallBtn && (
+                            <button
+                                onClick={() => {
+                                    handleInstallClick();
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="w-full flex items-center justify-center gap-2 border-2 border-orange-500 text-orange-500 hover:bg-orange-50 font-bold px-5 py-3 rounded-full transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                                </svg>
+                                Install App
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Attraction, DigitalArtifact, TeamMember, GovernorProfile
+from .models import Attraction, DigitalArtifact, TeamMember, GovernorProfile, SiteConfiguration
 
 @admin.register(Attraction)
 class AttractionAdmin(admin.ModelAdmin):
@@ -27,3 +27,30 @@ class GovernorProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'title')
     # Prevent deletion if you want it to be strictly singleton, 
     # but for now we trust the save() method override.
+
+@admin.register(SiteConfiguration)
+class SiteConfigurationAdmin(admin.ModelAdmin):
+    """
+    Admin interface for site-wide configuration.
+    Uses singleton pattern - only one instance can exist.
+    """
+    list_display = ('__str__', 'updated_at')
+    fieldsets = (
+        ('API Configuration', {
+            'fields': ('gemini_api_key',),
+            'description': 'Configure API keys for external services. Leave blank to use environment variables.'
+        }),
+        ('Metadata', {
+            'fields': ('updated_at',),
+            'classes': ('collapse',),
+        }),
+    )
+    readonly_fields = ('updated_at',)
+    
+    def has_add_permission(self, request):
+        """Prevent adding more than one configuration instance"""
+        return not SiteConfiguration.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        """Prevent deletion of the configuration instance"""
+        return False
