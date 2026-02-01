@@ -20,7 +20,7 @@ import './index.css'
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+      <div className="min-h-screen bg-gray-50 text-gray-900 font-sans overflow-x-hidden">
         <OfflineIndicator />
         <SOSButton />
         <ChatbotWidget />

@@ -53,16 +53,16 @@ const ChatbotWidget = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-24 z-50 overflow-hidden font-sans pointer-events-none">
+        <div className="fixed bottom-4 right-4 md:bottom-6 md:right-24 z-50 overflow-visible font-sans pointer-events-none">
             {/* Chat Window */}
             <div
                 className={`
                     pointer-events-auto
                     transition-all duration-300 ease-in-out transform origin-bottom-right
                     ${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}
-                    bg-white rounded-2xl shadow-2xl w-80 sm:w-96 flex flex-col mb-4 border border-gray-200
+                    bg-white rounded-2xl shadow-2xl w-[calc(100vw-2rem)] sm:w-96 flex flex-col mb-4 border border-gray-200
                 `}
-                style={{ maxHeight: 'calc(100vh - 120px)', height: '500px' }}
+                style={{ maxHeight: 'calc(100vh - 120px)', height: '500px', maxWidth: '384px' }}
             >
                 {/* Header */}
                 <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-4 rounded-t-2xl flex justify-between items-center shadow-md">
@@ -143,9 +143,9 @@ const ChatbotWidget = () => {
 
             {/* Toggle Button */}
             {!isOpen && (
-                <div className="fixed bottom-6 right-24 z-[100] flex items-center gap-3 pointer-events-none">
-                    {/* Call to Action Label */}
-                    <div className="bg-white px-4 py-2 rounded-lg shadow-md animate-bounce relative pointer-events-auto">
+                <div className="fixed bottom-4 right-4 md:bottom-6 md:right-24 z-[100] flex items-center gap-3 pointer-events-none">
+                    {/* Call to Action Label - Hide on very small screens */}
+                    <div className="hidden sm:block bg-white px-4 py-2 rounded-lg shadow-md animate-bounce relative pointer-events-auto">
                         <span className="text-sm font-semibold text-emerald-700">Ask 3m Sa3ed 🐫</span>
                         {/* Arrow pointing to button */}
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full">
