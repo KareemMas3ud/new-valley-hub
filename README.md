@@ -344,34 +344,9 @@ new-valley-hub/
 | :---: | :---: |
 | ![Governor](./screenshots/governor.png) | ![Team](./screenshots/team.png) |
 
-<<<<<<< HEAD
----
-
-## 🚀 Getting Started
-
-1.  **Clone the repository**
-    ```bash
-    git clone [https://github.com/karim238253/new-valley-hub.git](https://github.com/karim238253/new-valley-hub.git)
-    ```
-
-2.  **Run Backend**
-    ```bash
-    cd backend
-    pip install -r requirements.txt
-    python manage.py runserver
-    ```
-
-3.  **Run Frontend**
-    ```bash
-    cd frontend
-    npm install
-    npm run dev
-    ```
-=======
 | AI Chatbot - 3m Sa3ed 🤖 | SOS Emergency Button |
 | :---: | :---: |
 | ![Chatbot](./screenshots/chatbot.png) | ![SOS](./screenshots/SOS.png) |
->>>>>>> feature/dynamic-api-config
 
 ---
 
