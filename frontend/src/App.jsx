@@ -9,6 +9,7 @@ import HotelsPage from './pages/HotelsPage';
 import MapPage from './pages/MapPage';
 import PlannerPage from './pages/PlannerPage';
 import MarketplacePage from './pages/MarketplacePage';
+import VirtualMuseumPage from './pages/VirtualMuseumPage';
 import SouvenirPage from './pages/SouvenirPage';
 import ContactPage from './pages/ContactPage';
 import SearchResults from './pages/SearchResults';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/map" element={<MapPage />} />
             <Route path="/planner" element={<PlannerPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
+            <Route path="/museum" element={<VirtualMuseumPage />} />
             <Route path="/souvenir" element={<SouvenirPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/search" element={<SearchResults />} />

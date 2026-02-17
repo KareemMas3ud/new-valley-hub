@@ -1,8 +1,23 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Attraction, DigitalArtifact, TeamMember, GovernorProfile, SiteConfiguration
-from .serializers import AttractionSerializer, DigitalArtifactSerializer, TeamMemberSerializer, GovernorProfileSerializer
+from .models import (
+    Attraction,
+    DigitalArtifact,
+    MuseumArtifact,
+    SouvenirAsset,
+    TeamMember,
+    GovernorProfile,
+    SiteConfiguration
+)
+from .serializers import (
+    AttractionSerializer,
+    DigitalArtifactSerializer,
+    MuseumArtifactSerializer,
+    SouvenirAssetSerializer,
+    TeamMemberSerializer,
+    GovernorProfileSerializer
+)
 from .ai_planner import generate_itinerary
 
 class AttractionViewSet(viewsets.ModelViewSet):
@@ -22,6 +37,43 @@ class DigitalArtifactViewSet(viewsets.ModelViewSet):
     queryset = DigitalArtifact.objects.all()
     serializer_class = DigitalArtifactSerializer
 
+
+# ============================================
+# VIRTUAL MUSEUM VIEWSET 🏛️
+# ============================================
+
+class MuseumArtifactViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for Virtual Museum artifacts.
+    Provides CRUD operations for 3D museum artifacts.
+    """
+    queryset = MuseumArtifact.objects.all()
+    serializer_class = MuseumArtifactSerializer
+
+
+# ============================================
+# SOUVENIR MAKER VIEWSET 📸
+# ============================================
+
+class SouvenirAssetViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for Souvenir Maker assets.
+    Provides CRUD operations for backgrounds, stickers, and frames.
+    """
+    queryset = SouvenirAsset.objects.all()
+    serializer_class = SouvenirAssetSerializer
+    
+    @action(detail=False, methods=['get'])
+    def by_category(self, request):
+        """Filter assets by category (background, sticker, frame)"""
+        category = request.query_params.get('category', None)
+        if category:
+            assets = SouvenirAsset.objects.filter(category=category)
+            serializer = self.get_serializer(assets, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'Category parameter required'}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class TeamMemberViewSet(viewsets.ModelViewSet):
     queryset = TeamMember.objects.all()
     serializer_class = TeamMemberSerializer
@@ -29,12 +81,6 @@ class TeamMemberViewSet(viewsets.ModelViewSet):
 class GovernorProfileViewSet(viewsets.ModelViewSet):
     queryset = GovernorProfile.objects.all()
     serializer_class = GovernorProfileSerializer
-    
-    # Optional context: if you want to ensure the singleton exists,
-    # you could override list, but the model has a load() method 
-    # and we can rely on data seeding or manual creation for now.
-    # But to be safe, let's override get_object or ensure seed.
-    # Actually, a simple ModelViewSet is fine, frontend will fetch list[0].
 
 import os
 import re
@@ -112,7 +158,7 @@ class SearchAPIView(APIView):
         
         # Sanitize query to prevent SQL wildcard issues with % and _
         # These characters are treated as wildcards in Django's icontains (LIKE query)
-        sanitized_query = query.replace('%', '\%').replace('_', '\_')
+        sanitized_query = query.replace('%', '\\%').replace('_', '\\_')
         
         results = []
         

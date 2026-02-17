@@ -1,5 +1,7 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 from core.models import BaseLocationModel
+import os
 
 class Attraction(BaseLocationModel):
     TYPE_CHOICES = [
@@ -17,36 +19,272 @@ class Attraction(BaseLocationModel):
     def __str__(self):
         return self.name
 
+
+# ============================================
+# LEGACY MODEL (Kept for backward compatibility)
+# ============================================
+
 class DigitalArtifact(models.Model):
     """
-    Represents items in the Digital Museum.
-    Can be standalone or linked to a specific physical attraction.
+    Legacy model - kept for backward compatibility.
+    Use MuseumArtifact or SouvenirAsset instead.
     """
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to='artifacts/', blank=True, null=True)
-    image_url = models.URLField(blank=True, help_text="External URL for image (optional)")
+    name = models.CharField(max_length=255, help_text="Name of the artifact")
+    description = models.TextField(help_text="Detailed description of the artifact")
     
-    # For 3D viewing or virtual tours
-    model_3d_file = models.FileField(upload_to='3d_models/', blank=True, null=True)
-    virtual_tour_url = models.URLField(blank=True, help_text="Link to 360 view if hosted externally")
+    image = models.ImageField(
+        upload_to='artifacts/images/', 
+        blank=True, 
+        null=True,
+        help_text="Poster/preview image for the artifact"
+    )
+    image_url = models.URLField(
+        blank=True, 
+        help_text="External URL for image (optional, falls back to uploaded image)"
+    )
+    
+    model_3d_file = models.FileField(
+        upload_to='artifacts/models/',
+        blank=True,
+        null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['glb', 'gltf', 'usdz'])],
+        help_text="Upload .glb for Android/Web or .usdz for iOS AR"
+    )
+    
+    virtual_tour_url = models.URLField(
+        blank=True, 
+        help_text="Link to 360° view if hosted externally"
+    )
     
     related_attraction = models.ForeignKey(
         Attraction, 
         on_delete=models.SET_NULL, 
         null=True, 
         blank=True, 
-        related_name='artifacts'
+        related_name='artifacts',
+        help_text="Link to a physical attraction in New Valley"
     )
-
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Digital Artifact (Legacy)"
+        verbose_name_plural = "Digital Artifacts (Legacy)"
+    
     @property
     def final_image_src(self):
         if self.image:
             return self.image.url
         return self.image_url
-
+    
+    @property
+    def has_3d_model(self):
+        return bool(self.model_3d_file)
+    
+    @property
+    def model_file_size(self):
+        if self.model_3d_file:
+            try:
+                return round(self.model_3d_file.size / (1024 * 1024), 2)
+            except:
+                return None
+        return None
+    
+    @property
+    def model_file_extension(self):
+        if self.model_3d_file:
+            return os.path.splitext(self.model_3d_file.name)[1].lower()
+        return None
+    
     def __str__(self):
         return self.name
+
+
+# ============================================
+# VIRTUAL MUSEUM MODELS 🏛️
+# ============================================
+
+class MuseumArtifact(models.Model):
+    """
+    Dedicated model for Virtual Museum 3D artifacts.
+    Used exclusively for AR/VR museum experiences.
+    """
+    name = models.CharField(max_length=255, help_text="Name of the museum artifact")
+    description = models.TextField(help_text="Historical/cultural description of the artifact")
+    
+    # Poster/Preview Image (File or URL required)
+    image = models.ImageField(
+        upload_to='museum/posters/',
+        blank=True,
+        null=True,
+        help_text="Preview image/poster for the artifact"
+    )
+    image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="Paste external image link here (optional backup)"
+    )
+    
+    # 3D Model File (Required for museum artifacts)
+    model_3d_file = models.FileField(
+        upload_to='museum/models/',
+        validators=[FileExtensionValidator(allowed_extensions=['glb', 'gltf', 'usdz'])],
+        help_text="3D model file (.glb for Web/Android, .usdz for iOS)"
+    )
+    
+    # Link to physical attraction
+    related_attraction = models.ForeignKey(
+        Attraction,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='museum_artifacts',
+        help_text="Physical location in New Valley where this artifact was found/displayed"
+    )
+    
+    # Display order
+    order = models.PositiveIntegerField(
+        default=0,
+        help_text="Display order (lower numbers appear first)"
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name = "Museum Artifact"
+        verbose_name_plural = "Museum Artifacts"
+    
+    @property
+    def model_file_size(self):
+        """Return file size in MB"""
+        if self.model_3d_file:
+            try:
+                return round(self.model_3d_file.size / (1024 * 1024), 2)
+            except:
+                return None
+        return None
+    
+    @property
+    def model_file_extension(self):
+        """Return file extension"""
+        if self.model_3d_file:
+            return os.path.splitext(self.model_3d_file.name)[1].lower()
+        return None
+    
+    @property
+    def display_image(self):
+        """Return image URL (external URL takes priority over uploaded file)"""
+        if self.image_url:
+            return self.image_url
+        if self.image:
+            return self.image.url
+        return None
+    
+    def __str__(self):
+        return self.name
+    
+    def clean(self):
+        """Validate that at least one image source is provided"""
+        from django.core.exceptions import ValidationError
+        if not self.image and not self.image_url:
+            raise ValidationError(
+                'You must provide either an image file or an image URL.'
+            )
+
+
+# ============================================
+# SOUVENIR MAKER MODELS 📸
+# ============================================
+
+class SouvenirAsset(models.Model):
+    """
+    Digital assets for the Souvenir Maker tool.
+    Includes backgrounds, stickers, and frames for canvas editing.
+    """
+    CATEGORY_CHOICES = [
+        ('background', 'Background Image'),
+        ('sticker', 'Sticker/Overlay'),
+        ('frame', 'Photo Frame'),
+    ]
+    
+    name = models.CharField(max_length=255, help_text="Name of the asset")
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES,
+        help_text="Type of souvenir asset"
+    )
+    
+    # Image file (File or URL required)
+    image_file = models.ImageField(
+        upload_to='souvenir/assets/',
+        blank=True,
+        null=True,
+        help_text="The actual image file (PNG with transparency for stickers/frames)"
+    )
+    image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="Paste external image link here (optional backup)"
+    )
+    
+    # Optional metadata
+    is_premium = models.BooleanField(
+        default=False,
+        help_text="Mark as premium/featured asset"
+    )
+    display_order = models.IntegerField(
+        default=0,
+        help_text="Order in which to display (lower numbers first)"
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['display_order', '-created_at']
+        verbose_name = "Souvenir Asset"
+        verbose_name_plural = "Souvenir Assets"
+    
+    @property
+    def file_size_kb(self):
+        """Return file size in KB"""
+        if self.image_file:
+            try:
+                return round(self.image_file.size / 1024, 2)
+            except:
+                return None
+        return None
+    
+    @property
+    def display_image(self):
+        """Return image URL (external URL takes priority over uploaded file)"""
+        if self.image_url:
+            return self.image_url
+        if self.image_file:
+            return self.image_file.url
+        return None
+    
+    def __str__(self):
+        return f"{self.name} ({self.get_category_display()})"
+    
+    def clean(self):
+        """Validate that at least one image source is provided"""
+        from django.core.exceptions import ValidationError
+        if not self.image_file and not self.image_url:
+            raise ValidationError(
+                'You must provide either an image file or an image URL.'
+            )
+
+
+# ============================================
+# OTHER MODELS
+# ============================================
 
 class TeamMember(models.Model):
     name = models.CharField(max_length=100)
@@ -62,7 +300,6 @@ class TeamMember(models.Model):
         if self.photo:
             return self.photo.url
         return None
-
 
     def __str__(self):
         return self.name

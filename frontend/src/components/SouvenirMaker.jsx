@@ -6,29 +6,29 @@ const SouvenirMaker = () => {
     const canvasRef = useRef(null);
     const [text, setText] = useState('New Valley Hub');
     const [font, setFont] = useState('Ancient');
-    const [bgImage, setBgImage] = useState(null); // No initial background
+    const [bgImage, setBgImage] = useState(null);
     const [customUrl, setCustomUrl] = useState('');
-    const [apiArtifacts, setApiArtifacts] = useState([]);
+    const [apiBackgrounds, setApiBackgrounds] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch Digital Artifacts from API
-        const fetchArtifacts = async () => {
+        // Fetch Souvenir Assets from API (backgrounds ONLY)
+        const fetchSouvenirBackgrounds = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/tourism/artifacts/');
-                setApiArtifacts(response.data);
-                // Automatically select first artifact if available
+                const response = await axios.get('http://127.0.0.1:8000/api/tourism/souvenir-assets/by_category/?category=background');
+                setApiBackgrounds(response.data);
+                // Automatically select first background if available
                 if (response.data.length > 0) {
                     setBgImage(response.data[0]);
                 }
             } catch (error) {
-                console.error("Error fetching artifacts:", error);
+                console.error("Error fetching souvenir backgrounds:", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchArtifacts();
+        fetchSouvenirBackgrounds();
     }, []);
 
     useEffect(() => {
@@ -37,13 +37,13 @@ const SouvenirMaker = () => {
 
         const ctx = canvas.getContext('2d');
 
-        // Define canvas dimensions first
+        // Define canvas dimensions
         canvas.width = 800;
         canvas.height = 600;
 
         // If no background image selected yet
         if (!bgImage) {
-            ctx.fillStyle = '#f3f4f6'; // Gray background
+            ctx.fillStyle = '#f3f4f6';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#6b7280';
             ctx.font = "20px 'Inter', sans-serif";
@@ -54,23 +54,12 @@ const SouvenirMaker = () => {
         }
 
         const image = new Image();
-
-        // CORS handling for external images
         image.crossOrigin = "Anonymous";
 
-        // Determine Source URL
-        let imgSrc = bgImage.url || '';
+        // Use display_image from backend (URL takes priority) or custom URL
+        const imageUrl = bgImage.display_image || bgImage.url || '';
 
-        // Handle API Images
-        if (bgImage.final_image_src) {
-            if (bgImage.final_image_src.startsWith('http')) {
-                imgSrc = bgImage.final_image_src;
-            } else {
-                imgSrc = `http://127.0.0.1:8000${bgImage.final_image_src}`;
-            }
-        }
-
-        image.src = imgSrc;
+        image.src = imageUrl;
 
         image.onload = () => {
             // Draw Background
@@ -85,7 +74,7 @@ const SouvenirMaker = () => {
             ctx.textBaseline = 'middle';
             ctx.fillStyle = '#ffffff';
 
-            // Set Font based on selection
+            // Set Font
             let fontStr = "bold 60px ";
             if (font === 'Ancient') fontStr += "'Ancient', serif";
             else if (font === 'Hieroglyphs') fontStr += "'Hieroglyphs', cursive";
@@ -98,21 +87,20 @@ const SouvenirMaker = () => {
             ctx.shadowBlur = 10;
             ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 
-            // Branding/Watermark
+            // Branding
             ctx.font = "20px 'Inter', sans-serif";
             ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
             ctx.fillText("New Valley Hub", canvas.width - 100, canvas.height - 30);
         };
 
         image.onerror = () => {
-            console.error("Failed to load image:", imgSrc);
-            // Verify this isn't a loop if it fails repeatedly, usually safe here
+            console.error("Failed to load image:", imageUrl);
         }
     }, [text, font, bgImage]);
 
     const handleDownload = () => {
         const canvas = canvasRef.current;
-        if (!bgImage) return; // Prevent download if no image
+        if (!bgImage) return;
 
         const link = document.createElement('a');
         link.download = `new-valley-souvenir-${Date.now()}.png`;
@@ -165,7 +153,7 @@ const SouvenirMaker = () => {
                                     }`}
                             >
                                 <span className={`text-lg ${f === 'Ancient' ? 'souvenir-font-ancient' :
-                                    f === 'Hieroglyphs' ? 'souvenir-font-hieroglyphs' : 'souvenir-font-default'
+                                        f === 'Hieroglyphs' ? 'souvenir-font-hieroglyphs' : 'souvenir-font-default'
                                     }`}>
                                     {f} Style
                                 </span>
@@ -177,44 +165,51 @@ const SouvenirMaker = () => {
                 <div className="mb-6">
                     <label className="block text-[#472825] font-bold mb-2">Background</label>
 
-                    {/* Presets + API Artifacts */}
                     <p className="text-xs text-[#96786F] mb-2">Select a Background:</p>
 
                     {loading ? (
-                        <p className="text-sm text-gray-500 italic mb-4">Loading souvenirs...</p>
-                    ) : apiArtifacts.length === 0 ? (
-                        <p className="text-sm text-red-500 italic mb-4 border p-2 rounded bg-red-50">
-                            No souvenirs available. Please add Digital Artifacts in the admin panel.
-                        </p>
+                        <p className="text-sm text-gray-500 italic mb-4">Loading backgrounds...</p>
+                    ) : apiBackgrounds.length === 0 ? (
+                        <div className="text-sm text-red-500 italic mb-4 border-2 border-red-300 p-3 rounded bg-red-50">
+                            <p className="font-bold mb-1">⚠️ No backgrounds available</p>
+                            <p className="text-xs">Please add Souvenir Assets (category: background) in the admin panel at:</p>
+                            <code className="text-xs bg-white px-2 py-1 rounded block mt-1">/admin/tourism/souvenirasset/</code>
+                        </div>
                     ) : (
                         <div className="grid grid-cols-4 gap-2 mb-4 max-h-40 overflow-y-auto">
-                            {/* API Artifacts ONLY */}
-                            {apiArtifacts.map((artifact) => (
-                                <button
-                                    key={artifact.id}
-                                    onClick={() => {
-                                        setBgImage(artifact);
-                                        setCustomUrl('');
-                                    }}
-                                    className={`relative h-12 rounded overflow-hidden border-2 transition-all ${bgImage && bgImage.id === artifact.id ? 'border-[#D3AB80] ring-2 ring-[#D3AB80]/20' : 'border-transparent opacity-70 hover:opacity-100'
-                                        }`}
-                                    title={artifact.name}
-                                >
-                                    <img
-                                        src={artifact.final_image_src?.startsWith('http') ? artifact.final_image_src : `http://127.0.0.1:8000${artifact.final_image_src}`}
-                                        alt={artifact.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </button>
-                            ))}
+                            {apiBackgrounds.map((asset) => {
+                                // Use display_image from backend (URL takes priority)
+                                const thumbnailSrc = asset.display_image || '';
+
+                                return (
+                                    <button
+                                        key={asset.id}
+                                        onClick={() => {
+                                            setBgImage(asset);
+                                            setCustomUrl('');
+                                        }}
+                                        className={`relative h-12 rounded overflow-hidden border-2 transition-all ${bgImage && bgImage.id === asset.id ? 'border-[#D3AB80] ring-2 ring-[#D3AB80]/20' : 'border-transparent opacity-70 hover:opacity-100'
+                                            }`}
+                                        title={asset.name}
+                                    >
+                                        <img
+                                            src={thumbnailSrc}
+                                            alt={asset.name}
+                                            className="w-full h-full object-cover"
+                                        />
+                                        {asset.is_premium && (
+                                            <span className="absolute top-0 right-0 bg-[#D3AB80] text-white text-xs px-1 rounded-bl">⭐</span>
+                                        )}
+                                    </button>
+                                );
+                            })}
                         </div>
                     )}
 
-                    {/* Dual Input: URL or File */}
+                    {/* Custom URL or File */}
                     <div className="bg-[#FFF4E2] p-3 rounded border border-[#96786F]/20">
                         <p className="text-xs text-[#96786F] mb-2 font-bold">Or use your own:</p>
 
-                        {/* URL Input */}
                         <input
                             type="text"
                             placeholder="Paste Image URL..."
@@ -223,16 +218,16 @@ const SouvenirMaker = () => {
                             className="w-full border border-[#96786F]/30 p-2 rounded text-sm mb-2 focus:ring-2 focus:ring-[#D3AB80] text-[#472825]"
                         />
 
-                        {/* Divider */}
                         <div className="flex items-center my-2">
                             <div className="flex-grow border-t border-gray-300"></div>
                             <span className="flex-shrink-0 mx-2 text-xs text-gray-400">OR</span>
                             <div className="flex-grow border-t border-gray-300"></div>
                         </div>
 
-                        {/* File Input */}
                         <label className="flex items-center justify-center w-full px-4 py-2 bg-white text-[#D3AB80] rounded-lg shadow-sm tracking-wide uppercase border border-[#D3AB80] cursor-pointer hover:bg-[#D3AB80]/10 transition-colors">
-                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c5 5 0 0 1 5 5 5 5 0 0 1-4.88-3.9z" /></svg>
+                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 0 0 1 0 1 0 0 0 0-4.88-3.9z" />
+                            </svg>
                             <span className="text-xs font-bold">Upload File</span>
                             <input type='file' className="hidden" accept="image/*" onChange={handleFileUpload} />
                         </label>
@@ -245,7 +240,9 @@ const SouvenirMaker = () => {
                     className={`w-full text-white font-bold py-3 rounded transition flex items-center justify-center space-x-2 ${bgImage ? 'bg-[#D3AB80] hover:bg-[#96786F]' : 'bg-[#96786F]/50 cursor-not-allowed'
                         }`}
                 >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
                     <span>Download Image</span>
                 </button>
             </div>

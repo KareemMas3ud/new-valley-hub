@@ -85,6 +85,7 @@ const Navbar = () => {
                             { path: "/hotels", label: "Hotels" },
                             { path: "/map", label: "Map" },
                             { path: "/marketplace", label: "Market" },
+                            { path: "/museum", label: "Museum 🏛️" },
                             { path: "/souvenir", label: "Souvenir 📸" },
                             { path: "/contact", label: "Contact" },
                         ].map((link) => (
@@ -150,6 +151,7 @@ const Navbar = () => {
                             { path: "/hotels", label: "Hotels" },
                             { path: "/map", label: "Map" },
                             { path: "/marketplace", label: "Market" },
+                            { path: "/museum", label: "Museum 🏛️" },
                             { path: "/souvenir", label: "Souvenir Maker 📸" },
                             { path: "/contact", label: "Contact Us" },
                         ].map((link) => (
