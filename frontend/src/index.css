@@ -22,3 +22,36 @@ body {
 .font-arabic {
   font-family: 'Cairo', sans-serif;
 }
+
+/* ================================================
+   CUSTOM SCROLLBAR - NEW VALLEY THEME
+   ================================================ */
+
+/* Webkit Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF4E2;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D3AB80 0%, #B68D60 100%);
+  border-radius: 10px;
+  border: 2px solid #FFF4E2;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #B68D60 0%, #96786F 100%);
+  border-color: #FDE4BC;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D3AB80 #FFF4E2;
+}
