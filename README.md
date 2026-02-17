@@ -1,16 +1,16 @@
 <div align="center">
   <img src="screenshots/Logo.png" alt="New Valley Hub Logo" width="300">
   
-  <h1>New Valley Hub (بوابة الوادي الجديد) 🌴</h1>
+  <h1>New Valley Hub (بوابة الوادي الجديد) 🏜️</h1>
   
-  <p><strong>"Discover the Magic of Egypt's Hidden Oasis - AI-Powered Digital Tourism Platform"</strong></p>
+  <p><strong>"Discover Egypt's Hidden Oasis Through Premium Digital Tourism"</strong></p>
   
   <p>
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
     <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
     <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
     <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini">
+    <img src="https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA">
   </p>
 </div>
 
@@ -18,254 +18,304 @@
 
 ## 📖 About the Project
 
-**New Valley Hub** is a comprehensive full-stack digital tourism platform dedicated to the New Valley Governorate (Al-Wadi Al-Gadid) in Egypt. Built with modern web technologies and powered by Google Gemini AI, this platform connects travelers with the rich heritage and hidden gems of the region—from the surreal landscapes of the White Desert to the historic oasis towns of Kharga and Dakhla.
+**New Valley Hub** is a premium, AI-powered digital tourism platform celebrating the majestic New Valley Governorate (الوادي الجديد) in Egypt. From the otherworldly landscapes of the White Desert to the ancient oasis towns of Kharga and Dakhla, we bring Egypt's hidden treasures to the world through cutting-edge technology and luxurious design.
 
-Developed for the **"New Valley Innovates" Hackathon 2026**, this project demonstrates the power of AI-driven tourism experiences, RAG (Retrieval-Augmented Generation), and progressive web applications.
+Built for the **"New Valley Innovates" Hackathon 2026**, this Progressive Web Application showcases the perfect fusion of heritage and innovation through AI-driven experiences, sophisticated UI/UX, and offline-first architecture.
+
+**🏆 Key Achievements:**
+- ✨ **Luxury Earthy Design System** - Premium ceramic-effect UI with warm, sophisticated color palette
+- 🤖 **RAG-Powered AI Chatbot** - "3m Sa3ed" local guide with real-time database integration
+- 🎨 **Interactive Souvenir Maker** - Canvas-based editor with ancient Egyptian fonts
+- 🗺️ **Offline-First PWA** - Full functionality without internet connectivity
+- 📱 **Installable App** - Native-like experience on all devices
 
 ---
 
-## 🔥 Key Features
+## 🎨 Design Philosophy: "Luxury Earthy" Theme
 
-### 🤖 AI Chatbot - "3m Sa3ed" (عم سعيد)
-**Your Virtual Local Guide powered by Google Gemini AI.**
+Our design system embodies the warmth of the Egyptian desert with a premium, minimalist aesthetic.
 
-* **Intelligent Conversations:** Powered by `gemini-flash-latest` model for fast, context-aware responses
-* **RAG-Enhanced Search:** Retrieves real-time data from the database (Attractions, Hotels) to provide accurate, up-to-date information
-* **Friendly Persona:** Welcomes users with "Ahlan ya habibi!" and responds in friendly English with Egyptian Arabic expressions
-* **Modern UI/UX:**
-  - Floating button with pulse animation and gradient (emerald to teal)
-  - Call-to-action label: "Ask 3m Sa3ed 🐫" with bounce animation
-  - Smooth chat window transitions with scale and opacity effects
-  - Auto-scroll to latest messages
-  - Message bubbles with distinct user (blue) and AI (gradient green) styling
+### Color Palette
 
-**Technical Implementation:**
-```python
-# Backend: ChatAPIView (views.py)
-- POST endpoint: /api/tourism/chat/
-- RAG: Searches Attractions & Hotels using Django Q objects
-- Prompt: "You are '3m Sa3ed', a helpful guide for New Valley Egypt"
-- Returns: AI-generated response from Gemini
+```css
+🍫 Dark Chocolate (#472825) - Primary text, headings, deep elegance
+🌅 Medium Taupe (#96786F) - Secondary text, subtle sophistication  
+✨ Golden Sand (#D3AB80) - Buttons, accents, warm highlights
+🥐 Creamy Beige (#FDE4BC) - Card backgrounds, secondary elements
+🏺 Ivory White (#FFF4E2) - Main backgrounds, pristine canvas
 ```
 
+### Signature UI Elements
+
+**🧭 Morphing Solid Header**
+- **At Top:** Full-width solid ivory header with bottom border
+- **On Scroll:** Transforms into centered floating capsule (rounded-full)
+- **Effect:** Premium "ceramic pill" with golden sand border and warm shadow
+- **Transition:** Smooth 500ms animation with centered positioning
+
+**💎 Ceramic Effect Components**
+- Solid, opaque backgrounds (no transparency/blur)
+- Subtle golden accents and warm shadows
+- High readability with dark brown text
+- Card hover effects with gentle elevation
+
+**🌟 Premium Interactions**
+- Logo dynamically resizes on scroll (h-12 → h-10)
+- Cards scale to 105% on hover with shadow enhancement
+- Smooth 300-500ms transitions throughout
+- Unified Dark Brown/Golden Sand social buttons
+
 ---
 
-### 🔍 Global Search Engine
-**Unified search across all content types.**
+## 🔥 Flagship Features
 
-* **Multi-Model Search:** Searches Attractions, Hotels, and Products simultaneously
-* **Smart Filtering:** Uses Django Q objects for name and description matching
-* **Rich Results:** Returns type-specific data (category, rating, price)
-* **Absolute URLs:** Images served with full URLs for frontend compatibility
-* **Performance:** Limits to 10 results per model (30 max total)
-* **Type-Specific Badges:** Visual indicators for attraction, hotel, or product results
+### 🤖 "3m Sa3ed" (عم سعيد) - Your AI Local Guide
+
+**The most intelligent tourism chatbot in Egypt, powered by Google Gemini AI with RAG technology.**
+
+**Technical Innovation:**
+- **RAG-Enhanced Responses:** Searches attractions and hotels in real-time before answering
+- **Contextual Awareness:** Uses actual database content to provide accurate, up-to-date information
+- **Friendly Persona:** Welcomes with "Ahlan ya habibi!" in authentic Egyptian style
+- **Smart Prompting:** "You are '3m Sa3ed', a helpful guide for New Valley Egypt..."
+
+**Premium UI/UX:**
+- Dark Brown/Taupe gradient header with luxury aesthetics
+- Golden Sand user messages, Creamy Beige AI responses
+- Typing indicators with animated dots
+- Auto-scroll to latest messages
+- Toggle button with gradient hover effect
 
 **API Endpoint:**
-```
-GET /api/tourism/search/?q={query}
-Response: { results: [...], count: 13, query: "desert" }
+```python
+POST /api/tourism/chat/
+Body: { "message": "Tell me about White Desert" }
+Response: { "response": "Ahlan ya habibi! The White Desert is..." }
 ```
 
 ---
 
 ### ✨ AI-Powered Trip Planner
-**Smart itinerary generator for personalized travel experiences.**
 
-* **Customizable Plans:** Generate itineraries based on days, budget, and interests
-* **Budget Tiers:** Low, Medium, High options
-* **Interest-Based:** Filter by natural, historical, or cultural attractions
-* **API Integration:** Uses custom `generate_itinerary()` function
+**Intelligent itinerary generator with cost estimation.**
 
-**Endpoint:**
-```
+**Algorithm Features:**
+- **Interest-Based Filtering:** Natural, Historical, Cultural attractions
+- **Budget Tiers:** 
+  - Low: 550 EGP/day
+  - Medium: 1,300 EGP/day  
+  - High: 3,500 EGP/day
+- **Smart Scheduling:** 2 activities per day (Morning/Afternoon)
+- **Cost Calculation:** Base cost + ticket prices for accurate budgeting
+
+**User Experience:**
+- Creamy Beige form cards with Golden Sand accents
+- Dark Brown text for perfect readability
+- Interactive itinerary display with images
+- Total estimated cost in Egyptian Pounds (EGP)
+
+**API Endpoint:**
+```python
 POST /api/tourism/attractions/generate_plan/
-Body: { days: 3, budget: "medium", interests: ["natural", "historical"] }
+Body: { "days": 3, "budget": "medium", "interests": ["natural", "historical"] }
 ```
-
----
-
-### 🗺️ Interactive Map & Attractions
-* **Leaflet Integration:** Interactive maps with `react-leaflet`
-* **Offline Support:** Static map fallback when offline
-* **Attraction Cards:** Hover zoom effect (scale-105) with smooth transitions
-* **Filtering System:** Filter by type (All, Natural, Historical, Cultural) with live counts
-* **Rich Metadata:** Visit duration, ticket prices, opening hours
-
----
-
-### 🛍️ Local Marketplace (Souq)
-* **Artisan Products:** Digital market for local crafts, pottery, and dates
-* **Product Listings:** Name, description, price (EGP), seller contact
-* **Image Support:** External image URLs via URLField
-* **Search Integration:** Products included in global search
-
----
-
-### 🏨 Hotels & Accommodation
-* **Star Ratings:** 1-5 star classification system
-* **Direct Booking:** Links to Booking.com or external reservation pages
-* **Price Ranges:** Budget ($), Moderate ($$), Luxury ($$$) indicators
-* **Location Data:** Google Maps integration for each hotel
-* **Contact Details:** Email and phone number support
 
 ---
 
 ### 📸 Digital Souvenir Maker
-**Interactive Canvas-based photo editor.**
 
-* **Custom Backgrounds:** Select from Digital Artifacts collection
-* **Text Overlays:** Add personalized messages
-* **Custom Fonts:** Scoped local font loading for unique typography
-* **Download Feature:** Export creations as images
+**Professional canvas-based photo editor with Egyptian themes.**
+
+**Creative Tools:**
+- **Background Selection:** Choose from Digital Artifacts collection
+- **Custom Image Upload:** Paste URL or upload your own photos
+- **Ancient Typography:** Exclusive fonts (Ancient, Hieroglyphs)
+- **Text Customization:** Color picker, font size, positioning
+- **Export Feature:** Download as PNG with transparent background support
+
+**Design:**
+- Creamy Beige controls panel
+- Golden Sand action buttons
+- Ivory White preview area
+- Dark Brown text labels
+- Scoped local font loading (no global pollution)
+
+---
+
+### 🔍 Global Search Engine
+
+**Unified search across all content types with intelligent categorization.**
+
+**Multi-Model Architecture:**
+```python
+# Searches simultaneously:
+- Attractions (name, description, category)
+- Hotels (name, description, star rating)
+- Products (name, description, price)
+
+# Returns unified JSON with type badges
+GET /api/tourism/search/?q=desert
+Response: { results: [...], count: 13, query: "desert" }
+```
+
+**Performance:**
+- 10 results per model (30 max total)
+- SQL injection protection with sanitized queries
+- Absolute image URLs for seamless frontend consumption
+- Type-specific metadata (category, rating, price)
+
+---
+
+### 🗺️ Interactive Maps & Offline Support
+
+**Leaflet-powered maps with full offline fallback.**
+
+**Features:**
+- Real-time marker rendering for attractions
+- Cluster support for dense areas
+- Custom icons and popups
+- Static map fallback when offline
+- Zoom controls and satellite view
+
+**Technology:**
+- React-Leaflet 5.0.0 integration
+- Leaflet 1.9.4 engine
+- OpenStreetMap tiles
+- Service Worker caching
 
 ---
 
 ### 🆘 Emergency SOS Button
-**Quick access to emergency services.**
 
-* **Floating Action Button:** Fixed position in bottom-right corner
-* **Emergency Contacts:**
-  - 🚑 Ambulance: 123
-  - 🚓 Police: 122
-  - 👮 Tourist Police: 126
-* **One-Tap Calling:** Direct `tel:` links for instant dialing
-* **Animated UI:** Pulse animation on main button, smooth menu expansion
+**One-tap access to critical services for tourist safety.**
 
----
+**Emergency Contacts:**
+- 🚑 **Ambulance:** 123
+- 🚓 **Police:** 122
+- 🔥 **Fire Department:** 180
+- 👮 **Tourist Police:** 126
+- 🏥 **Hospital:** Direct dial
 
-### 📴 Offline Features
-* **PWA Support:** Progressive Web App with `vite-plugin-pwa`
-* **Offline Indicator:** Visual banner when internet connection is lost
-* **Service Workers:** Caching for offline functionality
-* **Installable:** Can be added to home screen on mobile devices
-
----
-
-### 👥 Meet the Team
-**Smart social link detection and display.**
-
-* **Auto-Detection:** Intelligent URL parsing for platform-specific branding
-* **Supported Platforms:**
-  - **GitHub:** 🖤 Dark button with "View Code"
-  - **LinkedIn:** 💙 Blue button with "Connect"
-  - **Instagram:** 🌈 Gradient (pink-purple-yellow) button with "Follow"
-  - **Linktree:** 💚 Green button with "All Links"
-  - **Generic:** 🌐 Indigo button with "Visit Profile"
-* **Hover Effects:** Cards lift and scale on hover (z-10 stacking context)
-* **Dynamic Icons:** React-icons integration (FaGithub, FaLinkedin, FaInstagram, etc.)
-
-**Social Link Logic:**
-```javascript
-// TeamSection.jsx - getLinkProps()
-if (url.includes('instagram.com')) {
-  return { 
-    icon: <FaInstagram />, 
-    text: 'Follow', 
-    color: 'bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500'
-  };
-}
-```
+**Design:**
+- Fixed bottom-right position
+- Pulse animation for visibility
+- Dark Brown with Golden Sand accents
+- Creamy Beige emergency contact cards
+- Direct `tel:` links for instant calling
 
 ---
 
-### 🏛️ Governor's Profile Section
-* **Official Representation:** Dedicated section for the Governor's message
-* **Singleton Pattern:** Only one profile instance (pk=1)
-* **Photo Upload:** Profile photo with ImageField
-* **Editable Content:** Welcome message, career highlights, title
-* **Default Arabic Content:** Pre-populated with Governor's information
+### 📴 Progressive Web App (PWA)
+
+**Installable, offline-first architecture for native-like experience.**
+
+**Capabilities:**
+- ✅ Service Worker caching
+- ✅ Add to Home Screen
+- ✅ Offline indicator banner
+- ✅ Background sync
+- ✅ Push notifications ready
+
+**Technical Stack:**
+- `vite-plugin-pwa` 1.2.0
+- Workbox integration
+- Manifest auto-generation
+- iOS Safari support
 
 ---
 
-### 🎨 Modern UI/UX Design
-* **Responsive Grid Layouts:** 1 column (mobile), 2 (tablet), 3 (desktop)
-* **Hover Animations:**
-  - Cards scale to 105% on hover
-  - Shadow elevation (shadow-md → shadow-xl)
-  - Smooth transitions (300ms duration)
-* **Gradient Themes:**
-  - Primary: Orange to Yellow (brand identity)
-  - Chatbot: Emerald to Teal (AI personality)
-  - Instagram: Pink-Purple-Yellow (platform authentic)
-* **Loading States:** Animated spinners with brand colors
-* **Empty States:** Friendly messages with action buttons
+## 🛠️ Technology Stack
 
----
+### Frontend Architecture
 
-## 🛠️ Tech Stack
-
-### Frontend
 | Technology | Version | Purpose |
 |:-----------|:--------|:--------|
-| **React** | 19.2.0 | UI framework with hooks and functional components |
-| **Vite** | 7.2.4 | Lightning-fast build tool and dev server |
-| **Tailwind CSS** | 4.1.18 | Utility-first styling with custom gradients |
-| **React Router** | 7.13.0 | Client-side routing (10 pages) |
-| **Axios** | 1.13.3 | HTTP client for API requests |
-| **React Icons** | 5.5.0 | Icon library (Fa*, Si* icons) |
-| **React Leaflet** | 5.0.0 | Interactive maps |
+| **React** | 19.2.0 | Modern UI with hooks and functional components |
+| **Vite** | 7.2.4 | Lightning-fast HMR and optimized builds |
+| **Tailwind CSS** | 4.1.18 | Utility-first styling with custom luxury palette |
+| **React Router** | 7.13.0 | Client-side routing across 10 pages |
+| **Axios** | 1.13.3 | Promise-based HTTP client |
+| **React Icons** | 5.5.0 | Icon library (Fa*, Si*, Md* icons) |
+| **React Leaflet** | 5.0.0 | Interactive map components |
 | **Leaflet** | 1.9.4 | Map rendering engine |
-| **vite-plugin-pwa** | 1.2.0 | Progressive Web App support |
+| **vite-plugin-pwa** | 1.2.0 | PWA manifest and service worker generation |
 
-### Backend
+### Backend Architecture
+
 | Technology | Version | Purpose |
 |:-----------|:--------|:--------|
-| **Django** | 5.2.10 | Web framework and ORM |
-| **Django REST Framework** | 3.16.1 | RESTful API architecture |
-| **google-generativeai** | Latest | Google Gemini AI integration |
+| **Django** | 5.2.10 | Web framework with powerful ORM |
+| **Django REST Framework** | 3.16.1 | RESTful API with ViewSets and Serializers |
+| **google-generativeai** | Latest | Google Gemini AI SDK |
 | **Pillow** | 12.1.0 | Image processing for uploads |
-| **django-cors-headers** | 4.9.0 | CORS configuration for React frontend |
+| **django-cors-headers** | 4.9.0 | CORS middleware for React frontend |
+| **gunicorn** | 21.2.0 | Production WSGI server |
+| **whitenoise** | 6.6.0 | Static file serving |
+| **psycopg2-binary** | 2.9.9 | PostgreSQL adapter |
 
 ### Database
-* **Development:** SQLite (included)
-* **Production:** PostgreSQL (recommended)
+
+- **Development:** SQLite3 (included, zero config)
+- **Production:** PostgreSQL (Neon DB recommended)
+- **ORM:** Django Models with abstract base classes
 
 ---
 
-## 📂 Project Structure
+## 📂 Project Architecture
 
 ```
 new-valley-hub/
-├── backend/
-│   ├── tourism/
-│   │   ├── models.py          # Attraction, Hotel, TeamMember, GovernorProfile
+├── backend/                    # Django REST API
+│   ├── core/                   # Shared utilities
+│   │   └── models.py          # BaseLocationModel (abstract)
+│   ├── tourism/                # Main tourism app
+│   │   ├── models.py          # Attraction, DigitalArtifact, TeamMember, etc.
 │   │   ├── views.py           # ChatAPIView, SearchAPIView, ViewSets
 │   │   ├── serializers.py     # DRF serializers
-│   │   ├── urls.py            # API routes (/chat/, /search/, etc.)
-│   │   └── ai_planner.py      # Trip itinerary generator
-│   ├── hospitality/
-│   │   └── models.py          # Hotel model with stars, booking_url
-│   ├── marketplace/
+│   │   ├── urls.py            # API routes
+│   │   └── ai_planner.py      # Trip itinerary algorithm
+│   ├── hospitality/            # Hotels app
+│   │   └── models.py          # Hotel model with stars, booking
+│   ├── marketplace/            # Products app
 │   │   └── models.py          # Product model
-│   ├── core/
-│   │   └── models.py          # BaseLocationModel (shared fields)
-│   └── manage.py
-├── frontend/
+│   ├── services/               # Services directory
+│   │   └── models.py          # ServiceCategory (hierarchical), Service
+│   └── new_valley_hub/         # Django project settings
+│       ├── settings.py        # Configuration
+│       └── urls.py            # Root URL config
+├── frontend/                   # React PWA
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── ChatbotWidget.jsx      # AI chatbot UI
-│   │   │   ├── TeamSection.jsx        # Team cards with social links
+│   │   ├── components/        # Reusable UI components
+│   │   │   ├── Navbar.jsx             # Morphing solid capsule header
+│   │   │   ├── Footer.jsx             # Dark Brown with SandScript credit
+│   │   │   ├── ChatbotWidget.jsx      # 3m Sa3ed AI chatbot
+│   │   │   ├── TeamSection.jsx        # Luxury earthy team cards
 │   │   │   ├── SOSButton.jsx          # Emergency contacts
+│   │   │   ├── WeatherWidget.jsx      # Creamy Beige weather display
+│   │   │   ├── SouvenirMaker.jsx      # Canvas editor
 │   │   │   ├── OfflineIndicator.jsx   # Network status
-│   │   │   ├── Navbar.jsx             # Navigation + PWA install
-│   │   │   └── AttractionCard.jsx     # Reusable card component
-│   │   ├── pages/
-│   │   │   ├── HomePage.jsx           # Landing + search bar
-│   │   │   ├── SearchResults.jsx      # Global search UI
+│   │   │   ├── AttractionCard.jsx     # Card component
+│   │   │   ├── ServiceCard.jsx        # Service listing card
+│   │   │   └── HotelCard.jsx          # Hotel card with booking
+│   │   ├── pages/              # Route-based pages
+│   │   │   ├── HomePage.jsx           # Landing + hero + features
 │   │   │   ├── AttractionsPage.jsx    # Filterable attractions
-│   │   │   ├── HotelsPage.jsx         # Accommodation listings
+│   │   │   ├── ServicesPage.jsx       # Hierarchical services
+│   │   │   ├── HotelsPage.jsx         # Hotel listings
+│   │   │   ├── MapPage.jsx            # Interactive Leaflet map
 │   │   │   ├── PlannerPage.jsx        # AI trip planner
 │   │   │   ├── MarketplacePage.jsx    # Local products
-│   │   │   ├── SouvenirPage.jsx       # Canvas editor
-│   │   │   ├── MapPage.jsx            # Interactive map
-│   │   │   ├── ServicesPage.jsx       # Utilities & services
-│   │   │   └── ContactPage.jsx        # Contact information
+│   │   │   ├── SouvenirPage.jsx       # Souvenir maker wrapper
+│   │   │   ├── ContactPage.jsx        # Contact + team + governor
+│   │   │   └── SearchResults.jsx      # Global search UI
 │   │   ├── services/
-│   │   │   └── api.js                 # Axios API client
-│   │   ├── App.jsx                    # Root component + routing
-│   │   └── index.css                  # Global Tailwind styles
-│   └── package.json
-├── screenshots/                        # Feature screenshots (12 files)
+│   │   │   └── api.js         # Axios client configuration
+│   │   ├── App.jsx            # Root component + routing
+│   │   └── index.css          # Tailwind + global styles
+│   ├── dev-dist/              # PWA service worker files
+│   ├── package.json
+│   └── vite.config.js         # Vite + PWA configuration
+├── screenshots/                # Feature screenshots
 └── README.md
 ```
 
@@ -274,184 +324,343 @@ new-valley-hub/
 ## 🚀 Getting Started
 
 ### Prerequisites
-* **Python** 3.10+ (for Django backend)
-* **Node.js** 18+ (for React frontend)
-* **Google Gemini API Key** (for AI chatbot)
+
+- **Python** 3.10+ (Django backend)
+- **Node.js** 18+ (React frontend)
+- **Google Gemini API Key** ([Get it here](https://makersuite.google.com/app/apikey))
 
 ### Installation
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/karim238253/new-valley-hub.git
-   cd new-valley-hub
-   ```
+#### 1️⃣ Clone the Repository
 
-2. **Backend Setup**
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   
-   # Add your Gemini API key to environment
-   export GEMINI_API_KEY="your_api_key_here"  # Linux/Mac
-   set GEMINI_API_KEY=your_api_key_here       # Windows CMD
-   $env:GEMINI_API_KEY="your_api_key_here"    # Windows PowerShell
-   
-   # Run migrations
-   python manage.py migrate
-   
-   # Create admin user (optional)
-   python manage.py createsuperuser
-   
-   # Start development server
-   python manage.py runserver
-   ```
-   Backend will run on `http://127.0.0.1:8000`
+```bash
+git clone https://github.com/KareemMas3ud/new-valley-hub.git
+cd new-valley-hub
+```
 
-3. **Frontend Setup**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-   Frontend will run on `http://localhost:5173`
+#### 2️⃣ Backend Setup
 
-4. **Access the Application**
-   * **Frontend:** http://localhost:5173
-   * **Backend API:** http://127.0.0.1:8000/api/
-   * **Django Admin:** http://127.0.0.1:8000/admin/
+```bash
+cd backend
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set Gemini API key
+export GEMINI_API_KEY="your_api_key_here"  # Linux/Mac
+set GEMINI_API_KEY=your_api_key_here       # Windows CMD
+$env:GEMINI_API_KEY="your_api_key_here"    # Windows PowerShell
+
+# Run migrations
+python manage.py migrate
+
+# Seed database (optional)
+python seed_comprehensive.py
+
+# Create admin user (optional)
+python manage.py createsuperuser
+
+# Start development server
+python manage.py runserver
+```
+
+**Backend runs on:** `http://127.0.0.1:8000`
+
+#### 3️⃣ Frontend Setup
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+**Frontend runs on:** `http://localhost:5173`
+
+#### 4️⃣ Access the Application
+
+- **Frontend UI:** http://localhost:5173
+- **Backend API:** http://127.0.0.1:8000/api/
+- **Django Admin:** http://127.0.0.1:8000/admin/
+- **API Docs:** http://127.0.0.1:8000/api/ (browsable)
 
 ---
 
 ## 📸 Screenshots
 
-| Home Page | AI Trip Planner ✨ |
+| Home Page | AI Chatbot - 3m Sa3ed 🤖 |
 | :---: | :---: |
-| ![Home Page](./screenshots/home.png) | ![Trip Planner](./screenshots/trip_planner.png) |
+| ![Home Page](./screenshots/home.png) | ![Chatbot](./screenshots/chatbot.png) |
 
-| Interactive Map | Attractions |
+| AI Trip Planner ✨ | Interactive Map |
 | :---: | :---: |
-| ![Map](./screenshots/map.png) | ![Attractions](./screenshots/attractions.png) |
+| ![Trip Planner](./screenshots/trip_planner.png) | ![Map](./screenshots/map.png) |
 
-| Hotels | Local Market 🛍️ |
+| Attractions | Hotels |
 | :---: | :---: |
-| ![Hotels](./screenshots/hotels.png) | ![Market](./screenshots/market.png) |
+| ![Attractions](./screenshots/attractions.png) | ![Hotels](./screenshots/hotels.png) |
 
-| Services | Souvenir Maker |
+| Local Market 🛍️ | Souvenir Maker |
 | :---: | :---: |
-| ![Services](./screenshots/services.png) | ![Souvenir Maker](./screenshots/souvenir.png) |
+| ![Market](./screenshots/market.png) | ![Souvenir Maker](./screenshots/souvenir.png) |
+
+| Services | SOS Emergency Button |
+| :---: | :---: |
+| ![Services](./screenshots/services.png) | ![SOS](./screenshots/SOS.png) |
 
 | Governor's Section | Team Section |
 | :---: | :---: |
 | ![Governor](./screenshots/governor.png) | ![Team](./screenshots/team.png) |
 
-| AI Chatbot - 3m Sa3ed 🤖 | SOS Emergency Button |
-| :---: | :---: |
-| ![Chatbot](./screenshots/chatbot.png) | ![SOS](./screenshots/SOS.png) |
+---
+
+## 🔌 API Documentation
+
+### Tourism Endpoints
+
+```
+# Attractions
+GET    /api/tourism/attractions/           List all attractions
+GET    /api/tourism/attractions/{id}/      Retrieve specific attraction
+POST   /api/tourism/attractions/generate_plan/   AI trip planner
+
+# Digital Museum
+GET    /api/tourism/artifacts/             List all digital artifacts
+GET    /api/tourism/artifacts/{id}/        Retrieve specific artifact
+
+# Team & Governor
+GET    /api/tourism/team/                  List team members
+GET    /api/tourism/governor/              Get governor profile (singleton)
+```
+
+### Hospitality Endpoints
+
+```
+GET    /api/hospitality/hotels/            List all hotels
+GET    /api/hospitality/hotels/{id}/       Retrieve specific hotel
+```
+
+### Marketplace Endpoints
+
+```
+GET    /api/marketplace/products/          List all products
+GET    /api/marketplace/products/{id}/     Retrieve specific product
+```
+
+### Services Endpoints
+
+```
+GET    /api/services/categories/           List service categories (hierarchical)
+GET    /api/services/services/             List all services
+```
+
+### AI & Search Endpoints
+
+```
+# AI Chatbot
+POST   /api/tourism/chat/
+Body:  { "message": "Tell me about White Desert" }
+Response: { "response": "Ahlan ya habibi! The White Desert..." }
+
+# Global Search
+GET    /api/tourism/search/?q={query}
+Response: { 
+  "results": [...], 
+  "count": 13, 
+  "query": "desert" 
+}
+```
 
 ---
 
-## 🔌 API Endpoints
+## 🎯 Key Technical Highlights
 
-### Tourism APIs
-* `GET /api/tourism/attractions/` - List all attractions
-* `POST /api/tourism/attractions/generate_plan/` - Generate trip itinerary
-* `GET /api/tourism/hotels/` - List all hotels
-* `GET /api/tourism/products/` - List all marketplace products
-* `GET /api/tourism/team/` - List team members
-* `GET /api/tourism/governor/` - Get governor profile
+### 1. RAG Implementation (Retrieval-Augmented Generation)
 
-### AI & Search
-* `POST /api/tourism/chat/` - AI chatbot (3m Sa3ed)
-  - Body: `{ "message": "Tell me about White Desert" }`
-  - Response: `{ "response": "..." }`
-* `GET /api/tourism/search/?q={query}` - Global search
-  - Response: `{ results: [...], count: 13, query: "desert" }`
-
----
-
-## 🎯 Key Code Highlights
-
-### RAG Implementation (Retrieval-Augmented Generation)
 ```python
 # backend/tourism/views.py - ChatAPIView
-context_results = []
-attractions = Attraction.objects.filter(
-    Q(name__icontains=user_message) | Q(description__icontains=user_message)
-)[:2]
-for item in attractions:
-    context_results.append(f"Place: {item.name} - {item.description[:150]}")
-
-context_str = "\n".join(context_results)
-prompt = f"System: You are '3m Sa3ed', a helpful guide... Context: {context_str}..."
-response = model.generate_content(prompt)
+def post(self, request):
+    user_message = request.data.get('message', '')
+    
+    # RAG: Search database for context
+    context_results = []
+    attractions = Attraction.objects.filter(
+        Q(name__icontains=user_message) | Q(description__icontains=user_message)
+    )[:2]
+    for item in attractions:
+        context_results.append(f"Place: {item.name} - {item.description[:150]}")
+    
+    # Build prompt with context
+    context_str = "\n".join(context_results)
+    prompt = f"System: You are '3m Sa3ed', a helpful guide... Context: {context_str}..."
+    
+    # Generate AI response
+    response = model.generate_content(prompt, request_options={'timeout': 30})
+    return Response({'response': response.text})
 ```
 
-### Pointer Events Fix (UI Interaction)
+### 2. Morphing Solid Header Animation
+
 ```jsx
-// ChatbotWidget.jsx - Prevents blocking clicks on underlying elements
-<div className="fixed bottom-6 right-24 z-50 pointer-events-none">
-  <div className="pointer-events-auto"> {/* Chat Window */}
-  <button className="pointer-events-auto"> {/* Chat Button */}
-</div>
+// frontend/src/components/Navbar.jsx
+const [isFloating, setIsFloating] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => setIsFloating(window.scrollY > 50);
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
+return (
+  <nav className={`
+    fixed z-50 transition-all duration-500 ease-in-out
+    ${isFloating
+      ? 'top-4 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] rounded-full bg-[#FFF4E2]/95 border border-[#D3AB80]/40 shadow-xl shadow-[#472825]/10 py-3'
+      : 'top-0 left-0 w-full bg-[#FFF4E2] border-b border-[#D3AB80]/20 rounded-none shadow-none py-5'
+    }
+  `}>
 ```
 
-### Hover Zoom Effect
+### 3. Trip Planner Algorithm
+
+```python
+# backend/tourism/ai_planner.py
+def generate_itinerary(days, budget_level, interests):
+    # Filter attractions by interests
+    relevant_attractions = [a for a in all_attractions 
+                           if a.attraction_type in interests]
+    
+    # Budget calculation
+    daily_rates = {'low': 550, 'medium': 1300, 'high': 3500}
+    base_cost = daily_rates[budget_level] * days
+    
+    # Build itinerary
+    itinerary = []
+    for day in range(1, days + 1):
+        activities = []
+        for time in ['Morning', 'Afternoon']:
+            attr = relevant_attractions.pop(0)
+            activities.append({
+                'name': attr.name,
+                'time': time,
+                'price': float(attr.ticket_price)
+            })
+        itinerary.append({'day': day, 'activities': activities})
+    
+    return {'itinerary': itinerary, 'total_estimated_cost': base_cost + ticket_sum}
+```
+
+### 4. Ceramic Card Hover Effect
+
 ```jsx
-// AttractionCard.jsx
-<div className="transition-all duration-300 hover:scale-105 hover:shadow-xl">
-  {/* Card content */}
+// Luxury Earthy Theme - Solid, Premium Interactions
+<div className="
+  bg-[#FFF4E2] border border-[#D3AB80]/20
+  transition-all duration-300
+  hover:scale-105 hover:shadow-xl hover:shadow-[#472825]/10
+  rounded-lg overflow-hidden
+">
+  {/* Solid ivory card with golden accents */}
 </div>
 ```
 
 ---
 
-## 🌟 Unique Features
+## 🌟 Unique Value Propositions
 
-1. **RAG-Powered AI:** Unlike generic chatbots, 3m Sa3ed searches the actual database before responding
-2. **Multi-Model Search:** Single search bar queries 3 different content types simultaneously
-3. **Instagram Gradient:** Authentic platform colors for social links (pink-purple-yellow)
-4. **Absolute Image URLs:** Backend generates full URLs for seamless frontend consumption
-5. **Pointer Events Management:** Chat widget doesn't block page interactions
-6. **SOS Integration:** Emergency services one tap away for tourist safety
-7. **PWA Ready:** Installable web app with offline support
+1. **🎨 Luxury Earthy Design System**
+   - Custom color palette inspired by Egyptian desert
+   - Ceramic-effect solid UI (no transparency/blur)
+   - Morphing navigation header with smooth transitions
+
+2. **🤖 RAG-Powered AI Chatbot**
+   - Only tourism chatbot in Egypt with real-time database integration
+   - Context-aware responses using actual attraction/hotel data
+   - Friendly "3m Sa3ed" persona with Egyptian authenticity
+
+3. **🖼️ Digital Souvenir Maker**
+   - Professional canvas editor with ancient Egyptian fonts
+   - Export high-quality PNGs with transparent background
+   - Scoped font loading prevents global CSS pollution
+
+4. **📴 True Offline-First Architecture**
+   - Service Worker caching for all critical assets
+   - Static map fallback when connectivity lost
+   - Offline indicator with graceful degradation
+
+5. **🆘 Tourist Safety Integration**
+   - One-tap emergency contacts (ambulance, police, tourist police)
+   - Fixed SOS button always accessible
+   - Direct tel: links for instant calling
+
+6. **🔍 Intelligent Multi-Model Search**
+   - Searches 3 content types simultaneously
+   - SQL injection protection with sanitized queries
+   - Type-specific badges and metadata
+
+7. **💎 Premium Interactions**
+   - Logo resizes dynamically on scroll
+   - Unified social buttons (Dark Brown/Golden Sand)
+   - 105% hover zoom on all cards
+   - Smooth 300-500ms transitions
 
 ---
 
 ## 🤝 Contributing
 
-This project was built for the **"New Valley Innovates" Hackathon 2026**. Contributions are welcome!
+This project was built for the **"New Valley Innovates" Hackathon 2026**. We welcome contributions!
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ---
 
-## 📝 License
+## 👨‍💻 Team - SandScript
 
-This project is developed for educational and hackathon purposes. 
+**Built with ❤️ by the SandScript Team for New Valley Governorate 🇪🇬**
+
+Our diverse team of developers, designers, and AI specialists came together to create this premium digital tourism experience. Check the **Meet the Team** section in the Contact page to see our profiles, GitHub repositories, and LinkedIn connections!
 
 ---
 
-## 👨‍💻 Team
+## 📝 License
 
-Built with ❤️ by the New Valley Hub team for **New Valley Governorate** 🇪🇬
-
-Check the **Meet the Team** section in the app to see developer profiles, GitHub repositories, and LinkedIn connections!
+This project is developed for educational and hackathon purposes.
 
 ---
 
 ## 🙏 Acknowledgments
 
-* **Google Gemini AI** for powering our intelligent chatbot
-* **New Valley Governorate** for inspiring this digital transformation
-* **React & Django Communities** for excellent documentation
-* **Tailwind CSS** for making beautiful UIs achievable
+- **Google Gemini AI** - Powering our intelligent RAG chatbot
+- **New Valley Governorate** - Inspiring this digital transformation
+- **React & Django Communities** - Outstanding documentation and support
+- **Tailwind CSS** - Making luxury UIs achievable
+- **OpenStreetMap & Leaflet** - Free, open-source mapping
+- **"New Valley Innovates" Hackathon 2026** - Platform for innovation
 
 ---
 
-**Made with ❤️ for New Valley** 🏜️✨
+<div align="center">
+  
+  **Made with ❤️ for New Valley Governorate** 🏜️✨
+  
+  *"Where Heritage Meets Innovation Through Luxury Design"*
+  
+  **SandScript Team © 2026**
 
-*"Connecting Heritage with Innovation"*
+  <br><br>
+
+  [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KareemMas3ud/new-valley-hub)
+  
+</div>
