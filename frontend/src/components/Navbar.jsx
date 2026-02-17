@@ -60,12 +60,14 @@ const Navbar = () => {
     return (
         <nav
             className={`
-                fixed z-50 transition-all duration-500 ease-in-out
+                fixed z-50 transition-all duration-500
+                left-0 right-0 mx-auto
                 ${isFloating
-                    ? 'top-4 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] rounded-full bg-[#FFF4E2]/95 border border-[#D3AB80]/40 shadow-xl shadow-[#472825]/10 py-3'
-                    : 'top-0 left-0 w-full bg-[#FFF4E2] border-b border-[#D3AB80]/20 rounded-none shadow-none py-5'
+                    ? 'top-4 w-[90%] md:w-[85%] rounded-2xl bg-[#FFF4E2]/95 backdrop-blur-md border border-[#D3AB80]/40 shadow-xl shadow-[#472825]/10 py-2'
+                    : 'top-0 w-full bg-[#FFF4E2] border-b border-[#D3AB80]/20 rounded-none shadow-none py-4'
                 }
             `}
+            style={{ transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)' }}
         >
             <div className="container mx-auto px-6">
                 <div className="flex justify-between items-center">
@@ -73,7 +75,7 @@ const Navbar = () => {
                         <img
                             src={logo}
                             alt="New Valley Hub Logo"
-                            className={`w-auto object-contain transition-all duration-500 ${isFloating ? 'h-10' : 'h-12'}`}
+                            className={`w-auto object-contain transition-all duration-500 ${isFloating ? 'h-14' : 'h-16'}`}
                         />
                     </Link>
 
