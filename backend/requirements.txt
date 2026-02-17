@@ -5,3 +5,12 @@ djangorestframework==3.16.1
 pillow==12.1.0
 sqlparse==0.5.5
 tzdata==2025.3
+
+# Production Dependencies
+gunicorn==21.2.0
+psycopg2-binary==2.9.9
+whitenoise==6.6.0
+dj-database-url==2.1.0
+
+# AI & External APIs
+google-generativeai

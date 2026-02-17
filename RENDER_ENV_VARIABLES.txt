@@ -1,0 +1,44 @@
+# =============================================================================
+# RENDER ENVIRONMENT VARIABLES - COPY ALL LINES BELOW
+# =============================================================================
+# Add these in Render Dashboard → Your Web Service → Environment
+# You can paste them all at once or add them one by one
+# =============================================================================
+
+PYTHON_VERSION=3.11.0
+SECRET_KEY=^o&3b3lvy63kjvl2q59c(*hzwrev6p4l%#8sv84h)-pvm6)(q9
+DEBUG=False
+ALLOWED_HOSTS=your-app-name.onrender.com
+GEMINI_API_KEY=AIzaSyDn3quWCS4wi8L7q_dy8k6dv9YyvQotN64
+
+# =============================================================================
+# IMPORTANT: Add this AFTER creating PostgreSQL database on Render
+# =============================================================================
+# DATABASE_URL=postgresql://user:password@host/database
+# 
+# Steps to get DATABASE_URL:
+# 1. Create PostgreSQL database on Render first
+# 2. Copy the "Internal Database URL" from the database page
+# 3. Add it here (or paste directly in Render dashboard)
+#
+# Example format:
+# DATABASE_URL=postgresql://new_valley_user:abc123xyz@dpg-xxxxx.frankfurt-postgres.render.com/new_valley_db
+# =============================================================================
+
+# =============================================================================
+# OPTIONAL: Add after deploying your frontend
+# =============================================================================
+# FRONTEND_URL=https://your-frontend-app.vercel.app
+# =============================================================================
+
+# =============================================================================
+# ⚠️ CRITICAL NOTES:
+# =============================================================================
+# 1. Replace "your-app-name.onrender.com" with your ACTUAL Render backend URL
+#    (You'll get this after creating the web service)
+#
+# 2. DO NOT include the DATABASE_URL line until you create the database
+#    Render will auto-populate it when you link the database
+#
+# 3. Keep SECRET_KEY secret! Never commit this to GitHub
+# =============================================================================

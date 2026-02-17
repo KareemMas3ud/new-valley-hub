@@ -3,6 +3,22 @@
 
 @source "./src/**/*.{html,js,jsx,ts,tsx}";
 
+@theme {
+  /* Custom Brand Colors */
+  --color-brand-dark: #472825;
+  --color-brand-taupe: #96786F;
+  --color-brand-sand: #D3AB80;
+  --color-brand-beige: #FDE4BC;
+  --color-brand-ivory: #FFF4E2;
+}
+
+/* Global Styles */
+body {
+  background-color: #FFF4E2;
+  color: #472825;
+  font-family: 'Cairo', sans-serif, system-ui, -apple-system, sans-serif;
+}
+
 .font-arabic {
-    font-family: 'Cairo', sans-serif;
+  font-family: 'Cairo', sans-serif;
 }

@@ -60,19 +60,19 @@ const ChatbotWidget = () => {
                     pointer-events-auto
                     transition-all duration-300 ease-in-out transform origin-bottom-right
                     ${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}
-                    bg-white rounded-2xl shadow-2xl w-[calc(100vw-2rem)] sm:w-96 flex flex-col mb-4 border border-gray-200
+                    bg-[#FFF4E2] rounded-2xl shadow-2xl w-[calc(100vw-2rem)] sm:w-96 flex flex-col mb-4 border border-[#96786F]/20
                 `}
                 style={{ maxHeight: 'calc(100vh - 120px)', height: '500px', maxWidth: '384px' }}
             >
                 {/* Header */}
-                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-4 rounded-t-2xl flex justify-between items-center shadow-md">
+                <div className="bg-gradient-to-r from-[#472825] to-[#96786F] text-white p-4 rounded-t-2xl flex justify-between items-center shadow-md">
                     <div className="flex items-center space-x-2">
-                        <div className="bg-white p-1.5 rounded-full text-emerald-600">
+                        <div className="bg-white p-1.5 rounded-full text-[#D3AB80]">
                             <FaRobot size={18} />
                         </div>
                         <div>
                             <h3 className="font-bold text-lg">3m Sa3ed 🐫</h3>
-                            <p className="text-xs text-emerald-100 opacity-90">Your Local Guide</p>
+                            <p className="text-xs text-[#FFF4E2] opacity-90">Your Local Guide</p>
                         </div>
                     </div>
                     <button
@@ -84,7 +84,7 @@ const ChatbotWidget = () => {
                 </div>
 
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 bg-gray-50/50 space-y-4 scroll-smooth">
+                <div className="flex-1 overflow-y-auto p-4 bg-[#FFF4E2]/30 space-y-4 scroll-smooth">
                     {messages.map((msg, index) => (
                         <div
                             key={index}
@@ -94,8 +94,8 @@ const ChatbotWidget = () => {
                                 className={`
                                     max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm
                                     ${msg.sender === 'user'
-                                        ? 'bg-emerald-600 text-white rounded-br-none'
-                                        : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'}
+                                        ? 'bg-[#D3AB80] text-[#472825] rounded-br-none'
+                                        : 'bg-[#FDE4BC] text-[#472825] border border-[#96786F]/20 rounded-bl-none'}
                                 `}
                             >
                                 <p className="whitespace-pre-wrap leading-relaxed">{msg.text}</p>
@@ -104,10 +104,10 @@ const ChatbotWidget = () => {
                     ))}
                     {isLoading && (
                         <div className="flex justify-start">
-                            <div className="bg-white border border-gray-100 text-gray-500 rounded-2xl rounded-bl-none px-4 py-3 text-sm shadow-sm flex items-center space-x-1">
-                                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                            <div className="bg-[#FDE4BC] border border-[#96786F]/20 text-[#96786F] rounded-2xl rounded-bl-none px-4 py-3 text-sm shadow-sm flex items-center space-x-1">
+                                <span className="w-2 h-2 bg-[#96786F] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                                <span className="w-2 h-2 bg-[#96786F] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                                <span className="w-2 h-2 bg-[#96786F] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                             </div>
                         </div>
                     )}
@@ -115,14 +115,14 @@ const ChatbotWidget = () => {
                 </div>
 
                 {/* Input Area */}
-                <form onSubmit={handleSendMessage} className="p-3 border-t border-gray-100 bg-white rounded-b-2xl">
-                    <div className="flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2 border border-gray-200 focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-500 transition-all">
+                <form onSubmit={handleSendMessage} className="p-3 border-t border-[#96786F]/20 bg-[#FFF4E2] rounded-b-2xl">
+                    <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-[#96786F]/20 focus-within:ring-2 focus-within:ring-[#D3AB80]/20 focus-within:border-[#D3AB80] transition-all">
                         <input
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder="Ask about New Valley..."
-                            className="flex-1 bg-transparent border-none outline-none text-sm text-gray-700 placeholder-gray-400"
+                            className="flex-1 bg-transparent border-none outline-none text-sm text-[#472825] placeholder-[#96786F]"
                             disabled={isLoading}
                         />
                         <button
@@ -131,8 +131,8 @@ const ChatbotWidget = () => {
                             className={`
                                 p-2 rounded-full transition-all
                                 ${isLoading || !input.trim()
-                                    ? 'text-gray-400 cursor-not-allowed'
-                                    : 'text-emerald-600 hover:bg-emerald-50 active:scale-95'}
+                                    ? 'text-[#96786F] cursor-not-allowed'
+                                    : 'text-[#D3AB80] hover:bg-[#D3AB80]/10 active:scale-95'}
                             `}
                         >
                             <FaPaperPlane />
@@ -145,23 +145,23 @@ const ChatbotWidget = () => {
             {!isOpen && (
                 <div className="fixed bottom-4 right-4 md:bottom-6 md:right-24 z-[100] flex items-center gap-3 pointer-events-none">
                     {/* Call to Action Label - Hide on very small screens */}
-                    <div className="hidden sm:block bg-white px-4 py-2 rounded-lg shadow-md animate-bounce relative pointer-events-auto">
-                        <span className="text-sm font-semibold text-emerald-700">Ask 3m Sa3ed 🐫</span>
+                    <div className="hidden sm:block bg-[#FDE4BC] px-4 py-2 rounded-lg shadow-md animate-bounce relative pointer-events-auto">
+                        <span className="text-sm font-semibold text-[#472825]">Ask 3m Sa3ed 🐫</span>
                         {/* Arrow pointing to button */}
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full">
-                            <div className="w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-white"></div>
+                            <div className="w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-[#FDE4BC]"></div>
                         </div>
                     </div>
 
                     {/* Button & Pulse Wrapper */}
                     <div className="relative pointer-events-auto">
                         {/* The Pulse Effect */}
-                        <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-[#D3AB80] opacity-75 animate-ping"></span>
 
                         {/* The Main Button */}
                         <button
                             onClick={toggleChat}
-                            className="relative z-10 w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white rounded-full shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center group"
+                            className="relative z-10 w-16 h-16 bg-gradient-to-r from-[#472825] to-[#96786F] hover:from-[#96786F] hover:to-[#472825] text-white rounded-full shadow-2xl hover:shadow-[#D3AB80]/50 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center group"
                         >
                             {/* Icon */}
                             <FaComments size={24} className="group-hover:animate-pulse" />

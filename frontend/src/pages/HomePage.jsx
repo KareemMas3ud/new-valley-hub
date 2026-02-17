@@ -87,15 +87,15 @@ const HomePage = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
                 </div>
 
-                {/* Weather Widget - Absolute positioned top right */}
-                <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20">
-                    <WeatherWidget />
-                </div>
-
                 {/* Hero Content */}
                 <div className="relative z-10 max-w-4xl mx-auto">
+                    {/* Weather Widget - Centered above headline */}
+                    <div className="flex justify-center mb-6">
+                        <WeatherWidget />
+                    </div>
+
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl animate-fade-in">
-                        Discover the <span className="text-orange-400">New Valley</span>
+                        Discover the <span className="text-brand-sand">New Valley</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-100 mb-10 drop-shadow-lg max-w-2xl mx-auto">
                         Experience the magic of Egypt's hidden oasis. From the White Desert to ancient temples, your journey begins here.
@@ -105,30 +105,30 @@ const HomePage = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                         <Link
                             to="/attractions"
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
+                            className="bg-brand-sand hover:bg-brand-taupe text-brand-dark px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
                         >
                             🗺️ Explore Attractions
                         </Link>
                         <Link
                             to="/planner"
-                            className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
+                            className="bg-brand-beige hover:bg-brand-sand text-brand-dark px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
                         >
                             ✨ Trip Planner
                         </Link>
                     </div>
 
                     {/* Smart Search Bar */}
-                    <form onSubmit={handleSearch} className="bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-2xl flex max-w-xl mx-auto">
+                    <form onSubmit={handleSearch} className="bg-brand-ivory/95 backdrop-blur-sm p-2 rounded-full shadow-2xl flex max-w-xl mx-auto">
                         <input
                             type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="🔍 Where do you want to go?"
-                            className="flex-grow px-6 py-3 rounded-l-full focus:outline-none text-gray-700"
+                            className="flex-grow px-6 py-3 rounded-l-full focus:outline-none text-brand-dark"
                         />
                         <button
                             type="submit"
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold transition-colors"
+                            className="bg-brand-sand hover:bg-brand-taupe text-brand-dark px-8 py-3 rounded-full font-bold transition-colors"
                         >
                             Search
                         </button>
@@ -144,11 +144,11 @@ const HomePage = () => {
             </div>
 
             {/* Photo Gallery Section */}
-            <div className="py-20 bg-gradient-to-b from-gray-50 to-white">
+            <div className="py-20 bg-gradient-to-b from-brand-ivory to-brand-beige">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Top Attractions</h2>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-dark mb-4">Top Attractions</h2>
+                        <p className="text-xl text-brand-taupe max-w-2xl mx-auto">
                             Explore the breathtaking beauty and rich heritage of the New Valley Governorate
                         </p>
                     </div>
@@ -160,7 +160,7 @@ const HomePage = () => {
                                 <Link
                                     key={attraction.id}
                                     to="/attractions"
-                                    className="group relative bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+                                    className="group relative bg-brand-beige rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
                                 >
                                     {/* Image Container */}
                                     <div className="h-64 relative overflow-hidden">
@@ -171,7 +171,7 @@ const HomePage = () => {
                                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                             />
                                         ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-orange-300 to-orange-500 flex items-center justify-center">
+                                            <div className="w-full h-full bg-gradient-to-br from-brand-beige to-brand-sand flex items-center justify-center">
                                                 <span className="text-white text-6xl">🏜️</span>
                                             </div>
                                         )}
@@ -182,21 +182,21 @@ const HomePage = () => {
                                     {/* Content */}
                                     <div className="p-6">
                                         <div className="flex items-center justify-between mb-3">
-                                            <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors">
+                                            <h3 className="text-xl font-bold text-brand-dark group-hover:text-brand-sand transition-colors">
                                                 {attraction.name}
                                             </h3>
-                                            <span className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full uppercase font-semibold">
+                                            <span className="bg-brand-sand/20 text-brand-dark text-xs px-3 py-1 rounded-full uppercase font-semibold">
                                                 {attraction.attraction_type}
                                             </span>
                                         </div>
-                                        <p className="text-gray-600 text-sm line-clamp-2 mb-4">
+                                        <p className="text-brand-taupe text-sm line-clamp-2 mb-4">
                                             {attraction.description}
                                         </p>
-                                        <div className="flex items-center justify-between text-sm text-gray-500">
+                                        <div className="flex items-center justify-between text-sm text-brand-taupe">
                                             <span className="flex items-center gap-1">
                                                 ⏱ {attraction.visit_duration_minutes} mins
                                             </span>
-                                            <span className="flex items-center gap-1 font-semibold text-green-600">
+                                            <span className="flex items-center gap-1 font-semibold text-brand-sand">
                                                 💰 {parseFloat(attraction.ticket_price) === 0 ? 'Free' : `EGP ${attraction.ticket_price}`}
                                             </span>
                                         </div>
@@ -206,12 +206,12 @@ const HomePage = () => {
                         ) : (
                             // Loading Skeletons
                             [1, 2, 3].map(i => (
-                                <div key={i} className="bg-white rounded-2xl shadow-xl overflow-hidden animate-pulse">
-                                    <div className="h-64 bg-gray-300"></div>
+                                <div key={i} className="bg-brand-beige rounded-2xl shadow-xl overflow-hidden animate-pulse">
+                                    <div className="h-64 bg-brand-taupe/30"></div>
                                     <div className="p-6">
-                                        <div className="h-6 bg-gray-300 rounded mb-3"></div>
-                                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                                        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                                        <div className="h-6 bg-brand-taupe/30 rounded mb-3"></div>
+                                        <div className="h-4 bg-brand-taupe/20 rounded mb-2"></div>
+                                        <div className="h-4 bg-brand-taupe/20 rounded w-3/4"></div>
                                     </div>
                                 </div>
                             ))
@@ -222,7 +222,7 @@ const HomePage = () => {
                     <div className="text-center mt-12">
                         <Link
                             to="/attractions"
-                            className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl transition-all duration-300 hover:scale-105"
+                            className="inline-block bg-brand-sand hover:bg-brand-taupe text-brand-dark px-10 py-4 rounded-full font-bold text-lg shadow-xl transition-all duration-300 hover:scale-105"
                         >
                             View All {totalAttractions} Attractions →
                         </Link>
@@ -234,14 +234,14 @@ const HomePage = () => {
             <GovernorSection />
 
             {/* Features Section */}
-            <div className="py-20 bg-gradient-to-b from-gray-900 via-slate-900 to-gray-900 text-white">
+            <div className="py-20 bg-gradient-to-b from-brand-dark via-brand-dark to-brand-taupe text-white">
                 <div className="container mx-auto px-4">
                     {/* Section Header */}
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-brand-sand to-brand-beige bg-clip-text text-transparent">
                             Platform Features
                         </h2>
-                        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                        <p className="text-brand-beige text-lg max-w-2xl mx-auto">
                             Everything you need to explore the New Valley like a local
                         </p>
                     </div>
@@ -252,33 +252,33 @@ const HomePage = () => {
                             const CardContent = (
                                 <>
                                     {/* Gradient Background Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/10 group-hover:to-transparent transition-all duration-500 rounded-3xl" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-brand-sand/0 to-brand-sand/0 group-hover:from-brand-sand/10 group-hover:to-transparent transition-all duration-500 rounded-3xl" />
 
                                     {/* Icon Container */}
-                                    <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 text-orange-400 mb-6 shadow-lg group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-orange-600 group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                                    <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-brand-sand/20 to-brand-beige/10 text-brand-sand mb-6 shadow-lg group-hover:bg-gradient-to-br group-hover:from-brand-sand group-hover:to-brand-beige group-hover:text-brand-dark group-hover:scale-110 transition-all duration-300">
                                         {feature.icon}
                                     </div>
 
                                     {/* Content */}
                                     <div className="relative">
-                                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors duration-300">
+                                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand-sand transition-colors duration-300">
                                             {feature.title}
                                         </h3>
-                                        <p className="text-slate-300 leading-relaxed">
+                                        <p className="text-brand-beige leading-relaxed">
                                             {feature.description}
                                         </p>
                                     </div>
 
                                     {/* Optional Link Indicator */}
                                     {feature.link && (
-                                        <div className="relative mt-6 flex items-center text-orange-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div className="relative mt-6 flex items-center text-brand-sand font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                             <span className="text-sm">Explore →</span>
                                         </div>
                                     )}
                                 </>
                             );
 
-                            const cardClasses = "group relative p-8 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-orange-500/20 hover:border-orange-500/50 overflow-hidden";
+                            const cardClasses = "group relative p-8 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-brand-beige/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-brand-sand/20 hover:border-brand-sand/50 overflow-hidden";
 
                             return feature.link ? (
                                 <Link
@@ -309,7 +309,7 @@ const HomePage = () => {
                         alt="Farafra Oasis"
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-blue-900/80"></div>
+                    <div className="absolute inset-0 bg-brand-dark/80"></div>
                 </div>
                 <div className="relative z-10 text-center max-w-3xl mx-auto text-white">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Adventure?</h2>
@@ -318,7 +318,7 @@ const HomePage = () => {
                     </p>
                     <Link
                         to="/planner"
-                        className="inline-block bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                        className="inline-block bg-brand-sand text-brand-dark px-10 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-brand-beige transition-all duration-300 hover:scale-105"
                     >
                         🚀 Plan My Trip Now
                     </Link>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AttractionsPage from './pages/AttractionsPage';
 import ServicesPage from './pages/ServicesPage';
@@ -20,12 +21,12 @@ import './index.css'
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 text-gray-900 font-sans overflow-x-hidden">
+      <div className="min-h-screen bg-[#FFF4E2] text-[#472825] font-sans overflow-x-hidden flex flex-col">
         <OfflineIndicator />
         <SOSButton />
         <ChatbotWidget />
         <Navbar />
-        <main>
+        <main className="pt-20 flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/attractions" element={<AttractionsPage />} />
@@ -40,9 +41,7 @@ function App() {
           </Routes>
         </main>
 
-        <footer className="bg-gray-800 text-white py-8 text-center mt-auto">
-          <p>&copy; 2026 New Valley Hub. "New Valley Innovates" Hackathon.</p>
-        </footer>
+        <Footer />
       </div>
     </Router>
   );

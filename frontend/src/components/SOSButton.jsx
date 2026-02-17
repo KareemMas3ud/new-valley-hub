@@ -22,13 +22,13 @@ const SOSButton = () => {
                         <button
                             key={contact.name}
                             onClick={() => handleCall(contact.number)}
-                            className="flex items-center justify-between bg-white text-gray-800 px-4 py-2 rounded-lg shadow-lg hover:bg-gray-100 transition-colors w-48 border-l-4 border-red-500"
+                            className="flex items-center justify-between bg-[#FDE4BC] text-[#472825] px-4 py-2 rounded-lg shadow-lg hover:bg-[#FFF4E2] transition-colors w-48 border-l-4 border-[#D3AB80]"
                         >
                             <div className="flex items-center space-x-2">
                                 <span className="text-xl">{contact.icon}</span>
                                 <span className="font-bold text-sm">{contact.name}</span>
                             </div>
-                            <span className="text-red-600 font-bold">{contact.number}</span>
+                            <span className="text-[#D3AB80] font-bold">{contact.number}</span>
                         </button>
                     ))}
                 </div>
@@ -39,7 +39,7 @@ const SOSButton = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className={`
                     w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 transform hover:scale-110
-                    ${isOpen ? 'bg-gray-800 rotate-45' : 'bg-red-600 animate-pulse'}
+                    ${isOpen ? 'bg-[#96786F] rotate-45' : 'bg-[#472825] animate-pulse'}
                 `}
                 aria-label="SOS Emergency"
             >
