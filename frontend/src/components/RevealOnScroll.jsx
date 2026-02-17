@@ -1,53 +1,31 @@
-import React from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
 
-/**
- * RevealOnScroll Component
- * 
- * Wraps content and animates it into view when scrolling.
- * Elements start shifted down and fade in as they enter viewport.
- * 
- * @param {Object} props
- * @param {React.ReactNode} props.children - Content to animate
- * @param {number} props.delay - Animation delay in seconds (default: 0.2)
- * @param {number} props.duration - Animation duration in seconds (default: 0.5)
- * @param {number} props.yOffset - Initial Y offset in pixels (default: 75)
- */
-const RevealOnScroll = ({
-    children,
-    delay = 0.2,
-    duration = 0.5,
-    yOffset = 75
-}) => {
+const RevealOnScroll = ({ children, width = "fit-content" }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, {
-        once: true,      // Animate only once
-        margin: "-100px" // Trigger slightly before entering viewport
-    });
+    const isInView = useInView(ref, { once: true });
+    const mainControls = useAnimation();
+
+    useEffect(() => {
+        if (isInView) {
+            mainControls.start("visible");
+        }
+    }, [isInView]);
 
     return (
-        <motion.div
-            ref={ref}
-            initial={{
-                opacity: 0,
-                y: yOffset
-            }}
-            animate={isInView ? {
-                opacity: 1,
-                y: 0
-            } : {
-                opacity: 0,
-                y: yOffset
-            }}
-            transition={{
-                duration: duration,
-                delay: delay,
-                ease: [0.4, 0, 0.2, 1] // Custom cubic-bezier for smooth easing
-            }}
-        >
-            {children}
-        </motion.div>
+        <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
+            <motion.div
+                variants={{
+                    hidden: { opacity: 0, y: 75 },
+                    visible: { opacity: 1, y: 0 },
+                }}
+                initial="hidden"
+                animate={mainControls}
+                transition={{ duration: 0.5, delay: 0.25 }}
+            >
+                {children}
+            </motion.div>
+        </div>
     );
 };
 

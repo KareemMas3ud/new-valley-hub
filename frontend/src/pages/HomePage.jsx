@@ -5,6 +5,7 @@ import { getAttractions } from '../services/api';
 import WeatherWidget from '../components/WeatherWidget';
 import TeamSection from '../components/TeamSection';
 import GovernorSection from '../components/GovernorSection';
+import RevealOnScroll from '../components/RevealOnScroll';
 
 const HomePage = () => {
     const [topAttractions, setTopAttractions] = useState([]);
@@ -94,45 +95,47 @@ const HomePage = () => {
                         <WeatherWidget />
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl animate-fade-in">
-                        Discover the <span className="text-brand-sand">New Valley</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-100 mb-10 drop-shadow-lg max-w-2xl mx-auto">
-                        Experience the magic of Egypt's hidden oasis. From the White Desert to ancient temples, your journey begins here.
-                    </p>
+                    <RevealOnScroll width="100%">
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+                            Discover the <span className="text-brand-sand">New Valley</span>
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-100 mb-10 drop-shadow-lg max-w-2xl mx-auto">
+                            Experience the magic of Egypt's hidden oasis. From the White Desert to ancient temples, your journey begins here.
+                        </p>
 
-                    {/* Call to Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                        <Link
-                            to="/attractions"
-                            className="bg-brand-sand hover:bg-brand-taupe text-brand-dark px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
-                        >
-                            🗺️ Explore Attractions
-                        </Link>
-                        <Link
-                            to="/planner"
-                            className="bg-brand-beige hover:bg-brand-sand text-brand-dark px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
-                        >
-                            ✨ Trip Planner
-                        </Link>
-                    </div>
+                        {/* Call to Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                            <Link
+                                to="/attractions"
+                                className="bg-brand-sand hover:bg-brand-taupe text-brand-dark px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
+                            >
+                                🗺️ Explore Attractions
+                            </Link>
+                            <Link
+                                to="/planner"
+                                className="bg-brand-beige hover:bg-brand-sand text-brand-dark px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105"
+                            >
+                                ✨ Trip Planner
+                            </Link>
+                        </div>
 
-                    {/* Smart Search Bar */}
-                    <form onSubmit={handleSearch} className="bg-brand-ivory/95 backdrop-blur-sm p-2 rounded-full shadow-2xl flex max-w-xl mx-auto">
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="🔍 Where do you want to go?"
-                            className="flex-grow px-6 py-3 rounded-l-full focus:outline-none text-brand-dark"
-                        />
-                        <button
-                            type="submit"
-                            className="bg-brand-sand hover:bg-brand-taupe text-brand-dark px-8 py-3 rounded-full font-bold transition-colors"
-                        >
-                            Search
-                        </button>
-                    </form>
+                        {/* Smart Search Bar */}
+                        <form onSubmit={handleSearch} className="bg-brand-ivory/95 backdrop-blur-sm p-2 rounded-full shadow-2xl flex max-w-xl mx-auto">
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="🔍 Where do you want to go?"
+                                className="flex-grow px-6 py-3 rounded-l-full focus:outline-none text-brand-dark"
+                            />
+                            <button
+                                type="submit"
+                                className="bg-brand-sand hover:bg-brand-taupe text-brand-dark px-8 py-3 rounded-full font-bold transition-colors"
+                            >
+                                Search
+                            </button>
+                        </form>
+                    </RevealOnScroll>
                 </div>
 
                 {/* Scroll Indicator */}
@@ -146,77 +149,81 @@ const HomePage = () => {
             {/* Photo Gallery Section */}
             <div className="py-20 bg-gradient-to-b from-brand-ivory to-brand-beige">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-dark mb-4">Top Attractions</h2>
-                        <p className="text-xl text-brand-taupe max-w-2xl mx-auto">
-                            Explore the breathtaking beauty and rich heritage of the New Valley Governorate
-                        </p>
-                    </div>
+                    <RevealOnScroll width="100%">
+                        <div className="text-center mb-12">
+                            <h2 className="text-4xl md:text-5xl font-bold text-brand-dark mb-4">Top Attractions</h2>
+                            <p className="text-xl text-brand-taupe max-w-2xl mx-auto">
+                                Explore the breathtaking beauty and rich heritage of the New Valley Governorate
+                            </p>
+                        </div>
+                    </RevealOnScroll>
 
                     {/* Photo Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {topAttractions.length > 0 ? (
-                            topAttractions.map(attraction => (
-                                <Link
-                                    key={attraction.id}
-                                    to="/attractions"
-                                    className="group relative bg-brand-beige rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
-                                >
-                                    {/* Image Container */}
-                                    <div className="h-64 relative overflow-hidden">
-                                        {attraction.image ? (
-                                            <img
-                                                src={attraction.image}
-                                                alt={attraction.name}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-brand-beige to-brand-sand flex items-center justify-center">
-                                                <span className="text-white text-6xl">🏜️</span>
-                                            </div>
-                                        )}
-                                        {/* Overlay on Hover */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    </div>
+                    <RevealOnScroll width="100%">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {topAttractions.length > 0 ? (
+                                topAttractions.map(attraction => (
+                                    <Link
+                                        key={attraction.id}
+                                        to="/attractions"
+                                        className="group relative bg-brand-beige rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+                                    >
+                                        {/* Image Container */}
+                                        <div className="h-64 relative overflow-hidden">
+                                            {attraction.image ? (
+                                                <img
+                                                    src={attraction.image}
+                                                    alt={attraction.name}
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-gradient-to-br from-brand-beige to-brand-sand flex items-center justify-center">
+                                                    <span className="text-white text-6xl">🏜️</span>
+                                                </div>
+                                            )}
+                                            {/* Overlay on Hover */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
 
-                                    {/* Content */}
-                                    <div className="p-6">
-                                        <div className="flex items-center justify-between mb-3">
-                                            <h3 className="text-xl font-bold text-brand-dark group-hover:text-brand-sand transition-colors">
-                                                {attraction.name}
-                                            </h3>
-                                            <span className="bg-brand-sand/20 text-brand-dark text-xs px-3 py-1 rounded-full uppercase font-semibold">
-                                                {attraction.attraction_type}
-                                            </span>
+                                        {/* Content */}
+                                        <div className="p-6">
+                                            <div className="flex items-center justify-between mb-3">
+                                                <h3 className="text-xl font-bold text-brand-dark group-hover:text-brand-sand transition-colors">
+                                                    {attraction.name}
+                                                </h3>
+                                                <span className="bg-brand-sand/20 text-brand-dark text-xs px-3 py-1 rounded-full uppercase font-semibold">
+                                                    {attraction.attraction_type}
+                                                </span>
+                                            </div>
+                                            <p className="text-brand-taupe text-sm line-clamp-2 mb-4">
+                                                {attraction.description}
+                                            </p>
+                                            <div className="flex items-center justify-between text-sm text-brand-taupe">
+                                                <span className="flex items-center gap-1">
+                                                    ⏱ {attraction.visit_duration_minutes} mins
+                                                </span>
+                                                <span className="flex items-center gap-1 font-semibold text-brand-sand">
+                                                    💰 {parseFloat(attraction.ticket_price) === 0 ? 'Free' : `EGP ${attraction.ticket_price}`}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <p className="text-brand-taupe text-sm line-clamp-2 mb-4">
-                                            {attraction.description}
-                                        </p>
-                                        <div className="flex items-center justify-between text-sm text-brand-taupe">
-                                            <span className="flex items-center gap-1">
-                                                ⏱ {attraction.visit_duration_minutes} mins
-                                            </span>
-                                            <span className="flex items-center gap-1 font-semibold text-brand-sand">
-                                                💰 {parseFloat(attraction.ticket_price) === 0 ? 'Free' : `EGP ${attraction.ticket_price}`}
-                                            </span>
+                                    </Link>
+                                ))
+                            ) : (
+                                // Loading Skeletons
+                                [1, 2, 3].map(i => (
+                                    <div key={i} className="bg-brand-beige rounded-2xl shadow-xl overflow-hidden animate-pulse">
+                                        <div className="h-64 bg-brand-taupe/30"></div>
+                                        <div className="p-6">
+                                            <div className="h-6 bg-brand-taupe/30 rounded mb-3"></div>
+                                            <div className="h-4 bg-brand-taupe/20 rounded mb-2"></div>
+                                            <div className="h-4 bg-brand-taupe/20 rounded w-3/4"></div>
                                         </div>
                                     </div>
-                                </Link>
-                            ))
-                        ) : (
-                            // Loading Skeletons
-                            [1, 2, 3].map(i => (
-                                <div key={i} className="bg-brand-beige rounded-2xl shadow-xl overflow-hidden animate-pulse">
-                                    <div className="h-64 bg-brand-taupe/30"></div>
-                                    <div className="p-6">
-                                        <div className="h-6 bg-brand-taupe/30 rounded mb-3"></div>
-                                        <div className="h-4 bg-brand-taupe/20 rounded mb-2"></div>
-                                        <div className="h-4 bg-brand-taupe/20 rounded w-3/4"></div>
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
+                                ))
+                            )}
+                        </div>
+                    </RevealOnScroll>
 
                     {/* View All Button */}
                     <div className="text-center mt-12">
