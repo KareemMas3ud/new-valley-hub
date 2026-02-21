@@ -47,6 +47,13 @@ const MarketplacePage = () => {
                     <p className="text-xl text-brand-ivory max-w-2xl mx-auto">
                         Support local artisans by purchasing authentic handcrafted products from the New Valley
                     </p>
+
+                    {/* SDG 8 pill — sits under subtitle inside the hero */}
+                    <div className="inline-flex items-center gap-2 mt-6 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg">
+                        <span className="text-lg">🏺</span>
+                        <span>Empowering Local Artisans · SDG 8: Decent Work &amp; Economic Growth</span>
+                        <span className="bg-white/30 text-white text-xs font-bold px-2 py-0.5 rounded-full">SDG 8</span>
+                    </div>
                 </div>
             </div>
 
@@ -110,8 +117,38 @@ const MarketplacePage = () => {
                             ))}
                         </div>
 
+                        {/* ── SDG 8 Impact Banner ── */}
+                        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5 bg-gradient-to-r from-[#FDE4BC] via-[#FFF4E2] to-[#FDE4BC] border border-[#D3AB80]/40 rounded-2xl px-8 py-6 text-center sm:text-left shadow-md">
+                            {/* Icon block */}
+                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#D3AB80]/20 border border-[#D3AB80]/40 flex flex-col items-center justify-center shadow-inner">
+                                <span className="text-2xl leading-none">🏺</span>
+                                <span className="text-[9px] font-black text-[#D3AB80] tracking-widest mt-0.5">SDG 8</span>
+                            </div>
+                            {/* Text block */}
+                            <div className="flex-1">
+                                <p className="text-[#472825] font-bold text-lg leading-snug">
+                                    Empowering Local Artisans &amp; Supporting Decent Work
+                                </p>
+                                <p className="text-[#96786F] text-sm mt-1">
+                                    Every purchase on this marketplace directly contributes to <strong>UN SDG 8</strong>: Decent Work &amp; Economic Growth — keeping traditional crafts alive and putting income into the hands of New Valley families.
+                                </p>
+                            </div>
+                            {/* Pill tags */}
+                            <div className="flex flex-col gap-2 flex-shrink-0">
+                                <span className="inline-flex items-center gap-1 bg-[#D3AB80]/20 text-[#472825] text-xs font-bold px-3 py-1.5 rounded-full border border-[#D3AB80]/40">
+                                    🌍 UN SDG 8
+                                </span>
+                                <span className="inline-flex items-center gap-1 bg-green-100 text-green-800 text-xs font-bold px-3 py-1.5 rounded-full border border-green-200">
+                                    ✅ Fair Trade
+                                </span>
+                                <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full border border-amber-200">
+                                    🤲 Handmade
+                                </span>
+                            </div>
+                        </div>
+
                         {/* Info Banner */}
-                        <div className="mt-16 bg-gradient-to-r from-brand-beige to-brand-ivory border-l-4 border-brand-sand p-6 rounded-lg">
+                        <div className="mt-8 bg-gradient-to-r from-brand-beige to-brand-ivory border-l-4 border-brand-sand p-6 rounded-lg">
                             <h3 className="font-bold text-lg text-brand-dark mb-2">💙 Support Local Communities</h3>
                             <p className="text-brand-taupe">
                                 Every purchase directly supports local families and helps preserve traditional crafts. All products are handmade with care using sustainable practices.

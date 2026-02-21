@@ -63,13 +63,13 @@ const Navbar = () => {
                 fixed z-50 transition-all duration-500
                 left-0 right-0 mx-auto
                 ${isFloating
-                    ? 'top-4 w-[90%] md:w-[85%] rounded-2xl bg-[#FFF4E2]/95 backdrop-blur-md border border-[#D3AB80]/40 shadow-xl shadow-[#472825]/10 py-2'
+                    ? 'top-4 w-[92%] lg:w-[88%] rounded-2xl bg-[#FFF4E2]/95 backdrop-blur-md border border-[#D3AB80]/40 shadow-xl shadow-[#472825]/10 py-2'
                     : 'top-0 w-full bg-[#FFF4E2] border-b border-[#D3AB80]/20 rounded-none shadow-none py-4'
                 }
             `}
             style={{ transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)' }}
         >
-            <div className="container mx-auto px-6">
+            <div className="w-full px-4">
                 <div className="flex justify-between items-center">
                     <Link to="/" className="hover:opacity-90 transition-opacity flex-shrink-0">
                         <img
@@ -79,7 +79,7 @@ const Navbar = () => {
                         />
                     </Link>
 
-                    <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <div className="hidden lg:flex items-center space-x-3 xl:space-x-5">
                         {[
                             { path: "/", label: "Home" },
                             { path: "/attractions", label: "Attractions" },
@@ -89,12 +89,12 @@ const Navbar = () => {
                             { path: "/marketplace", label: "Market" },
                             { path: "/museum", label: "Museum 🏛️" },
                             { path: "/souvenir", label: "Souvenir 📸" },
-                            { path: "/contact", label: "Contact" },
+                            { path: "/contact", label: "Contact Us" },
                         ].map((link) => (
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className="text-[#472825] font-semibold text-base hover:text-[#D3AB80] transition-colors duration-300 relative group"
+                                className="text-[#472825] font-semibold text-sm lg:text-base hover:text-[#D3AB80] transition-colors duration-300 relative group whitespace-nowrap"
                             >
                                 {link.label}
                                 <span className="absolute inset-x-0 bottom-0 h-0.5 bg-[#D3AB80] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
@@ -116,14 +116,14 @@ const Navbar = () => {
 
                         <Link
                             to="/planner"
-                            className="bg-[#D3AB80] hover:bg-[#96786F] text-[#472825] hover:text-white px-6 py-2.5 rounded-full font-bold shadow-lg hover:shadow-[#D3AB80]/30 transition-all duration-300 hover:-translate-y-0.5"
+                            className="bg-[#D3AB80] hover:bg-[#96786F] text-[#472825] hover:text-white px-6 py-2.5 rounded-full font-bold shadow-lg hover:shadow-[#D3AB80]/30 transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap"
                         >
                             Trip Planner ✨
                         </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden">
+                    <div className="lg:hidden">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="text-[#472825] hover:text-[#D3AB80] p-2 focus:outline-none"
@@ -141,7 +141,7 @@ const Navbar = () => {
                 {/* Mobile Menu Dropdown */}
                 <div
                     className={`
-                        md:hidden overflow-hidden transition-all duration-300 ease-in-out
+                        lg:hidden overflow-hidden transition-all duration-300 ease-in-out
                         ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
                     `}
                 >

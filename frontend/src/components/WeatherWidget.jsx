@@ -83,24 +83,24 @@ const WeatherWidget = () => {
     };
 
     return (
-        <div className="bg-[#FDE4BC]/90 backdrop-blur-md border border-[#96786F]/30 rounded-2xl p-4 text-[#472825] shadow-lg w-full max-w-sm animate-fade-in hover:bg-[#FDE4BC] transition duration-300 transform hover:scale-105">
+        <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-4 text-white shadow-lg w-full max-w-sm animate-fade-in hover:bg-white/40 transition duration-300 transform hover:scale-105">
             <div className="flex justify-between items-start mb-2">
                 <div>
                     <h3 className="text-lg font-bold drop-shadow-sm">{weather.location}, EG</h3>
-                    <p className="text-xs text-[#96786F] opacity-90">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
+                    <p className="text-xs text-white/70">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
                 </div>
                 <div className="text-3xl filter drop-shadow-sm">{getIcon()}</div>
             </div>
 
             <div className="flex items-center gap-2 mb-3">
                 <span className="text-4xl font-bold tracking-tighter drop-shadow-sm">{weather.temp}°C</span>
-                <span className="text-sm bg-[#96786F]/20 text-[#472825] px-2 py-0.5 rounded-full backdrop-blur-sm">
+                <span className="text-sm bg-white/20 text-white px-2 py-0.5 rounded-full backdrop-blur-sm">
                     {weather.conditionText}
                 </span>
             </div>
 
-            <div className="bg-[#D3AB80]/30 p-3 rounded-xl backdrop-blur-sm border border-[#D3AB80]/30 shadow-inner">
-                <p className="text-sm font-medium leading-relaxed text-[#472825]">
+            <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm border border-white/20 shadow-inner">
+                <p className="text-sm font-medium leading-relaxed text-white/90">
                     💡 {advice}
                 </p>
             </div>

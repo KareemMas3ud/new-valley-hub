@@ -2,7 +2,7 @@ import React from 'react';
 
 const AttractionCard = ({ attraction }) => {
     return (
-        <div className="bg-brand-beige shadow-md rounded-lg overflow-hidden border border-brand-taupe/20 hover:shadow-xl transition-all duration-300 hover:scale-105">
+        <div className="bg-brand-beige shadow-md rounded-2xl overflow-hidden border border-[#D3AB80]/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#D3AB80]/60">
             <div className="h-48 overflow-hidden">
                 {attraction.image ? (
                     <img src={attraction.image} alt={attraction.name} className="w-full h-full object-cover" />

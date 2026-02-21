@@ -75,21 +75,16 @@ const HomePage = () => {
 
     return (
         <div className="flex flex-col">
-            {/* Hero Section with Background */}
-            <div className="relative h-[600px] flex items-center justify-center text-center px-4">
-                {/* Background Image Overlay */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <img
-                        src="http://127.0.0.1:8000/media/locations/white_desert.jpg"
-                        alt="White Desert"
-                        className="w-full h-full object-cover"
-                    />
-                    {/* Gradient Overlay for better text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-                </div>
+            {/* Hero Section with Parallax Background */}
+            <div
+                className="relative min-h-[680px] flex items-start justify-center text-center px-4 bg-fixed bg-center bg-cover bg-no-repeat pb-24 sm:pb-20 md:pb-16"
+                style={{ backgroundImage: "url('http://127.0.0.1:8000/media/locations/white_desert.jpg')" }}
+            >
+                {/* Gradient Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
                 {/* Hero Content */}
-                <div className="relative z-10 max-w-4xl mx-auto">
+                <div className="relative z-10 max-w-4xl mx-auto w-full px-4 mt-12 md:mt-14">
                     {/* Weather Widget - Centered above headline */}
                     <div className="flex justify-center mb-6">
                         <WeatherWidget />
@@ -139,7 +134,7 @@ const HomePage = () => {
                 </div>
 
                 {/* Scroll Indicator */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 animate-bounce">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -147,7 +142,7 @@ const HomePage = () => {
             </div>
 
             {/* Photo Gallery Section */}
-            <div className="py-20 bg-gradient-to-b from-brand-ivory to-brand-beige">
+            <div className="py-12 bg-gradient-to-b from-brand-ivory to-brand-beige">
                 <div className="container mx-auto px-4">
                     <RevealOnScroll width="100%">
                         <div className="text-center mb-12">

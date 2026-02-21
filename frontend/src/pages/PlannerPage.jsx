@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { generateItinerary } from '../services/api';
+import TripPlanner from '../components/TripPlanner';
+import RevealOnScroll from '../components/RevealOnScroll';
 
 const PlannerPage = () => {
     const [formData, setFormData] = useState({
@@ -43,7 +45,9 @@ const PlannerPage = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center mb-8 text-[#472825]">Trip Planner</h2>
+
+            {/* ── Page Header ── */}
+            <h2 className="text-3xl font-bold text-center mb-8 text-[#472825]">✨ AI Trip Planner</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Form Section */}
@@ -151,6 +155,25 @@ const PlannerPage = () => {
                     )}
                 </div>
             </div>
+
+            {/* ── Divider ── */}
+            <div className="flex items-center gap-4 my-12">
+                <div className="flex-1 h-px bg-[#D3AB80]/30" />
+                <span className="text-[#96786F] text-sm font-semibold whitespace-nowrap">🌍 Eco-Analyzer</span>
+                <div className="flex-1 h-px bg-[#D3AB80]/30" />
+            </div>
+
+            {/* ── Eco Trip Analyzer — revealed on scroll ── */}
+            <RevealOnScroll width="100%">
+                <TripPlanner
+                    addedAttractions={
+                        itinerary
+                            ? itinerary.flatMap(day => day.activities)
+                            : []
+                    }
+                />
+            </RevealOnScroll>
+
         </div>
     );
 };
