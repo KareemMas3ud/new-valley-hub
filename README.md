@@ -771,6 +771,9 @@ This project is developed for educational and hackathon purposes.
 - **Framer Motion** - Silky scroll-reveal animations
 - **OpenStreetMap & Leaflet** - Free, open-source mapping
 - **"New Valley Innovates" Hackathon 2026** - Platform for innovation
+- **Inspiration:** Special thanks to the **COP30 Simulation Programme** (BUE & UNDP Egypt) for inspiring the sustainable tourism and Net-Zero goals of this project.
+- **Animations:** Interactive UI animations are powered by **[Framer Motion](https://www.framer.com/motion/)**.
+- **Support:** Big thanks to the **IEEE BUE Student Branch** family for their continuous encouragement.
 
 ---
 
