@@ -244,67 +244,71 @@ const HomePage = () => {
             <div className="py-20 bg-gradient-to-b from-brand-dark via-brand-dark to-brand-taupe text-white">
                 <div className="container mx-auto px-4">
                     {/* Section Header */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-brand-sand to-brand-beige bg-clip-text text-transparent">
-                            Platform Features
-                        </h2>
-                        <p className="text-brand-beige text-lg max-w-2xl mx-auto">
-                            Everything you need to explore the New Valley like a local
-                        </p>
-                    </div>
+                    <RevealOnScroll width="100%">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-brand-sand to-brand-beige bg-clip-text text-transparent">
+                                Platform Features
+                            </h2>
+                            <p className="text-brand-beige text-lg max-w-2xl mx-auto">
+                                Everything you need to explore the New Valley like a local
+                            </p>
+                        </div>
+                    </RevealOnScroll>
 
                     {/* Features Grid */}
-                    <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        {features.map((feature, index) => {
-                            const CardContent = (
-                                <>
-                                    {/* Gradient Background Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-brand-sand/0 to-brand-sand/0 group-hover:from-brand-sand/10 group-hover:to-transparent transition-all duration-500 rounded-3xl" />
+                    <RevealOnScroll width="100%">
+                        <div className=" grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                            {features.map((feature, index) => {
+                                const CardContent = (
+                                    <>
+                                        {/* Gradient Background Effect */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-brand-sand/0 to-brand-sand/0 group-hover:from-brand-sand/10 group-hover:to-transparent transition-all duration-500 rounded-3xl" />
 
-                                    {/* Icon Container */}
-                                    <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-brand-sand/20 to-brand-beige/10 text-brand-sand mb-6 shadow-lg group-hover:bg-gradient-to-br group-hover:from-brand-sand group-hover:to-brand-beige group-hover:text-brand-dark group-hover:scale-110 transition-all duration-300">
-                                        {feature.icon}
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="relative">
-                                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand-sand transition-colors duration-300">
-                                            {feature.title}
-                                        </h3>
-                                        <p className="text-brand-beige leading-relaxed">
-                                            {feature.description}
-                                        </p>
-                                    </div>
-
-                                    {/* Optional Link Indicator */}
-                                    {feature.link && (
-                                        <div className="relative mt-6 flex items-center text-brand-sand font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <span className="text-sm">Explore →</span>
+                                        {/* Icon Container */}
+                                        <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-brand-sand/20 to-brand-beige/10 text-brand-sand mb-6 shadow-lg group-hover:bg-gradient-to-br group-hover:from-brand-sand group-hover:to-brand-beige group-hover:text-brand-dark group-hover:scale-110 transition-all duration-300">
+                                            {feature.icon}
                                         </div>
-                                    )}
-                                </>
-                            );
 
-                            const cardClasses = "group relative p-8 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-brand-beige/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-brand-sand/20 hover:border-brand-sand/50 overflow-hidden";
+                                        {/* Content */}
+                                        <div className="relative">
+                                            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand-sand transition-colors duration-300">
+                                                {feature.title}
+                                            </h3>
+                                            <p className="text-brand-beige leading-relaxed">
+                                                {feature.description}
+                                            </p>
+                                        </div>
 
-                            return feature.link ? (
-                                <Link
-                                    key={index}
-                                    to={feature.link}
-                                    className={`${cardClasses} block cursor-pointer`}
-                                >
-                                    {CardContent}
-                                </Link>
-                            ) : (
-                                <div
-                                    key={index}
-                                    className={cardClasses}
-                                >
-                                    {CardContent}
-                                </div>
-                            );
-                        })}
-                    </div>
+                                        {/* Optional Link Indicator */}
+                                        {feature.link && (
+                                            <div className="relative mt-6 flex items-center text-brand-sand font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <span className="text-sm">Explore →</span>
+                                            </div>
+                                        )}
+                                    </>
+                                );
+
+                                const cardClasses = "group relative p-8 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-brand-beige/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-brand-sand/20 hover:border-brand-sand/50 overflow-hidden";
+
+                                return feature.link ? (
+                                    <Link
+                                        key={index}
+                                        to={feature.link}
+                                        className={`${cardClasses} block cursor-pointer`}
+                                    >
+                                        {CardContent}
+                                    </Link>
+                                ) : (
+                                    <div
+                                        key={index}
+                                        className={cardClasses}
+                                    >
+                                        {CardContent}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </RevealOnScroll>
                 </div>
             </div>
 

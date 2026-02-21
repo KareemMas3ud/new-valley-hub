@@ -11,6 +11,8 @@
     <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
     <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini">
     <img src="https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA">
+    <img src="https://img.shields.io/badge/SDG-8%20Decent%20Work-A21942?style=for-the-badge" alt="SDG 8">
+    <img src="https://img.shields.io/badge/SDG-13%20Climate%20Action-3F7E44?style=for-the-badge" alt="SDG 13">
   </p>
 </div>
 
@@ -28,6 +30,9 @@ Built for the **"New Valley Innovates" Hackathon 2026**, this Progressive Web Ap
 - 🎨 **Interactive Souvenir Maker** - Canvas-based editor with ancient Egyptian fonts
 - 🗺️ **Offline-First PWA** - Full functionality without internet connectivity
 - 📱 **Installable App** - Native-like experience on all devices
+- 🌿 **Eco-Trip Analyzer** - Dynamic carbon footprint calculator with personalized Net-Zero badges aligned to SDG 13
+- 💎 **Glassmorphism Premium UI** - Parallax hero section, floating morphing navbar, and Framer Motion scroll-reveal animations
+- 🛍️ **SDG 8 Marketplace** - Empowering New Valley artisans with a fair-trade digital storefront
 
 ---
 
@@ -64,6 +69,12 @@ Our design system embodies the warmth of the Egyptian desert with a premium, min
 - Cards scale to 105% on hover with shadow enhancement
 - Smooth 300-500ms transitions throughout
 - Unified Dark Brown/Golden Sand social buttons
+
+**✨ NEW: Glassmorphism & Parallax Layer**
+- Hero `WeatherWidget` uses `bg-white/30 backdrop-blur-md border border-white/40`
+- `bg-fixed bg-cover` pure-CSS parallax on the hero background image
+- `RevealOnScroll.jsx` (Framer Motion `useInView`) wraps Hero, Attractions, Features, and Eco-Analyzer sections
+- Responsive `min-h` hero — no fixed heights that clip content on mobile screens
 
 ---
 
@@ -119,6 +130,66 @@ Response: { "response": "Ahlan ya habibi! The White Desert is..." }
 POST /api/tourism/attractions/generate_plan/
 Body: { "days": 3, "budget": "medium", "interests": ["natural", "historical"] }
 ```
+
+---
+
+### 🌿 Eco-Trip Analyzer — SDG 13: Climate Action
+
+**The platform's sustainability flagship: a dynamic carbon footprint calculator tightly integrated with the AI Trip Planner.**
+
+When a user generates their AI itinerary, the Eco-Analyzer automatically receives the list of attractions as a prop and calculates the full trip's CO₂ footprint — stop by stop.
+
+**Distance Engine:**
+- Hardcoded **triangular distance matrix** covering 15 key New Valley locations (Kharga, Hibis Temple, Bagawat Necropolis, Dakhla, Farafra, White Desert, Crystal Mountain, El-Bawiti, and more)
+- **Bidirectional lookup** — `getDistance(A, B) === getDistance(B, A)` with no duplicate data stored
+- **Smart Guess fallback** — unknown pairs use the 175 km New Valley average with an `Est.` UI badge and `console.warn()`
+
+**Transport Modes & CO₂ Factors:**
+
+| Mode | Factor | Badge Awarded |
+|---|---|---|
+| 🚶‍♂️ Walking / Bicycle | 0.00 kg CO₂/km | 🌿 Net-Zero Hero! |
+| 🚌 Electric Eco-Bus | 0.05 kg CO₂/km | 🏆 Sustainable Choice! |
+| 🚕 Standard Gas Car | 0.20 kg CO₂/km | ⚠️ Room to Improve |
+
+**Personalized Output:**
+- Per-segment breakdown table (km + CO₂ per leg)
+- Animated color-coded emission bar (green → orange)
+- Personal badge: *"Your 4-stop trip is 75% greener than driving!"*
+- CO₂ saved vs gas-car baseline displayed prominently
+- SDG 13 pill tag on every result card
+
+**Integration:**
+```jsx
+// PlannerPage.jsx — auto-feeds the eco-analyzer after AI generation
+<RevealOnScroll width="100%">
+  <TripPlanner
+    addedAttractions={itinerary.flatMap(day => day.activities)}
+  />
+</RevealOnScroll>
+```
+
+---
+
+### 🛍️ SDG 8 Marketplace — Decent Work & Economic Growth
+
+**More than a shop — a direct economic lifeline for New Valley artisans.**
+
+**SDG 8 Presence (two-layer implementation):**
+
+1. **Hero Glassmorphism Pill** — floats under the page subtitle:
+   - `bg-white/20 backdrop-blur-sm border border-white/30`
+   - *"🏺 Empowering Local Artisans · SDG 8: Decent Work & Economic Growth"*
+
+2. **Full Impact Banner** — between the product grid and community info block:
+   - Sand/gold gradient card with icon tile, description paragraph, and pill tags
+   - Pills: `🌍 UN SDG 8` · `✅ Fair Trade` · `🤲 Handmade`
+   - Fully responsive (`flex-col` → `flex-row` at `sm` breakpoint)
+
+**Product Cards:**
+- `bg-brand-beige` card backgrounds with `hover:-translate-y-2 hover:shadow-2xl`
+- *"Authentic"* glassmorphism overlay badge on every product image
+- Seller name, contact, price (EGP), and direct Buy Now button
 
 ---
 
@@ -224,6 +295,20 @@ Response: { results: [...], count: 13, query: "desert" }
 
 ---
 
+## 🌍 SDG Alignment
+
+New Valley Hub is purpose-built around the UN Sustainable Development Goals:
+
+| # | UN Goal | How We Implement It |
+|---|---|---|
+| **SDG 8** | Decent Work & Economic Growth | Marketplace platform sells New Valley artisan goods directly to tourists; SDG 8 glassmorphism badge in the hero + full impact banner with Fair Trade / Handmade pill tags |
+| **SDG 13** | Climate Action | Eco-Trip Analyzer calculates CO₂ per trip segment, rewards low-emission transport with Net-Zero Hero / Sustainable Choice badges, shows CO₂ saved vs gas car baseline |
+| **SDG 11** | Sustainable Cities & Communities | Promotes cultural heritage preservation; surfaces protected natural areas, historical oasis sites, and sustainable tourism infrastructure |
+| **SDG 4** | Quality Education | Virtual Museum with `@google/model-viewer` 3D/AR artifacts; educational content on ancient Egyptian history of the New Valley |
+| **SDG 17** | Partnerships for the Goals | Open Django REST API allows local businesses, government bodies, and NGOs to integrate and contribute data |
+
+---
+
 ## 🛠️ Technology Stack
 
 ### Frontend Architecture
@@ -233,11 +318,14 @@ Response: { results: [...], count: 13, query: "desert" }
 | **React** | 19.2.0 | Modern UI with hooks and functional components |
 | **Vite** | 7.2.4 | Lightning-fast HMR and optimized builds |
 | **Tailwind CSS** | 4.1.18 | Utility-first styling with custom luxury palette |
+| **Framer Motion** | 12.x | Scroll-reveal animations, hero transitions |
 | **React Router** | 7.13.0 | Client-side routing across 10 pages |
 | **Axios** | 1.13.3 | Promise-based HTTP client |
 | **React Icons** | 5.5.0 | Icon library (Fa*, Si*, Md* icons) |
 | **React Leaflet** | 5.0.0 | Interactive map components |
 | **Leaflet** | 1.9.4 | Map rendering engine |
+| **`@google/model-viewer`** | latest | 3D / AR museum artifact viewer |
+| **`react-qr-code`** | latest | QR code in Souvenir Maker |
 | **vite-plugin-pwa** | 1.2.0 | PWA manifest and service worker generation |
 
 ### Backend Architecture
@@ -286,25 +374,28 @@ new-valley-hub/
 ├── frontend/                   # React PWA
 │   ├── src/
 │   │   ├── components/        # Reusable UI components
-│   │   │   ├── Navbar.jsx             # Morphing solid capsule header
+│   │   │   ├── Navbar.jsx             # Morphing floating navbar (lg breakpoint)
+│   │   │   ├── TripPlanner.jsx        # Eco-Trip Analyzer (SDG 13)
+│   │   │   ├── RevealOnScroll.jsx     # Framer Motion scroll-reveal wrapper
+│   │   │   ├── WeatherWidget.jsx      # Glassmorphism weather card
 │   │   │   ├── Footer.jsx             # Dark Brown with SandScript credit
 │   │   │   ├── ChatbotWidget.jsx      # 3m Sa3ed AI chatbot
 │   │   │   ├── TeamSection.jsx        # Luxury earthy team cards
 │   │   │   ├── SOSButton.jsx          # Emergency contacts
-│   │   │   ├── WeatherWidget.jsx      # Creamy Beige weather display
 │   │   │   ├── SouvenirMaker.jsx      # Canvas editor
 │   │   │   ├── OfflineIndicator.jsx   # Network status
 │   │   │   ├── AttractionCard.jsx     # Card component
 │   │   │   ├── ServiceCard.jsx        # Service listing card
-│   │   │   └── HotelCard.jsx          # Hotel card with booking
+│   │   │   ├── HotelCard.jsx          # Hotel card with booking
+│   │   │   └── ARViewer.jsx           # 3D model viewer
 │   │   ├── pages/              # Route-based pages
-│   │   │   ├── HomePage.jsx           # Landing + hero + features
+│   │   │   ├── HomePage.jsx           # Parallax hero + features
 │   │   │   ├── AttractionsPage.jsx    # Filterable attractions
 │   │   │   ├── ServicesPage.jsx       # Hierarchical services
 │   │   │   ├── HotelsPage.jsx         # Hotel listings
 │   │   │   ├── MapPage.jsx            # Interactive Leaflet map
-│   │   │   ├── PlannerPage.jsx        # AI trip planner
-│   │   │   ├── MarketplacePage.jsx    # Local products
+│   │   │   ├── PlannerPage.jsx        # AI planner + Eco-Analyzer
+│   │   │   ├── MarketplacePage.jsx    # SDG 8 marketplace
 │   │   │   ├── SouvenirPage.jsx       # Souvenir maker wrapper
 │   │   │   ├── ContactPage.jsx        # Contact + team + governor
 │   │   │   └── SearchResults.jsx      # Global search UI
@@ -523,13 +614,35 @@ return (
   <nav className={`
     fixed z-50 transition-all duration-500 ease-in-out
     ${isFloating
-      ? 'top-4 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] rounded-full bg-[#FFF4E2]/95 border border-[#D3AB80]/40 shadow-xl shadow-[#472825]/10 py-3'
-      : 'top-0 left-0 w-full bg-[#FFF4E2] border-b border-[#D3AB80]/20 rounded-none shadow-none py-5'
+      ? 'top-4 w-[92%] lg:w-[88%] rounded-2xl bg-[#FFF4E2]/95 backdrop-blur-md border border-[#D3AB80]/40 shadow-xl py-2'
+      : 'top-0 w-full bg-[#FFF4E2] border-b border-[#D3AB80]/20 rounded-none shadow-none py-4'
     }
   `}>
 ```
 
-### 3. Trip Planner Algorithm
+### 3. Eco-Trip Analyzer — Bidirectional Distance Lookup
+
+```js
+// frontend/src/components/TripPlanner.jsx
+// Triangular matrix — no duplicates, bidirectional via lookup
+function getDistance(nameA, nameB) {
+    const ka = findKey(nameA);
+    const kb = findKey(nameB);
+    if (!ka || !kb || ka === kb) return { km: 0, estimated: false };
+
+    const direct  = MATRIX[ka]?.[kb];  // A → B
+    const reverse = MATRIX[kb]?.[ka];  // B → A (fallback)
+
+    if (direct  !== undefined) return { km: direct,  estimated: false };
+    if (reverse !== undefined) return { km: reverse, estimated: false };
+
+    // Smart Guess: New Valley average inter-oasis distance
+    console.warn(`No matrix entry for "${nameA}" ↔ "${nameB}". Using 175 km.`);
+    return { km: 175, estimated: true };
+}
+```
+
+### 4. Trip Planner Algorithm
 
 ```python
 # backend/tourism/ai_planner.py
@@ -558,7 +671,7 @@ def generate_itinerary(days, budget_level, interests):
     return {'itinerary': itinerary, 'total_estimated_cost': base_cost + ticket_sum}
 ```
 
-### 4. Ceramic Card Hover Effect
+### 5. Ceramic Card Hover Effect
 
 ```jsx
 // Luxury Earthy Theme - Solid, Premium Interactions
@@ -586,31 +699,40 @@ def generate_itinerary(days, budget_level, interests):
    - Context-aware responses using actual attraction/hotel data
    - Friendly "3m Sa3ed" persona with Egyptian authenticity
 
-3. **🖼️ Digital Souvenir Maker**
+3. **🌿 Eco-Trip Analyzer (SDG 13)**
+   - Dynamic carbon footprint calculator — segment by segment
+   - Personalized Net-Zero badges: *"Your 4-stop trip is 75% greener!"*
+   - Smart 175 km fallback with `Est.` UI pill for unknown location pairs
+
+4. **🛍️ SDG 8 Marketplace**
+   - Glassmorphism hero badge + full impact banner with Fair Trade pills
+   - Direct artisan-to-tourist product sales — no middlemen
+
+5. **🖼️ Digital Souvenir Maker**
    - Professional canvas editor with ancient Egyptian fonts
    - Export high-quality PNGs with transparent background
    - Scoped font loading prevents global CSS pollution
 
-4. **📴 True Offline-First Architecture**
+6. **📴 True Offline-First Architecture**
    - Service Worker caching for all critical assets
    - Static map fallback when connectivity lost
    - Offline indicator with graceful degradation
 
-5. **🆘 Tourist Safety Integration**
+7. **🆘 Tourist Safety Integration**
    - One-tap emergency contacts (ambulance, police, tourist police)
    - Fixed SOS button always accessible
    - Direct tel: links for instant calling
 
-6. **🔍 Intelligent Multi-Model Search**
+8. **🔍 Intelligent Multi-Model Search**
    - Searches 3 content types simultaneously
    - SQL injection protection with sanitized queries
    - Type-specific badges and metadata
 
-7. **💎 Premium Interactions**
+9. **💎 Premium Interactions**
    - Logo resizes dynamically on scroll
-   - Unified social buttons (Dark Brown/Golden Sand)
-   - 105% hover zoom on all cards
-   - Smooth 300-500ms transitions
+   - Parallax hero with glassmorphism weather widget
+   - Framer Motion scroll-reveal on all major sections
+   - 105% hover zoom on all cards, 300-500ms transitions
 
 ---
 
@@ -646,6 +768,7 @@ This project is developed for educational and hackathon purposes.
 - **New Valley Governorate** - Inspiring this digital transformation
 - **React & Django Communities** - Outstanding documentation and support
 - **Tailwind CSS** - Making luxury UIs achievable
+- **Framer Motion** - Silky scroll-reveal animations
 - **OpenStreetMap & Leaflet** - Free, open-source mapping
 - **"New Valley Innovates" Hackathon 2026** - Platform for innovation
 
