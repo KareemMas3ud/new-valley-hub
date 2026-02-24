@@ -354,3 +354,37 @@ class SiteConfiguration(models.Model):
     
     def __str__(self):
         return "Site Configuration"
+
+
+# ── Auth-gated models ──────────────────────────────────────────────────────
+from django.contrib.auth import get_user_model
+
+class UserSavedTrip(models.Model):
+    user           = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_saved_trips')
+    transport_mode = models.CharField(max_length=20, default='unknown')
+    total_co2      = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    route_data     = models.JSONField(default=list, blank=True)
+    created_at     = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering            = ['-created_at']
+        verbose_name        = 'User Saved Trip'
+        verbose_name_plural = 'User Saved Trips'
+
+    def __str__(self):
+        return f"{self.user.email} — {self.transport_mode} ({self.total_co2} kg CO₂)"
+
+
+class UserSavedSouvenir(models.Model):
+    user       = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_saved_souvenirs')
+    image_data = models.TextField(help_text='Base-64 PNG data-URL of the souvenir canvas')
+    caption    = models.CharField(max_length=120, blank=True, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering            = ['-created_at']
+        verbose_name        = 'User Saved Souvenir'
+        verbose_name_plural = 'User Saved Souvenirs'
+
+    def __str__(self):
+        return f"Souvenir by {self.user.email} ({self.created_at:%Y-%m-%d})"

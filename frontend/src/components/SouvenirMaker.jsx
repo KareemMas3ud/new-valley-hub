@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+import { saveSouvenir } from '../services/api';
 import './SouvenirMaker.css';
 
 const SouvenirMaker = () => {
@@ -10,6 +12,9 @@ const SouvenirMaker = () => {
     const [customUrl, setCustomUrl] = useState('');
     const [apiBackgrounds, setApiBackgrounds] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [saveStatus, setSaveStatus] = useState(null); // null | 'saving' | 'saved' | 'error'
+
+    const { user, accessToken } = useAuth();
 
     useEffect(() => {
         // Fetch Souvenir Assets from API (backgrounds ONLY)
@@ -101,11 +106,29 @@ const SouvenirMaker = () => {
     const handleDownload = () => {
         const canvas = canvasRef.current;
         if (!bgImage) return;
-
         const link = document.createElement('a');
         link.download = `new-valley-souvenir-${Date.now()}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
+    };
+
+    const handleSaveToProfile = async () => {
+        const canvas = canvasRef.current;
+        if (!bgImage || !canvas) return;
+        const token = accessToken || localStorage.getItem('nvh_access');
+        if (!token) return;
+
+        setSaveStatus('saving');
+        try {
+            const imageData = canvas.toDataURL('image/png');
+            await saveSouvenir(imageData, text, token);
+            setSaveStatus('saved');
+            setTimeout(() => setSaveStatus(null), 3000);
+        } catch (err) {
+            console.error('[SouvenirMaker] save error:', err?.response?.data ?? err.message);
+            setSaveStatus('error');
+            setTimeout(() => setSaveStatus(null), 3000);
+        }
     };
 
     const handleCustomUrlChange = (e) => {
@@ -153,7 +176,7 @@ const SouvenirMaker = () => {
                                     }`}
                             >
                                 <span className={`text-lg ${f === 'Ancient' ? 'souvenir-font-ancient' :
-                                        f === 'Hieroglyphs' ? 'souvenir-font-hieroglyphs' : 'souvenir-font-default'
+                                    f === 'Hieroglyphs' ? 'souvenir-font-hieroglyphs' : 'souvenir-font-default'
                                     }`}>
                                     {f} Style
                                 </span>
@@ -234,17 +257,67 @@ const SouvenirMaker = () => {
                     </div>
                 </div>
 
+                {/* ── Download button ──────────────────────────────────── */}
                 <button
                     onClick={handleDownload}
                     disabled={!bgImage}
-                    className={`w-full text-white font-bold py-3 rounded transition flex items-center justify-center space-x-2 ${bgImage ? 'bg-[#D3AB80] hover:bg-[#96786F]' : 'bg-[#96786F]/50 cursor-not-allowed'
+                    className={`w-full text-white font-bold py-3 rounded-lg transition flex items-center justify-center space-x-2 ${bgImage ? 'bg-[#D3AB80] hover:bg-[#96786F]' : 'bg-[#96786F]/50 cursor-not-allowed'
                         }`}
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                     <span>Download Image</span>
                 </button>
+
+                {/* ── OR divider (matches Trip Planner style) ──────────── */}
+                {user && bgImage && (
+                    <div className="relative my-5 flex items-center gap-3">
+                        <div className="flex-1 h-px bg-[#96786F]/25" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#96786F]/70">or</span>
+                        <div className="flex-1 h-px bg-[#96786F]/25" />
+                    </div>
+                )}
+
+                {/* ── Save to Profile — logged-in users only ───────────── */}
+                {user && (
+                    <>
+                        <button
+                            onClick={handleSaveToProfile}
+                            disabled={!bgImage || saveStatus === 'saving'}
+                            className={`w-full font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-300 ${bgImage && saveStatus !== 'saving'
+                                    ? 'bg-gradient-to-r from-[#D3AB80] to-[#C49A6A] text-[#472825] shadow-lg hover:shadow-[#D3AB80]/40 hover:-translate-y-0.5 hover:from-[#C49A6A] hover:to-[#96786F] hover:text-white'
+                                    : 'bg-[#D3AB80]/30 text-[#96786F] cursor-not-allowed'
+                                }`}
+                        >
+                            {saveStatus === 'saving' ? (
+                                <><span className="animate-spin">⏳</span> Saving…</>
+                            ) : (
+                                <><span>👤</span> Save to Profile ✨</>
+                            )}
+                        </button>
+
+                        {/* Toast feedback */}
+                        {saveStatus === 'saved' && (
+                            <div className="flex items-center gap-2 text-xs font-semibold text-green-700 bg-green-50 border border-green-200 px-3 py-2.5 rounded-xl animate-pulse">
+                                ✅ Souvenir saved to your profile!
+                            </div>
+                        )}
+                        {saveStatus === 'error' && (
+                            <div className="flex items-center gap-2 text-xs font-semibold text-red-600 bg-red-50 border border-red-200 px-3 py-2.5 rounded-xl">
+                                ❌ Couldn't save. Try again.
+                            </div>
+                        )}
+                    </>
+                )}
+
+                {/* ── Guest hint ────────────────────────────────────────── */}
+                {!user && bgImage && (
+                    <p className="text-[10px] text-center text-[#96786F]/80 italic mt-1">
+                        <a href="/planner" className="underline hover:text-[#D3AB80] transition-colors">Sign in</a> to save souvenirs to your profile
+                    </p>
+                )}
             </div>
 
             {/* Preview */}
