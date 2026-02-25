@@ -1,11 +1,12 @@
 <div align="center">
-  <img src="screenshots/Logo.png" alt="New Valley Hub Logo" width="300">
+  <img src="screenshots/Logo.png" alt="New Valley Hub Logo" width="500">
   
   <h1>New Valley Hub (بوابة الوادي الجديد) 🏜️</h1>
   
   <p><strong>"Discover Egypt's Hidden Oasis Through Premium Digital Tourism"</strong></p>
   
-  <p>
+  <p><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License MIT">
+    <img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build Status">
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
     <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django">
     <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
@@ -158,12 +159,6 @@ Our design system embodies the warmth of the Egyptian desert with a premium, min
 - Cards scale to 105% on hover with shadow enhancement
 - Smooth 300-500ms transitions throughout
 - Unified Dark Brown/Golden Sand social buttons
-
-**✨ Glassmorphism & Parallax Layer**
-- Hero `WeatherWidget` uses `bg-white/30 backdrop-blur-md border border-white/40`
-- `bg-fixed bg-cover` pure-CSS parallax on the hero background image
-- `RevealOnScroll.jsx` (Framer Motion `useInView`) wraps Hero, Attractions, Features, and Eco-Analyzer sections
-- Responsive `min-h` hero — no fixed heights that clip content on mobile screens
 
 ---
 
@@ -343,6 +338,9 @@ export GEMINI_API_KEY="your_api_key_here"  # Linux/Mac
 set GEMINI_API_KEY=your_api_key_here       # Windows CMD
 $env:GEMINI_API_KEY="your_api_key_here"    # Windows PowerShell
 
+# Run make migrations
+python manage.py makemigrations
+
 # Run migrations
 python manage.py migrate
 
@@ -406,72 +404,7 @@ GET    /api/tourism/search/?q={query}        Global contextual search
 
 ---
 
-## 🎯 Key Technical Highlights
 
-### 1. Robust JWT Authentication Flow
-Seamless state management via React Context (`AuthContext`) combined with `djangorestframework-simplejwt`. The application dynamically intercepts protected routes, appends Authorization headers cleanly, and triggers login modals on-demand from restricted interactive actions like saving trips or souvenirs without dumping context.
-
-### 2. RAG Implementation (Retrieval-Augmented Generation)
-
-```python
-# backend/tourism/views.py - ChatAPIView
-def post(self, request):
-    user_message = request.data.get('message', '')
-    
-    # RAG: Search database for context
-    context_results = []
-    attractions = Attraction.objects.filter(
-        Q(name__icontains=user_message) | Q(description__icontains=user_message)
-    )[:2]
-    # Build prompt with context
-    context_str = "\n".join(context_results)
-    prompt = f"System: You are '3m Sa3ed', a helpful guide... Context: {context_str}..."
-    
-    # Generate AI response
-    response = model.generate_content(prompt, request_options={'timeout': 30})
-    return Response({'response': response.text})
-```
-
-### 3. Morphing Solid Header Animation
-
-```jsx
-// frontend/src/components/Navbar.jsx
-const [isFloating, setIsFloating] = useState(false);
-
-useEffect(() => {
-  const handleScroll = () => setIsFloating(window.scrollY > 50);
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
-```
-
-### 4. Eco-Trip Analyzer — Bidirectional Distance Lookup
-
-```js
-// frontend/src/components/TripPlanner.jsx
-// Triangular matrix — no duplicates, bidirectional via lookup
-function getDistance(nameA, nameB) {
-    const ka = findKey(nameA);
-    const kb = findKey(nameB);
-    const direct  = MATRIX[ka]?.[kb];  // A → B
-    const reverse = MATRIX[kb]?.[ka];  // B → A (fallback)
-    if (direct  !== undefined) return { km: direct,  estimated: false };
-    if (reverse !== undefined) return { km: reverse, estimated: false };
-    return { km: 175, estimated: true }; // Smart guess
-}
-```
-
----
-
-## 🌟 Unique Value Propositions
-
-1. **🎨 Luxury Earthy Design System**: Custom color palette inspired by Egyptian desert with ceramic-effect solid UI and morphing navigation headers.
-2. **🤖 RAG-Powered AI Chatbot**: The only tourism chatbot in Egypt with real-time database contextual integration.
-3. **🔐 Frictionless Authentication & Dashboards**: Intuitive glassmorphism Login modals and personalized tracking for every user. 
-4. **🌿 Eco-Trip Analyzer (SDG 13)**: Dynamic carbon footprint calculator natively built into complex itinerary routing.
-5. **🛍️ SDG 8 Marketplace & Support**: Integrating local economies with direct P2P tourist interfacing.
-6. **🖼️ Digital Souvenir Maker**: Robust HTML canvas photo generation equipped with sand-script and heritage fonts.
-7. **📴 True Offline-First Architecture**: Service worker asset caching allows exploration deep into the desert without a network connection.
 
 ---
 
@@ -505,12 +438,8 @@ This project is developed for educational and hackathon purposes.
 
 - **Google Gemini AI** - Powering our intelligent RAG chatbot
 - **New Valley Governorate** - Inspiring this digital transformation
-- **React & Django Communities** - Outstanding documentation and support
-- **Tailwind CSS** - Making luxury UIs achievable
-- **Framer Motion** - Silky scroll-reveal animations
 - **OpenStreetMap & Leaflet** - Free, open-source mapping
 - **"New Valley Innovates" Hackathon 2026** - Platform for innovation
-- **Inspiration:** Special thanks to the **COP30 Simulation Programme** (BUE & UNDP Egypt) for inspiring the sustainable tourism and Net-Zero goals of this project.
 
 ---
 
