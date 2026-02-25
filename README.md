@@ -39,15 +39,11 @@ Built for the **"New Valley Innovates" Hackathon 2026**, this Progressive Web Ap
 
 ## 📸 Platform Previews
 
-## 📸 Platform Previews
-
-## 📸 Platform Previews
-
 Take a tour of the New Valley Hub experience.
 
-| Home Page & Hero Section | AI Chatbot - 3m Sa3ed 🤖 |
+| Home Page & Hero Section | Secure Authentication 🔐 |
 | :---: | :---: |
-| <img src="screenshots/home.png" height="250" alt="Home Page Parallax Hero"> | <img src="screenshots/chatbot.png" height="250" alt="AI Chatbot 3m Sa3ed"> |
+| <img src="screenshots/home.png" height="250" alt="Home Page Parallax Hero"> | <img src="screenshots/auth.png" height="250" alt="User Login and Register"> |
 
 | AI Trip Planner ✨ | Eco-Analyzer & Itinerary 📊 |
 | :---: | :---: |
@@ -57,22 +53,25 @@ Take a tour of the New Valley Hub experience.
 | :---: | :---: |
 | <img src="screenshots/dashboard.png" height="250" alt="User Dashboard My Trips"> | <img src="screenshots/souvenir.png" height="250" alt="Luxury Souvenir Creator"> |
 
-| Attractions Explorer 🏛️ | Luxury Stays & Hotels 🏨 |
+| AI Chatbot - 3m Sa3ed 🤖 | Interactive Map 🗺️ |
 | :---: | :---: |
-| <img src="screenshots/attractions.png" height="250" alt="Attractions Page"> | <img src="screenshots/hotels.png" height="250" alt="Hotels & Booking"> |
+| <img src="screenshots/chatbot.png" height="250" alt="AI Chatbot 3m Sa3ed"> | <img src="screenshots/map.png" height="250" alt="Interactive Map"> |
 
-| Local Services Directory 🛠️ | Artisan Marketplace (SDG 8) 🛍️ |
+| Attractions Explorer 🏛️ | Virtual Museum 🏺 |
 | :---: | :---: |
-| <img src="screenshots/services.png" height="250" alt="Services Directory"> | <img src="screenshots/marketplace.png" height="250" alt="Local Marketplace"> |
+| <img src="screenshots/attractions.png" height="250" alt="Attractions Page"> | <img src="screenshots/museum.png" height="250" alt="Virtual Museum 3D"> |
 
-| Virtual Museum 🏺 | Interactive Map 🗺️ |
+| Luxury Stays & Hotels 🏨 | Artisan Marketplace (SDG 8) 🛍️ |
 | :---: | :---: |
-| <img src="screenshots/museum.png" height="250" alt="Virtual Museum 3D"> | <img src="screenshots/map.png" height="250" alt="Interactive Map"> |
+| <img src="screenshots/hotels.png" height="250" alt="Hotels & Booking"> | <img src="screenshots/marketplace.png" height="250" alt="Local Marketplace"> |
 
-| Meet the SandScript Team ❤️ | SOS & Emergency Support 🆘 |
+| Local Services Directory 🛠️ | SOS & Emergency Support 🆘 |
 | :---: | :---: |
-| <img src="screenshots/team.png" height="250" alt="The Team Section"> | <img src="screenshots/SOS.png" height="250" alt="SOS Button and Modal"> |
+| <img src="screenshots/services.png" height="250" alt="Services Directory"> | <img src="screenshots/SOS.png" height="250" alt="SOS Button and Modal"> |
 
+| Governor's Vision 🇪🇬 | Meet the SandScript Team ❤️ |
+| :---: | :---: |
+| <img src="screenshots/governor.png" height="250" alt="Governor Word"> | <img src="screenshots/team.png" height="250" alt="The Team Section"> |
 ---
 
 ## 📑 Table of Contents
