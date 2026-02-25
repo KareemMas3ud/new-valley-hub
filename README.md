@@ -39,21 +39,39 @@ Built for the **"New Valley Innovates" Hackathon 2026**, this Progressive Web Ap
 
 ## 📸 Platform Previews
 
-| Glassmorphism Hero | Personalized Dashboard |
-| :---: | :---: |
-| ![Hero Page](screenshots/placeholder_hero.png) | ![My Trips Dashboard](screenshots/placeholder_dashboard.png) |
+## 📸 Platform Previews
 
-| AI Trip Planner & Eco-Analyzer | AI Chatbot - 3m Sa3ed 🤖 |
-| :---: | :---: |
-| ![Trip Planner](screenshots/placeholder_planner.png) | ![Chatbot](screenshots/placeholder_chatbot.png) |
+## 📸 Platform Previews
 
-| Digital Souvenir Maker | SDG 8 Marketplace 🛍️ |
-| :---: | :---: |
-| ![Souvenir Maker](screenshots/placeholder_souvenir.png) | ![Market](screenshots/placeholder_marketplace.png) |
+Take a tour of the New Valley Hub experience.
 
-| Interactive Map | Mobile PWA View |
+| Home Page & Hero Section | AI Chatbot - 3m Sa3ed 🤖 |
 | :---: | :---: |
-| ![Map](screenshots/placeholder_map.png) | ![Mobile PWA](screenshots/placeholder_mobile.png) |
+| <img src="screenshots/home.png" height="250" alt="Home Page Parallax Hero"> | <img src="screenshots/chatbot.png" height="250" alt="AI Chatbot 3m Sa3ed"> |
+
+| AI Trip Planner ✨ | Eco-Analyzer & Itinerary 📊 |
+| :---: | :---: |
+| <img src="screenshots/planner.png" height="250" alt="AI Trip Planner Input"> | <img src="screenshots/Eco-Analyzer.png" height="250" alt="Eco-Analyzer Results"> |
+
+| User Dashboard (Saved Items) 👤 | Digital Souvenir Creator 📸 |
+| :---: | :---: |
+| <img src="screenshots/dashboard.png" height="250" alt="User Dashboard My Trips"> | <img src="screenshots/souvenir.png" height="250" alt="Luxury Souvenir Creator"> |
+
+| Attractions Explorer 🏛️ | Luxury Stays & Hotels 🏨 |
+| :---: | :---: |
+| <img src="screenshots/attractions.png" height="250" alt="Attractions Page"> | <img src="screenshots/hotels.png" height="250" alt="Hotels & Booking"> |
+
+| Local Services Directory 🛠️ | Artisan Marketplace (SDG 8) 🛍️ |
+| :---: | :---: |
+| <img src="screenshots/services.png" height="250" alt="Services Directory"> | <img src="screenshots/marketplace.png" height="250" alt="Local Marketplace"> |
+
+| Virtual Museum 🏺 | Interactive Map 🗺️ |
+| :---: | :---: |
+| <img src="screenshots/museum.png" height="250" alt="Virtual Museum 3D"> | <img src="screenshots/map.png" height="250" alt="Interactive Map"> |
+
+| Meet the SandScript Team ❤️ | SOS & Emergency Support 🆘 |
+| :---: | :---: |
+| <img src="screenshots/team.png" height="250" alt="The Team Section"> | <img src="screenshots/SOS.png" height="250" alt="SOS Button and Modal"> |
 
 ---
 
