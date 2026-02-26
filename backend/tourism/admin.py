@@ -1,14 +1,23 @@
 from django.contrib import admin
-from django.utils.html import format_html
+from django.utils.html import format_html, mark_safe
 from .models import (
-    Attraction, 
+    Attraction,
     DigitalArtifact,
     MuseumArtifact,
     SouvenirAsset,
-    TeamMember, 
-    GovernorProfile, 
+    TeamMember,
+    GovernorProfile,
     SiteConfiguration
 )
+
+# ── Reusable static snippets (no args → mark_safe, not format_html) ──────────
+_NO_IMAGE  = mark_safe('<span style="color: #999;">No image</span>')
+_NO_MODEL  = mark_safe('<span style="color: #ccc;">No 3D model</span>')
+_DASH      = mark_safe('<span style="color: #ccc;">—</span>')
+_CHECK     = mark_safe('<span style="color: green; font-size: 18px;">✓</span>')
+_CHECK_SM  = mark_safe('✓')
+_PREMIUM   = mark_safe('<span style="background:#D3AB80;color:white;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:bold;">⭐ PREMIUM</span>')
+
 
 @admin.register(Attraction)
 class AttractionAdmin(admin.ModelAdmin):
@@ -30,47 +39,36 @@ class MuseumArtifactAdmin(admin.ModelAdmin):
     list_editable = ('order',)
     list_per_page = 20
     fields = (
-        'name',
-        'description',
-        'image',
-        'image_url',
-        'model_3d_file',
-        'order',
-        'related_attraction',
-        'created_at',
-        'updated_at'
+        'name', 'description', 'image', 'image_url',
+        'model_3d_file', 'order', 'related_attraction',
+        'created_at', 'updated_at'
     )
     readonly_fields = ('created_at', 'updated_at')
     ordering = ('-created_at',)
-    
+
     def thumbnail_preview(self, obj):
-        """Display small thumbnail of the artifact poster"""
         if obj.image:
             return format_html(
-                '<img src="{}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #D3AB80;" />',
+                '<img src="{}" style="width:60px;height:60px;object-fit:cover;border-radius:4px;border:2px solid #D3AB80;" />',
                 obj.image.url
             )
-        return format_html('<span style="color: #999;">No image</span>')
+        return _NO_IMAGE
     thumbnail_preview.short_description = '🖼️ Preview'
-    
+
     def model_info(self, obj):
-        """Display 3D model info"""
         if obj.model_3d_file:
-            size = obj.model_file_size
-            ext = obj.model_file_extension
+            size = obj.model_file_size or '?'
+            ext  = obj.model_file_extension
             return format_html(
-                '<span style="color: green;">✓ {} MB {}</span>',
+                '<span style="color:green;">✓ {} MB {}</span>',
                 size,
                 ext.upper() if ext else ''
             )
-        return format_html('<span style="color: #ccc;">No 3D model</span>')
+        return _NO_MODEL
     model_info.short_description = '3D Model'
-    
+
     def has_url(self, obj):
-        """Show checkmark if external URL exists"""
-        if obj.image_url:
-            return format_html('✓')
-        return format_html('<span style="color: #ccc;">—</span>')
+        return _CHECK_SM if obj.image_url else _DASH
     has_url.short_description = '🔗 URL'
 
 
@@ -86,53 +84,39 @@ class SouvenirAssetAdmin(admin.ModelAdmin):
     list_editable = ('display_order',)
     list_per_page = 20
     fields = (
-        'name',
-        'category',
-        'image_file',
-        'image_url',
-        'is_premium',
-        'display_order',
-        'created_at',
-        'updated_at'
+        'name', 'category', 'image_file', 'image_url',
+        'is_premium', 'display_order', 'created_at', 'updated_at'
     )
     readonly_fields = ('created_at', 'updated_at')
     ordering = ('display_order', '-created_at')
-    
+
     def thumbnail_preview(self, obj):
-        """Display small thumbnail"""
         if obj.image_file:
             return format_html(
-                '<img src="{}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #D3AB80;" />',
+                '<img src="{}" style="width:60px;height:60px;object-fit:cover;border-radius:4px;border:2px solid #D3AB80;" />',
                 obj.image_file.url
             )
-        return format_html('<span style="color: #999;">No image</span>')
+        return _NO_IMAGE
     thumbnail_preview.short_description = '🖼️ Preview'
-    
+
     def premium_badge(self, obj):
-        """Show premium badge"""
-        if obj.is_premium:
-            return format_html('<span style="background: #D3AB80; color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">⭐ PREMIUM</span>')
-        return format_html('<span style="color: #ccc;">—</span>')
+        return _PREMIUM if obj.is_premium else _DASH
     premium_badge.short_description = 'Status'
-    
+
     def file_info(self, obj):
-        """Display file size"""
         size = obj.file_size_kb
-        if size:
-            return format_html('<span style="color: #666;">{} KB</span>', size)
-        return format_html('<span style="color: #ccc;">—</span>')
+        if size is not None:
+            return format_html('<span style="color:#666;">{} KB</span>', size)
+        return _DASH
     file_info.short_description = 'File Size'
-    
+
     def has_url(self, obj):
-        """Show checkmark if external URL exists"""
-        if obj.image_url:
-            return format_html('✓')
-        return format_html('<span style="color: #ccc;">—</span>')
+        return _CHECK_SM if obj.image_url else _DASH
     has_url.short_description = '🔗 URL'
 
 
 # ============================================
-# LEGACY ADMIN
+# LEGACY DIGITAL ARTIFACT ADMIN
 # ============================================
 
 @admin.register(DigitalArtifact)
@@ -142,45 +126,41 @@ class DigitalArtifactAdmin(admin.ModelAdmin):
     search_fields = ('name', 'description')
     list_per_page = 20
     fields = (
-        'name',
-        'description',
-        'image',
-        'image_url',
-        'model_3d_file',
-        'virtual_tour_url',
-        'related_attraction',
-        'created_at',
-        'updated_at'
+        'name', 'description', 'image', 'image_url',
+        'model_3d_file', 'virtual_tour_url',
+        'related_attraction', 'created_at', 'updated_at'
     )
     readonly_fields = ('created_at', 'updated_at')
     ordering = ('-created_at',)
-    
+
     def thumbnail_preview(self, obj):
+        src = None
         if obj.image:
-            return format_html(
-                '<img src="{}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;" />',
-                obj.image.url
-            )
+            src = obj.image.url
         elif obj.image_url:
+            src = obj.image_url
+        if src:
             return format_html(
-                '<img src="{}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;" />',
-                obj.image_url
+                '<img src="{}" style="width:60px;height:60px;object-fit:cover;border-radius:4px;" />',
+                src
             )
-        return format_html('<span style="color: #999;">No image</span>')
+        return _NO_IMAGE
     thumbnail_preview.short_description = 'Preview'
-    
+
     def has_3d_model_icon(self, obj):
-        if obj.has_3d_model:
-            return format_html('<span style="color: green; font-size: 18px;">✓</span>')
-        return format_html('<span style="color: #ccc;">—</span>')
+        return _CHECK if obj.has_3d_model else _DASH
     has_3d_model_icon.short_description = '3D Model'
-    
+
     def model_size_display(self, obj):
         size = obj.model_file_size
-        if size:
+        if size is not None:
             ext = obj.model_file_extension
-            return format_html('<span style="color: #666;">{} MB {}</span>', size, ext.upper() if ext else '')
-        return format_html('<span style="color: #ccc;">—</span>')
+            return format_html(
+                '<span style="color:#666;">{} MB {}</span>',
+                size,
+                ext.upper() if ext else ''
+            )
+        return _DASH
     model_size_display.short_description = 'File Size'
 
 
@@ -194,9 +174,11 @@ class TeamMemberAdmin(admin.ModelAdmin):
     search_fields = ('name', 'role')
     fields = ('name', 'role', 'photo', 'photo_url', 'profile_url')
 
+
 @admin.register(GovernorProfile)
 class GovernorProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'title')
+
 
 @admin.register(SiteConfiguration)
 class SiteConfigurationAdmin(admin.ModelAdmin):
@@ -212,9 +194,9 @@ class SiteConfigurationAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ('updated_at',)
-    
+
     def has_add_permission(self, request):
         return not SiteConfiguration.objects.exists()
-    
+
     def has_delete_permission(self, request, obj=None):
         return False
