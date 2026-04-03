@@ -48,7 +48,7 @@ Take a tour of the New Valley Hub experience.
     <th style="text-align: center;"><b>Secure Authentication 🔐</b></th>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/home.png" height="300"></td>
+    <td align="center"><img src="screenshots/home.jpg" height="300"></td>
     <td align="center"><img src="screenshots/auth.png" height="300"></td>
   </tr>
   <tr>
