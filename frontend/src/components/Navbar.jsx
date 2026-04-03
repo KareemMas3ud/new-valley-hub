@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import LoginModal from './LoginModal';
 import logo from '../assets/Logo.png';
 
 const Navbar = () => {
@@ -8,6 +9,7 @@ const Navbar = () => {
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [showInstallBtn, setShowInstallBtn] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const { user, logout } = useAuth();
 
     useEffect(() => {
@@ -122,6 +124,16 @@ const Navbar = () => {
                             </button>
                         )}
 
+                        {/* Login Button — shown only when not authenticated */}
+                        {!user && (
+                            <button
+                                onClick={() => setShowLoginModal(true)}
+                                className="flex-shrink-0 font-bold px-5 py-2.5 rounded-full border-2 border-[#D3AB80] text-[#472825] hover:bg-[#D3AB80] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#D3AB80]/40 whitespace-nowrap"
+                            >
+                                🔑 Login
+                            </button>
+                        )}
+
                         {/* Trip Planner CTA */}
                         <Link to="/planner"
                             className="flex-shrink-0 font-bold px-5 py-2.5 rounded-full shadow-lg hover:shadow-[#D3AB80]/40 transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap text-[#472825] hover:text-white"
@@ -202,6 +214,16 @@ const Navbar = () => {
                             Trip Planner ✨
                         </Link>
 
+                        {/* Login Button — mobile, shown only when not authenticated */}
+                        {!user && (
+                            <button
+                                onClick={() => { setShowLoginModal(true); setIsMobileMenuOpen(false); }}
+                                className="w-full border-2 border-[#D3AB80] text-[#472825] hover:bg-[#D3AB80] hover:text-white px-6 py-3 rounded-full font-bold text-center transition-all duration-300"
+                            >
+                                🔑 Login / Register
+                            </button>
+                        )}
+
                         {/* Auth section — mobile */}
                         {user && (
                             <div className="pt-2 border-t border-[#D3AB80]/20">
@@ -234,6 +256,13 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Login Modal */}
+            <LoginModal
+                open={showLoginModal}
+                onClose={() => setShowLoginModal(false)}
+                onSuccess={() => setShowLoginModal(false)}
+            />
         </nav>
     );
 };

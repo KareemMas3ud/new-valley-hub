@@ -1,18 +1,42 @@
-# New Valley Hub — Technical Documentation
+<div align="center">
 
-> **Project**: New Valley Hub — Smart Tourism Platform for Al Wadi Al Jadid, Egypt
-> **Version**: 1.0 | **Stack**: Django 6 · React 18 · Vite · SQLite / PostgreSQL
+![New Valley Hub Logo](./frontend/public/Logo.png)
+
+# New Valley Hub
+**Comprehensive Technical Documentation & System Architecture**
+
+> **Project**: New Valley Hub — Smart Tourism Platform for Al Wadi Al Jadid, Egypt<br>
+> **Stack**: Django 6 · React 18 · Vite · SQLite / PostgreSQL
+
+Prepared by: **SandScript Team**<br>
+Date: **April 2026**
+
+</div>
+
+<div style="page-break-after: always;"></div>
+
+## Document History
+
+| Version | Date | Author | Description |
+|---|---|---|---|
+| 1.0.0 | April 2026 | SandScript Team | Initial Release |
 
 ---
 
 ## Table of Contents
 
-1. [Source Code Structure & Requirements (SRC)](#1-source-code-structure--requirements-src)
-2. [System Architecture](#2-system-architecture)
-3. [Entity-Relationship Diagram (ERD)](#3-entity-relationship-diagram-erd)
-4. [Use Case Diagram](#4-use-case-diagram)
-5. [Sequence Diagram — AI Chatbot Flow](#5-sequence-diagram--ai-chatbot-flow)
-6. [User Guide](#6-user-guide)
+- [1. Source Code Structure & Requirements (SRC)](#1-source-code-structure--requirements-src)
+  - [1.1 Technology Stack](#11-technology-stack)
+  - [1.2 Folder Structure](#12-folder-structure)
+- [2. System Architecture](#2-system-architecture)
+  - [2.1 Description](#21-description)
+  - [2.2 Architecture Diagram](#22-architecture-diagram)
+- [3. Entity-Relationship Diagram (ERD)](#3-entity-relationship-diagram-erd)
+- [4. Use Case Diagram](#4-use-case-diagram)
+- [5. Sequence Diagram — AI Chatbot Flow](#5-sequence-diagram--ai-chatbot-flow)
+- [6. User Guide](#6-user-guide)
+  - [6.1 End-User Guide](#61-end-user-guide)
+  - [6.2 Developer Guide](#62-developer-guide)
 
 ---
 
@@ -572,7 +596,7 @@ The Gemini AI API key is stored exclusively on the server as an environment vari
 
 Open your web browser and navigate to the New Valley Hub website.
 
-*[Insert Screenshot: New Valley Hub homepage hero section]*
+![New Valley Hub homepage hero section](./screenshots/home.jpg)
 
 **Figure 1** — *New Valley Hub Home Page*
 
@@ -584,13 +608,13 @@ Upon opening the application, you are greeted with the homepage featuring a full
 
 Click the **Login** button located in the top-right corner of the navigation bar.
 
-*[Insert Screenshot: Navbar Login button highlighted]*
+![Navbar Login button highlighted](./screenshots/Login-button-highlighted.jpg)
 
 **Figure 2** — *Navigation Bar with Login Button*
 
 A modal dialog will appear. Switch to the **Register** tab by clicking on it.
 
-*[Insert Screenshot: Login/Register modal — Register tab selected]*
+![Login/Register modal — Register tab selected](./screenshots/Register-tab-unExisting.png)
 
 **Figure 3** — *Register Tab in the Login Modal*
 
@@ -602,7 +626,7 @@ Enter your **email address** and a **password**, then click **Create Account**. 
 
 Click the **Login** button in the navigation bar. In the modal, ensure the **Login** tab is selected. Enter your registered **email** and **password**, then click **Sign In**.
 
-*[Insert Screenshot: Login modal with email and password fields filled]*
+![Login modal with email and password fields filled](./screenshots/Register-tab-Existing.png)
 
 **Figure 4** — *Login Screen with Credentials*
 
@@ -614,7 +638,7 @@ Upon a successful login, your name/email will appear in the navbar and you will 
 
 Click **Attractions** in the top navigation bar.
 
-*[Insert Screenshot: Attractions page showing grid of attraction cards]*
+![Attractions page showing grid of attraction cards](./screenshots/attractions.png)
 
 **Figure 5** — *Attractions Page — Grid View*
 
@@ -626,7 +650,7 @@ You will be presented with a grid of all tourist attractions in New Valley, incl
 
 Click **Hotels** in the navigation bar to browse available accommodation across the oases.
 
-*[Insert Screenshot: Hotels page showing hotel cards with star ratings and price range]*
+![Hotels page showing hotel cards with star ratings and price range](./screenshots/hotels.png)
 
 **Figure 6** — *Hotels Page — Available Accommodation*
 
@@ -638,7 +662,7 @@ Each hotel card displays the hotel name, star rating, price range indicator ($, 
 
 Click **Services** in the navigation bar to access the services directory.
 
-*[Insert Screenshot: Services page with category filter tabs — Hospitals, Restaurants, Banks, etc.]*
+![Services page with category filter tabs — Hospitals, Restaurants, Banks, etc.](./screenshots/services.png)
 
 **Figure 7** — *Services Page — Category Filter View*
 
@@ -650,7 +674,7 @@ Services are organised into hierarchical categories such as Medical, Dining, Ban
 
 Click **Map** in the navigation bar to open the interactive map.
 
-*[Insert Screenshot: Map page with Leaflet map showing coloured markers for attractions, hotels, and services]*
+![Map page with Leaflet map showing coloured markers for attractions, hotels, and services](./screenshots/map.png)
 
 **Figure 8** — *Interactive Map — All Points of Interest*
 
@@ -662,7 +686,7 @@ The map displays all attractions, hotels, and services as clickable markers. Cli
 
 Click **Planner** in the navigation bar to open the AI-powered trip planner.
 
-*[Insert Screenshot: Planner page showing location selection, transport mode picker, and itinerary list]*
+![Planner page showing location selection, transport mode picker, and itinerary list](./screenshots/planner.png)
 
 **Figure 9** — *Trip Planner — Itinerary Builder*
 
@@ -674,7 +698,7 @@ Search for and add locations to your itinerary using the search field. Select yo
 
 Click the **floating chat icon** in the bottom-right corner of any page to open the AI chatbot.
 
-*[Insert Screenshot: AI chatbot widget open with a sample conversation — question about White Desert]*
+![AI chatbot widget open with a sample conversation — question about White Desert](./screenshots/chatbot.png)
 
 **Figure 10** — *AI Chatbot Widget ("Am Sa3eed")*
 
@@ -686,7 +710,7 @@ Type your question in the input field and press **Send**. The chatbot, "Am Sa3ee
 
 Click **Museum** in the navigation bar to access the Virtual Museum.
 
-*[Insert Screenshot: Virtual Museum page with 3D artifact cards displayed in a grid]*
+![Virtual Museum page with 3D artifact cards displayed in a grid](./screenshots/museum.png)
 
 **Figure 11** — *Virtual Museum — 3D Artifact Gallery*
 
@@ -698,7 +722,7 @@ The Virtual Museum displays a collection of historical 3D artifacts from New Val
 
 Click **Souvenir** in the navigation bar to open the Souvenir Maker.
 
-*[Insert Screenshot: Souvenir Maker editor with photo canvas, asset panel, and sticker options]*
+![Souvenir Maker editor with photo canvas, asset panel, and sticker options](./screenshots/souvenir.png)
 
 **Figure 12** — *Souvenir Maker — Photo Editor*
 
@@ -710,7 +734,7 @@ Upload a personal photo using the **Upload Photo** button. Then browse the avail
 
 Click **Marketplace** in the navigation bar to browse local New Valley products.
 
-*[Insert Screenshot: Marketplace page showing product cards with prices and seller information]*
+![Marketplace page showing product cards with prices and seller information](./screenshots/marketplace.png)
 
 **Figure 13** — *Marketplace — Local Products*
 
@@ -722,7 +746,7 @@ Each product card displays the product name, description, price, and seller cont
 
 Click **My Trips** in the navigation bar (requires login).
 
-*[Insert Screenshot: My Trips page showing a list of saved trip cards with route data and CO₂ values]*
+![My Trips page showing a list of saved trip cards with route data and CO₂ values](./screenshots/dashboard.png)
 
 **Figure 14** — *My Trips Dashboard*
 
@@ -734,7 +758,7 @@ All your previously saved trips are displayed as cards, showing the transport mo
 
 Click the **red floating SOS button** located in the bottom-left corner of any page.
 
-*[Insert Screenshot: SOS modal open showing emergency contact numbers for police, ambulance, and fire brigade]*
+![SOS modal open showing emergency contact numbers for police, ambulance, and fire brigade](./screenshots/SOS.png)
 
 **Figure 15** — *Emergency SOS Panel*
 
@@ -746,7 +770,7 @@ The SOS panel displays the official emergency contact numbers for New Valley Gov
 
 To log out, click on your user avatar or email in the top-right corner of the navigation bar, then click **Logout**.
 
-*[Insert Screenshot: Navbar user menu with Logout option highlighted]*
+![Navbar user menu with Logout option highlighted](./screenshots/logout.jpg)
 
 **Figure 16** — *Logout from the Navigation Bar*
 
