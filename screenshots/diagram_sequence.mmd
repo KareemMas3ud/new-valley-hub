@@ -1,0 +1,43 @@
+sequenceDiagram
+    actor User
+    participant ChatbotWidget as ChatbotWidget.jsx
+    participant AxiosAPI as api.js (Axios)
+    participant DjangoView as ChatAPIView
+    participant ORM as Django ORM
+    participant DB as SQLite / PostgreSQL
+    participant Gemini as Google Gemini API
+
+    User->>ChatbotWidget: Types message & clicks Send
+    ChatbotWidget->>AxiosAPI: POST /api/tourism/chat/
+    AxiosAPI->>DjangoView: HTTP POST with JSON body
+
+    Note over DjangoView: Validate message
+
+    DjangoView->>DjangoView: Load GEMINI_API_KEY
+    DjangoView->>DjangoView: genai.configure(api_key)
+
+    Note over DjangoView: Context Search Phase
+
+    DjangoView->>ORM: Attraction.objects.filter(...)[:3]
+    ORM->>DB: SELECT FROM tourism_attraction
+    DB-->>ORM: Matching rows
+    ORM-->>DjangoView: Attraction QuerySet
+
+    DjangoView->>ORM: Hotel.objects.filter(...)[:3]
+    ORM->>DB: SELECT FROM hospitality_hotel
+    DB-->>ORM: Matching rows
+    ORM-->>DjangoView: Hotel QuerySet
+
+    DjangoView->>ORM: Product.objects.filter(...)[:3]
+    ORM->>DB: SELECT FROM marketplace_product
+    DB-->>ORM: Matching rows
+    ORM-->>DjangoView: Product QuerySet
+
+    Note over DjangoView: Build context + compose prompt
+
+    DjangoView->>Gemini: model.generate_content(prompt)
+    Gemini-->>DjangoView: AI response text
+
+    DjangoView-->>AxiosAPI: HTTP 200 JSON response
+    AxiosAPI-->>ChatbotWidget: response.data.response
+    ChatbotWidget->>User: Displays AI response in chat

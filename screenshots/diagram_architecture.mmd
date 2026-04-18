@@ -1,0 +1,61 @@
+graph TB
+    subgraph CLIENT["Client — Browser localhost:5173"]
+        direction TB
+        PWA["React SPA (Vite + PWA)"]
+        SW["Service Worker (Offline Cache)"]
+        PWA <--> SW
+    end
+
+    subgraph FRONTEND_PAGES["Frontend Pages"]
+        HP["HomePage"]
+        AP["AttractionsPage"]
+        PP["PlannerPage"]
+        MM["VirtualMuseumPage (AR)"]
+        MP["MarketplacePage"]
+        SP["ServicesPage"]
+        MT["MyTrips (Auth-gated)"]
+        SV["SouvenirPage"]
+    end
+
+    subgraph SHARED_COMPONENTS["Shared Components"]
+        CB["ChatbotWidget"]
+        NAV["Navbar + LoginModal"]
+        MAP["MapComponent (Leaflet)"]
+        AR["ARViewer (model-viewer)"]
+        SOS["SOSButton"]
+        WW["WeatherWidget"]
+    end
+
+    subgraph BACKEND["Django Backend localhost:8000"]
+        direction TB
+        DRF["Django REST Framework"]
+        JWT_AUTH["SimpleJWT Auth Middleware"]
+        subgraph APPS["Django Apps"]
+            TU["tourism/"]
+            HO["hospitality/"]
+            SV2["services/"]
+            MK["marketplace/"]
+        end
+        DRF --> APPS
+        DRF --> JWT_AUTH
+    end
+
+    subgraph DATABASE["Database"]
+        SQLITE["SQLite (Development)"]
+        POSTGRES["PostgreSQL (Production)"]
+    end
+
+    subgraph EXTERNAL["External Services"]
+        GEMINI["Google Gemini API"]
+        OWM["OpenWeatherMap"]
+        OSM["OpenStreetMap / Leaflet"]
+        BOOKING["Booking.com"]
+    end
+
+    PWA -- "Axios REST Calls (JSON + JWT)" --> BACKEND
+    BACKEND --> DATABASE
+    BACKEND -- "genai.configure" --> GEMINI
+    WW -- "fetch weather API" --> OWM
+    MAP -- "tile requests" --> OSM
+    CB -- "POST /api/tourism/chat/" --> BACKEND
+    NAV -- "POST /api/auth/token/" --> BACKEND

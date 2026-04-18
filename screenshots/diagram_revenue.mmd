@@ -1,0 +1,21 @@
+flowchart TD
+    HC["Hotel Commissions\n12-15%"]
+    MF["Marketplace Fees\n10%"]
+    SL["Sponsored Listings\nMRR"]
+    B2G["B2G Licensing\nWhite Label"]
+    NVH{{"New Valley Hub Gateway\nCentral Processing & AI Routing"}}
+    VAL["Project Net Cash Flow & Valuation"]
+
+    HC -- "Booking GMV" --> NVH
+    MF -- "Commerce GMV" --> NVH
+    SL -- "Subscription MRR" --> NVH
+    B2G -- "Annual SaaS" --> NVH
+
+    NVH ==> VAL
+
+    style NVH fill:#2c3e50,stroke:#f39c12,stroke-width:3px,color:#fff
+    style HC fill:#ecf0f1,stroke:#bdc3c7,color:#2c3e50
+    style MF fill:#ecf0f1,stroke:#bdc3c7,color:#2c3e50
+    style SL fill:#ecf0f1,stroke:#bdc3c7,color:#2c3e50
+    style B2G fill:#ecf0f1,stroke:#bdc3c7,color:#2c3e50
+    style VAL fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:#fff

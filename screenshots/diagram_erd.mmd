@@ -1,0 +1,97 @@
+erDiagram
+    AUTH_USER {
+        int id PK
+        string username
+        string email
+        string password
+    }
+
+    ATTRACTION {
+        int id PK
+        string name
+        text description
+        string image
+        decimal latitude
+        decimal longitude
+        string address
+        string attraction_type
+        int visit_duration_minutes
+        decimal ticket_price
+    }
+
+    HOTEL {
+        int id PK
+        string name
+        text description
+        string image
+        decimal latitude
+        decimal longitude
+        int stars
+        string booking_url
+        string price_range
+    }
+
+    SERVICE_CATEGORY {
+        int id PK
+        string name
+        string slug
+        int parent_id FK
+        int order
+    }
+
+    SERVICE {
+        int id PK
+        string name
+        text description
+        int category_id FK
+        string phone_number
+        string address
+        bool is_emergency
+        bool is_24_hours
+    }
+
+    PRODUCT {
+        int id PK
+        string name
+        text description
+        decimal price
+        string seller_name
+        string seller_contact
+    }
+
+    MUSEUM_ARTIFACT {
+        int id PK
+        string name
+        text description
+        file model_3d_file
+        int related_attraction_id FK
+    }
+
+    SOUVENIR_ASSET {
+        int id PK
+        string name
+        string category
+        file image_file
+        bool is_premium
+    }
+
+    USER_SAVED_TRIP {
+        int id PK
+        int user_id FK
+        string transport_mode
+        decimal total_co2
+        json route_data
+    }
+
+    USER_SAVED_SOUVENIR {
+        int id PK
+        int user_id FK
+        text image_data
+        string caption
+    }
+
+    AUTH_USER ||--o{ USER_SAVED_TRIP : "saves"
+    AUTH_USER ||--o{ USER_SAVED_SOUVENIR : "saves"
+    ATTRACTION ||--o{ MUSEUM_ARTIFACT : "has artifacts"
+    SERVICE_CATEGORY ||--o{ SERVICE : "categorizes"
+    SERVICE_CATEGORY ||--o{ SERVICE_CATEGORY : "has subcategories"

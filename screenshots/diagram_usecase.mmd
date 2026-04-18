@@ -1,0 +1,66 @@
+flowchart LR
+    GUEST["Guest (Unregistered)"]
+    USER["Registered User"]
+    ADMIN["Admin"]
+
+    subgraph SYS["New Valley Hub System"]
+        UC1(["Browse Attractions"])
+        UC2(["Browse Hotels"])
+        UC3(["Browse Local Services"])
+        UC4(["View Interactive Map"])
+        UC5(["Chat with AI Guide"])
+        UC6(["Global Search"])
+        UC7(["Browse Marketplace"])
+        UC8(["View Virtual Museum / AR"])
+        UC9(["Create Digital Souvenir"])
+        UC10(["Plan Trip & Calculate CO2"])
+        UC11(["Register / Login"])
+        UC12(["Save Trip to Account"])
+        UC13(["Save Souvenir to Account"])
+        UC14(["View My Saved Trips"])
+        UC15(["Delete Saved Item"])
+        UC16(["Manage Content CRUD"])
+        UC17(["Configure Gemini API Key"])
+        UC18(["Manage Users"])
+
+        AUTH(["Authentication"])
+        JWT(["JWT Token Issued"])
+        AUTHCHECK(["Check Auth Token"])
+
+        UC11 -. "include" .-> AUTH
+        AUTH -. "extend" .-> JWT
+        UC12 -. "include" .-> AUTHCHECK
+        UC13 -. "include" .-> AUTHCHECK
+        UC14 -. "include" .-> AUTHCHECK
+        UC15 -. "extend"  .-> UC14
+        UC5  -. "include" .-> UC6
+    end
+
+    GUEST --> UC1
+    GUEST --> UC2
+    GUEST --> UC3
+    GUEST --> UC4
+    GUEST --> UC5
+    GUEST --> UC7
+    GUEST --> UC8
+    GUEST --> UC9
+    GUEST --> UC10
+    GUEST --> UC11
+
+    USER --> UC1
+    USER --> UC2
+    USER --> UC3
+    USER --> UC4
+    USER --> UC5
+    USER --> UC6
+    USER --> UC7
+    USER --> UC8
+    USER --> UC9
+    USER --> UC10
+    USER --> UC12
+    USER --> UC13
+    USER --> UC14
+
+    ADMIN --> UC16
+    ADMIN --> UC17
+    ADMIN --> UC18
