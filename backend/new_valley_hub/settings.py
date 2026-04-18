@@ -181,3 +181,4 @@ SIMPLE_JWT = {
 # Prevent redirect stripping of Authorization header
 APPEND_SLASH = False
 
+CORS_ALLOW_ALL_ORIGINS = True
