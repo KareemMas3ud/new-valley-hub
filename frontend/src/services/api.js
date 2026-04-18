@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const BASE = 'http://127.0.0.1:8000';
+// ── Single source of truth for the backend URL ─────────────────────────────
+// In production (Vercel), set VITE_API_URL in the Vercel dashboard.
+// In development, set it in frontend/.env
+// Fallback is the Railway production URL so deploys never break.
+export const BASE = import.meta.env.VITE_API_URL || 'https://new-valley-hub-production.up.railway.app';
 
 const api = axios.create({
     baseURL: `${BASE}/api/`,

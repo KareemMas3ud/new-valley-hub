@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ARViewer from '../components/ARViewer';
 import axios from 'axios';
+import { BASE } from '../services/api';
 
 const VirtualMuseumPage = () => {
     const [artifacts, setArtifacts] = useState([]);
@@ -11,7 +12,7 @@ const VirtualMuseumPage = () => {
         // Fetch ONLY Museum Artifacts from the new API
         const fetchMuseumArtifacts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/tourism/museum-artifacts/');
+                const response = await axios.get(`${BASE}/api/tourism/museum-artifacts/`);
                 setArtifacts(response.data);
                 setLoading(false);
             } catch (err) {

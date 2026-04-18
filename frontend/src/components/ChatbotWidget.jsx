@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaComments, FaTimes, FaPaperPlane, FaRobot, FaUser } from 'react-icons/fa';
 import axios from 'axios';
+import { BASE } from '../services/api';
 
 const ChatbotWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,8 +33,7 @@ const ChatbotWidget = () => {
 
         try {
             console.log("Sending request to API...");
-            // Use 127.0.0.1 to avoid potential localhost resolution issues
-            const response = await axios.post('http://127.0.0.1:8000/api/tourism/chat/', {
+            const response = await axios.post(`${BASE}/api/tourism/chat/`, {
                 message: userMessage.text
             });
             console.log("API Response:", response.data);

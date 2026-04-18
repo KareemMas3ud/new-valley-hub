@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE } from '../services/api';
 
 const ServicesPage = () => {
     const [hierarchy, setHierarchy] = useState([]);
@@ -10,14 +11,14 @@ const ServicesPage = () => {
 
     useEffect(() => {
         // Fetch hierarchical categories
-        axios.get('http://127.0.0.1:8000/api/services/categories/hierarchy/')
+        axios.get(`${BASE}/api/services/categories/hierarchy/`)
             .then(res => {
                 setHierarchy(res.data);
             })
             .catch(err => console.error("Error fetching hierarchy:", err));
 
         // Fetch all services
-        axios.get('http://127.0.0.1:8000/api/services/items/')
+        axios.get(`${BASE}/api/services/items/`)
             .then(res => {
                 setServices(res.data);
                 setTotalServicesCount(res.data.length);
@@ -32,11 +33,11 @@ const ServicesPage = () => {
     const filterByParent = (parentSlug) => {
         setSelectedParent(parentSlug);
         if (parentSlug) {
-            axios.get(`http://127.0.0.1:8000/api/services/items/by_parent_category/?parent=${parentSlug}`)
+            axios.get(`${BASE}/api/services/items/by_parent_category/?parent=${parentSlug}`)
                 .then(res => setServices(res.data))
                 .catch(err => console.error(err));
         } else {
-            axios.get('http://127.0.0.1:8000/api/services/items/')
+            axios.get(`${BASE}/api/services/items/`)
                 .then(res => setServices(res.data))
                 .catch(err => console.error(err));
         }

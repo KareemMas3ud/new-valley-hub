@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { saveSouvenir } from '../services/api';
+import { saveSouvenir, BASE } from '../services/api';
 import './SouvenirMaker.css';
 
 const SouvenirMaker = () => {
@@ -20,7 +20,7 @@ const SouvenirMaker = () => {
         // Fetch Souvenir Assets from API (backgrounds ONLY)
         const fetchSouvenirBackgrounds = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/tourism/souvenir-assets/by_category/?category=background');
+                const response = await axios.get(`${BASE}/api/tourism/souvenir-assets/by_category/?category=background`);
                 setApiBackgrounds(response.data);
                 // Automatically select first background if available
                 if (response.data.length > 0) {

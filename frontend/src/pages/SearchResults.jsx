@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { BASE } from '../services/api';
 import { FaMapMarkerAlt, FaHotel, FaShoppingBag, FaStar, FaSpinner } from 'react-icons/fa';
 
 const SearchResults = () => {
@@ -20,7 +21,7 @@ const SearchResults = () => {
             try {
                 setLoading(true);
                 console.log('Fetching search results for query:', query);
-                const response = await axios.get(`http://127.0.0.1:8000/api/tourism/search/?q=${encodeURIComponent(query)}`);
+                const response = await axios.get(`${BASE}/api/tourism/search/?q=${encodeURIComponent(query)}`);
                 console.log('Search API Response:', response.data);
                 setResults(response.data.results);
                 setError(null);

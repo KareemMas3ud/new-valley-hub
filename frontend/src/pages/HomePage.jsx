@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaMapMarkedAlt, FaRobot, FaSuitcase, FaBed, FaStore, FaCameraRetro } from 'react-icons/fa';
-import { getAttractions } from '../services/api';
+import { getAttractions, BASE } from '../services/api';
 import WeatherWidget from '../components/WeatherWidget';
 import TeamSection from '../components/TeamSection';
 import GovernorSection from '../components/GovernorSection';
@@ -78,7 +78,7 @@ const HomePage = () => {
             {/* Hero Section with Parallax Background */}
             <div
                 className="relative min-h-[680px] flex items-start justify-center text-center px-4 bg-fixed bg-center bg-cover bg-no-repeat pb-24 sm:pb-20 md:pb-16"
-                style={{ backgroundImage: "url('http://127.0.0.1:8000/media/locations/white_desert.jpg')" }}
+                style={{ backgroundImage: `url('${BASE}/media/locations/white_desert.jpg')` }}
             >
                 {/* Gradient Overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
@@ -311,7 +311,7 @@ const HomePage = () => {
             <div className="relative py-20 px-4">
                 <div className="absolute inset-0 overflow-hidden">
                     <img
-                        src="http://127.0.0.1:8000/media/locations/farafra_oasis.jpg"
+                        src={`${BASE}/media/locations/farafra_oasis.jpg`}
                         alt="Farafra Oasis"
                         className="w-full h-full object-cover"
                     />

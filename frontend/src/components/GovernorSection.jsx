@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BASE } from '../services/api';
 
 const GovernorSection = () => {
     const [profile, setProfile] = useState(null);
@@ -7,7 +8,7 @@ const GovernorSection = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/tourism/governor/');
+                const response = await fetch(`${BASE}/api/tourism/governor/`);
                 const data = await response.json();
                 if (data && data.length > 0) {
                     setProfile(data[0]);
@@ -72,7 +73,7 @@ const GovernorSection = () => {
 
                             {profile.photo ? (
                                 <img
-                                    src={profile.photo.startsWith('http') ? profile.photo : `http://127.0.0.1:8000${profile.photo}`}
+                                    src={profile.photo.startsWith('http') ? profile.photo : `${BASE}${profile.photo}`}
                                     alt={profile.name}
                                     className="relative rounded-xl shadow-2xl w-full max-w-md object-cover border-[6px] border-white ring-1 ring-gray-200"
                                     style={{ maxHeight: '550px' }}

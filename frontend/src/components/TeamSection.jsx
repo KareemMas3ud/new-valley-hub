@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE } from '../services/api';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaGlobe, FaInstagram } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
@@ -30,7 +31,7 @@ const TeamCard = ({ member }) => {
     const linkProps = getLinkProps(member.profile_url);
     const photoSrc = member.final_photo?.startsWith('http')
         ? member.final_photo
-        : `http://127.0.0.1:8000${member.final_photo}`;
+        : `${BASE}${member.final_photo}`;
 
     return (
         <motion.div
@@ -110,7 +111,7 @@ const TeamSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/tourism/team/')
+        axios.get(`${BASE}/api/tourism/team/`)
             .then(r => setTeamMembers(r.data))
             .catch(e => console.error('Error fetching team:', e))
             .finally(() => setLoading(false));
