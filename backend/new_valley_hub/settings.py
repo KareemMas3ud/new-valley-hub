@@ -27,6 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-&#t_$_@a10_-&ou*=owk0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+<<<<<<< HEAD
 # Allow all hosts (for localtunnel / production proxy)
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +41,10 @@ CSRF_TRUSTED_ORIGINS = [
 
 # ── Railway runs behind a reverse proxy ────────────────────────────────────
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+=======
+# Allow Render domain and localhost
+ALLOWED_HOSTS = ['new-valley-hub-production.up.railway.app', 'localhost', '127.0.0.1', '*']
+>>>>>>> dcddd3172734ffdc3aa00cb3b96b50488226032d
 
 
 # Application definition
@@ -196,3 +201,4 @@ SIMPLE_JWT = {
 # Prevent redirect stripping of Authorization header
 APPEND_SLASH = False
 
+CORS_ALLOW_ALL_ORIGINS = True

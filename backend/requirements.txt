@@ -77,3 +77,9 @@ anyio==4.12.1
 h11==0.16.0
 distro==1.9.0
 tzdata==2025.3
+
+django
+django-cors-headers
+google-generativeai
+gunicorn
+whitenoise
