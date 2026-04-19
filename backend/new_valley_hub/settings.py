@@ -27,24 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-&#t_$_@a10_-&ou*=owk0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-<<<<<<< HEAD
-# Allow all hosts (for localtunnel / production proxy)
-ALLOWED_HOSTS = ['*']
-
-# ── CSRF Trusted Origins (required for Django 4.0+) ───────────────────────
-CSRF_TRUSTED_ORIGINS = [
-    'https://new-valley-hub-production.up.railway.app',
-    'https://*.vercel.app',
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-]
-
-# ── Railway runs behind a reverse proxy ────────────────────────────────────
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-=======
 # Allow Render domain and localhost
 ALLOWED_HOSTS = ['new-valley-hub-production.up.railway.app', 'localhost', '127.0.0.1', '*']
->>>>>>> dcddd3172734ffdc3aa00cb3b96b50488226032d
 
 
 # Application definition
@@ -202,3 +186,5 @@ SIMPLE_JWT = {
 APPEND_SLASH = False
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Clean Deploy Force
