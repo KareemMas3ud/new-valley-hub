@@ -41,11 +41,11 @@ const SearchResults = () => {
     const getTypeIcon = (type) => {
         switch (type) {
             case 'attraction':
-                return <FaMapMarkerAlt className="text-emerald-600" />;
+                return <FaMapMarkerAlt style={{ color: 'var(--teal)' }} />;
             case 'hotel':
-                return <FaHotel className="text-blue-600" />;
+                return <FaHotel style={{ color: 'var(--accent)' }} />;
             case 'product':
-                return <FaShoppingBag className="text-amber-600" />;
+                return <FaShoppingBag style={{ color: 'var(--warning)' }} />;
             default:
                 return null;
         }
@@ -53,55 +53,56 @@ const SearchResults = () => {
 
     const getTypeBadge = (type) => {
         const badges = {
-            attraction: 'bg-emerald-100 text-emerald-700',
-            hotel: 'bg-blue-100 text-blue-700',
-            product: 'bg-amber-100 text-amber-700',
+            attraction: { backgroundColor: 'rgba(42, 123, 111, 0.15)', color: 'var(--teal)' },
+            hotel: { backgroundColor: 'rgba(211, 171, 128, 0.2)', color: 'var(--accent)' },
+            product: { backgroundColor: 'rgba(192, 139, 45, 0.15)', color: 'var(--warning)' },
         };
-        return badges[type] || 'bg-gray-100 text-gray-700';
+        return badges[type] || { backgroundColor: 'var(--bg-secondary)', color: 'var(--text-muted)' };
     };
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--bg-primary)' }}>
                 <div className="text-center">
-                    <FaSpinner className="animate-spin text-emerald-600 text-5xl mx-auto mb-4" />
-                    <p className="text-gray-600 text-lg">Searching for "{query}"...</p>
+                    <FaSpinner className="animate-spin text-5xl mx-auto mb-4" style={{ color: 'var(--teal)' }} />
+                    <p className="text-lg" style={{ color: 'var(--text-muted)' }}>Searching for "{query}"...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--bg-primary)' }}>
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                    <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                         Search Results for "{query}"
                     </h1>
-                    <p className="text-gray-600">
+                    <p style={{ color: 'var(--text-muted)' }}>
                         Found {results.length} result{results.length !== 1 ? 's' : ''}
                     </p>
                 </div>
 
                 {/* Error Message */}
                 {error && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                        <p className="text-red-700">{error}</p>
+                    <div className="rounded-lg p-4 mb-6" style={{ backgroundColor: 'rgba(196, 87, 58, 0.1)', border: '1px solid var(--terracotta)', color: 'var(--terracotta)' }}>
+                        <p>{error}</p>
                     </div>
                 )}
 
                 {/* No Results */}
                 {!loading && !error && results.length === 0 && (
-                    <div className="bg-white rounded-lg shadow-md p-12 text-center">
-                        <div className="text-gray-400 text-6xl mb-4">🔍</div>
-                        <h2 className="text-2xl font-semibold text-gray-700 mb-2">No results found</h2>
-                        <p className="text-gray-500 mb-6">
+                    <div className="rounded-lg shadow-md p-12 text-center" style={{ backgroundColor: 'var(--bg-card)' }}>
+                        <div className="text-6xl mb-4" style={{ color: 'var(--text-muted)' }}>🔍</div>
+                        <h2 className="text-2xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>No results found</h2>
+                        <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
                             We couldn't find anything matching "{query}". Try different keywords.
                         </p>
                         <Link
                             to="/"
-                            className="inline-block bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors"
+                            className="inline-block px-6 py-3 rounded-lg transition-colors font-bold"
+                            style={{ backgroundColor: 'var(--accent)', color: 'var(--text-primary)' }}
                         >
                             Back to Home
                         </Link>
@@ -114,11 +115,12 @@ const SearchResults = () => {
                         {results.map((result, index) => (
                             <div
                                 key={`${result.type}-${result.id}-${index}`}
-                                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                                className="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                                style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)' }}
                             >
                                 {/* Image */}
                                 {result.image && (
-                                    <div className="h-48 overflow-hidden bg-gray-200">
+                                    <div className="h-48 overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
                                         <img
                                             src={result.image}
                                             alt={result.name}
@@ -132,36 +134,39 @@ const SearchResults = () => {
                                     {/* Type Badge */}
                                     <div className="flex items-center gap-2 mb-3">
                                         {getTypeIcon(result.type)}
-                                        <span className={`text-xs font-semibold px-3 py-1 rounded-full ${getTypeBadge(result.type)}`}>
+                                        <span
+                                            className="text-xs font-semibold px-3 py-1 rounded-full"
+                                            style={getTypeBadge(result.type)}
+                                        >
                                             {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
                                         </span>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
+                                    <h3 className="text-xl font-bold mb-2 line-clamp-2" style={{ color: 'var(--text-primary)' }}>
                                         {result.name}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                                    <p className="text-sm mb-4 line-clamp-3" style={{ color: 'var(--text-muted)' }}>
                                         {result.description}
                                     </p>
 
                                     {/* Meta Info */}
                                     <div className="flex items-center justify-between">
                                         {result.type === 'hotel' && result.rating && (
-                                            <div className="flex items-center gap-1 text-amber-500">
+                                            <div className="flex items-center gap-1" style={{ color: 'var(--warning)' }}>
                                                 <FaStar />
                                                 <span className="text-sm font-semibold">{result.rating}</span>
                                             </div>
                                         )}
                                         {result.type === 'product' && result.price && (
-                                            <div className="text-emerald-600 font-bold text-lg">
+                                            <div className="font-bold text-lg" style={{ color: 'var(--teal)' }}>
                                                 ${result.price}
                                             </div>
                                         )}
                                         {result.type === 'attraction' && result.category && (
-                                            <div className="text-gray-500 text-sm italic">
+                                            <div className="text-sm italic" style={{ color: 'var(--text-muted)' }}>
                                                 {result.category}
                                             </div>
                                         )}

@@ -1,57 +1,311 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @source "./src/**/*.{html,js,jsx,ts,tsx}";
 
 @theme {
-  /* Custom Brand Colors */
-  --color-brand-dark: #472825;
-  --color-brand-taupe: #96786F;
-  --color-brand-sand: #D3AB80;
-  --color-brand-beige: #FDE4BC;
-  --color-brand-ivory: #FFF4E2;
-}
+  /* ================================================
+     BRAND TOKENS → mapped to CSS variables
+     so bg-brand-*, text-brand-* auto-switch in dark mode
+     ================================================ */
+  --color-brand-dark: var(--text-primary);
+  --color-brand-taupe: var(--text-muted);
+  --color-brand-sand: var(--accent);
+  --color-brand-beige: var(--bg-secondary);
+  --color-brand-ivory: var(--bg-primary);
 
-/* Global Styles */
-body {
-  background-color: #FFF4E2;
-  color: #472825;
-  font-family: 'Cairo', sans-serif, system-ui, -apple-system, sans-serif;
-}
+  /* MD3 Surface tokens mapped to CSS vars */
+  --color-surface: var(--bg-primary);
+  --color-surface-container-low: var(--bg-secondary);
+  --color-surface-container: var(--bg-card);
+  --color-surface-container-high: var(--bg-elevated);
+  --color-surface-container-highest: var(--bg-muted);
+  --color-surface-container-lowest: var(--bg-card);
+  --color-surface-variant: var(--bg-muted);
+  --color-on-surface: var(--text-primary);
+  --color-on-surface-variant: var(--text-secondary);
+  --color-outline: var(--text-muted);
+  --color-outline-variant: var(--border-color);
+  --color-primary: var(--accent);
+  --color-primary-container: var(--accent-hover);
+  --color-on-primary: var(--text-on-dark);
+  --color-on-primary-container: var(--accent-dark);
+  --color-secondary: var(--teal);
+  --color-secondary-container: var(--teal-light);
+  --color-on-secondary: #ffffff;
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-light);
+  --color-error: var(--terracotta);
+  --color-error-container: var(--error-light);
+  --color-inverse-surface: var(--bg-footer);
+  --color-inverse-on-surface: var(--text-on-dark);
+  --color-primary-fixed-dim: var(--gold);
 
-.font-arabic {
-  font-family: 'Cairo', sans-serif;
+  /* Typography */
+  --font-arabic: 'Rubik', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-label: 'Outfit', sans-serif;
 }
 
 /* ================================================
-   CUSTOM SCROLLBAR - NEW VALLEY THEME
+   LIGHT MODE — MD3 "Luxury Earthy" Palette
+   Mapped from Google Stitch design system
    ================================================ */
+:root {
+  /* Surfaces — layered warmth */
+  --bg-primary: #fdf9f4;
+  --bg-secondary: #f7f3ee;
+  --bg-card: #f1ede8;
+  --bg-elevated: #ebe8e3;
+  --bg-muted: #e6e2dd;
+  --bg-nav: rgba(253, 249, 244, 0.85);
+  --bg-footer: #31302d;
+  --bg-dark-fixed: #31302d;
 
-/* Webkit Browsers (Chrome, Edge, Safari) */
+  /* Text */
+  --text-primary: #1c1c19;
+  --text-secondary: #4d4635;
+  --text-muted: #7f7663;
+  --text-on-dark: #ffffff;
+
+  /* Accents — MD3 primary = rich dark gold */
+  --accent: #735c00;
+  --accent-hover: #d4af37;
+  --accent-dark: #554300;
+  --gold: #e9c349;
+  --teal: #2d666f;
+  --teal-light: #b0e9f4;
+  --terracotta: #ba1a1a;
+  --tertiary: #725a42;
+  --tertiary-light: #ccad91;
+  --warning: #C08B2D;
+  --error-light: #ffdad6;
+
+  /* Borders & Shadows */
+  --border: rgba(208, 197, 175, 0.35);
+  --border-color: #d0c5af;
+  --border-strong: rgba(208, 197, 175, 0.55);
+  --shadow: rgba(28, 28, 25, 0.06);
+  --shadow-strong: rgba(28, 28, 25, 0.12);
+
+  /* Inputs & Overlays */
+  --input-bg: rgba(255, 255, 255, 0.55);
+  --overlay: rgba(28, 28, 25, 0.55);
+}
+
+/* ================================================
+   DARK MODE — "Desert Night"
+   Deep warm umber ground, soft parchment text,
+   muted gold accents — zero harsh whites
+   ================================================ */
+.dark {
+  /* Surfaces — layered warm umber, darkest → lightest */
+  --bg-primary: #110E0C;
+  --bg-secondary: #1B1512;
+  --bg-card: #211A16;
+  --bg-elevated: #2A211B;
+  --bg-muted: #342B24;
+  --bg-nav: rgba(17, 14, 12, 0.92);
+  --bg-footer: #0A0807;
+  --bg-dark-fixed: #110E0C;
+
+  /* Text — soft, warm, never pure white */
+  --text-primary: #E2CEAF;
+  --text-secondary: #B69A78;
+  --text-muted: #7A6454;
+  --text-on-dark: #E2CEAF;
+
+  /* Accents — muted so they don't glow on dark bg */
+  --accent: #e9c349;
+  --accent-hover: #d4af37;
+  --accent-dark: #C09A68;
+  --gold: #e9c349;
+  --teal: #97d0da;
+  --teal-light: rgba(45, 102, 111, 0.25);
+  --terracotta: #ffb4ab;
+  --tertiary: #e1c1a4;
+  --tertiary-light: rgba(114, 90, 66, 0.3);
+  --warning: #A8802E;
+  --error-light: rgba(186, 26, 26, 0.2);
+
+  /* Borders & Shadows */
+  --border: rgba(192, 154, 104, 0.10);
+  --border-color: rgba(192, 154, 104, 0.2);
+  --border-strong: rgba(192, 154, 104, 0.18);
+  --shadow: rgba(0, 0, 0, 0.35);
+  --shadow-strong: rgba(0, 0, 0, 0.55);
+
+  /* Inputs & Overlays */
+  --input-bg: rgba(33, 26, 22, 0.85);
+  --overlay: rgba(10, 8, 7, 0.80);
+}
+
+/* ================================================
+   GLOBAL BASE STYLES
+   ================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ================================================
+   MD3 GLASSMORPHISM UTILITIES
+   ================================================ */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-panel {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-shadow-sm {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ================================================
+   MD3 TYPOGRAPHY SCALE
+   ================================================ */
+.text-display-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.text-display-lg-mobile {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-headline-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.text-headline-md {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-body-md {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-label-sm {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* ================================================
+   GLOBAL MICRO-INTERACTIONS
+   ================================================ */
+button, a {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ================================================
+   CUSTOM SCROLLBAR - THEME AWARE
+   ================================================ */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFF4E2;
+  background: var(--bg-primary);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D3AB80 0%, #B68D60 100%);
+  background: linear-gradient(180deg, var(--accent-hover) 0%, var(--tertiary) 100%);
   border-radius: 10px;
-  border: 2px solid #FFF4E2;
+  border: 2px solid var(--bg-primary);
   transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #B68D60 0%, #96786F 100%);
-  border-color: #FDE4BC;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--tertiary) 100%);
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #D3AB80 #FFF4E2;
+  scrollbar-color: var(--accent-hover) var(--bg-primary);
+}
+
+/* ================================================
+   THEME TRANSITION HELPERS
+   ================================================ */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Material Symbols config */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.material-symbols-outlined.fill-icon {
+  font-variation-settings: 'FILL' 1;
 }
