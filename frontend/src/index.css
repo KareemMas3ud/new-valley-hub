@@ -67,7 +67,7 @@
   /* Text */
   --text-primary: #1c1c19;
   --text-secondary: #4d4635;
-  --text-muted: #7f7663;
+  --text-muted: #6b4430; /* Updated from #7f7663 for WCAG compliance */
   --text-on-dark: #ffffff;
 
   /* Accents — MD3 primary = rich dark gold */
@@ -75,9 +75,9 @@
   --accent-hover: #d4af37;
   --accent-dark: #554300;
   --gold: #e9c349;
-  --teal: #2d666f;
+  --teal: #2A7B6F; /* Oasis Teal */
   --teal-light: #b0e9f4;
-  --terracotta: #ba1a1a;
+  --terracotta: #C4573A; /* Sunset Terracotta */
   --tertiary: #725a42;
   --tertiary-light: #ccad91;
   --warning: #C08B2D;
@@ -114,7 +114,7 @@
   /* Text — soft, warm, never pure white */
   --text-primary: #E2CEAF;
   --text-secondary: #B69A78;
-  --text-muted: #7A6454;
+  --text-muted: #8c6a56; /* Slightly brightened for dark mode contrast */
   --text-on-dark: #E2CEAF;
 
   /* Accents — muted so they don't glow on dark bg */

@@ -31,10 +31,43 @@ const AttractionsPage = () => {
     ];
 
     if (loading) return (
-        <div className="flex justify-center items-center h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-            <div className="text-center">
-                <span className="material-symbols-outlined text-5xl animate-spin mb-4 block" style={{ color: 'var(--accent)' }}>progress_activity</span>
-                <p className="text-body-md" style={{ color: 'var(--text-muted)' }}>Loading amazing attractions...</p>
+        <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+            {/* Header Skeleton */}
+            <div className="pt-28 md:pt-36 pb-12 px-5 md:px-16" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+                <div className="mx-auto" style={{ maxWidth: '1280px' }}>
+                    <div className="h-10 w-48 md:w-64 bg-gray-200 dark:bg-[#2A2621] animate-pulse rounded mb-4"></div>
+                    <div className="h-6 w-3/4 md:w-96 bg-gray-200 dark:bg-[#2A2621] animate-pulse rounded"></div>
+                </div>
+            </div>
+
+            <div className="mx-auto px-5 md:px-16 py-12" style={{ maxWidth: '1280px' }}>
+                {/* Filter Tabs Skeleton */}
+                <div className="flex flex-wrap gap-3 justify-center mb-12">
+                    {[1, 2, 3, 4].map(i => (
+                        <div key={i} className="h-10 w-28 bg-gray-200 dark:bg-[#2A2621] animate-pulse rounded-full"></div>
+                    ))}
+                </div>
+
+                {/* Cards Skeleton Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {[1, 2, 3, 4, 5, 6].map(i => (
+                        <div key={i} className="bg-white dark:bg-[#2A2621] rounded-2xl h-[420px] animate-pulse overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+                            {/* Image skeleton */}
+                            <div className="h-48 bg-gray-200 dark:bg-[#3A352F] w-full"></div>
+                            {/* Content skeleton */}
+                            <div className="p-5">
+                                <div className="h-6 bg-gray-200 dark:bg-[#3A352F] w-3/4 rounded mb-3"></div>
+                                <div className="h-4 bg-gray-200 dark:bg-[#3A352F] w-full rounded mb-2"></div>
+                                <div className="h-4 bg-gray-200 dark:bg-[#3A352F] w-5/6 rounded mb-6"></div>
+                                {/* Footer skeleton */}
+                                <div className="flex justify-between items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                                    <div className="h-4 bg-gray-200 dark:bg-[#3A352F] w-20 rounded"></div>
+                                    <div className="h-8 bg-gray-200 dark:bg-[#3A352F] w-8 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

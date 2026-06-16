@@ -269,8 +269,8 @@ function calcSegments(attractions) {
 //  TRANSPORT MODES
 // ─────────────────────────────────────────────────────────────────────────────
 const TRANSPORT_MODES = [
-    { id: 'walk', emoji: '🚶‍♂️', label: 'Walking / Bicycle', factor: 0.00, tag: 'Zero Emission', tagColor: 'bg-green-100 text-green-800' },
-    { id: 'ebus', emoji: '🚌', label: 'Electric Eco-Bus', factor: 0.05, tag: 'Low Emission', tagColor: 'bg-teal-100 text-teal-800' },
+    { id: 'walk', emoji: '🚶‍♂️', label: 'Walking / Bicycle', factor: 0.00, tag: 'Zero Emission', tagColor: 'bg-[var(--teal)]/10 text-[var(--teal)]' },
+    { id: 'ebus', emoji: '🚌', label: 'Electric Eco-Bus', factor: 0.05, tag: 'Low Emission', tagColor: 'bg-[var(--teal)]/10 text-[var(--teal)]' },
     { id: 'car', emoji: '🚕', label: 'Standard Gas Car', factor: 0.20, tag: 'High Emission', tagColor: 'bg-orange-100 text-orange-800' },
 ];
 
@@ -289,13 +289,13 @@ function getBadge(mode, co2, gasCo2, stopCount) {
     if (mode.id === 'walk') return {
         icon: '🌿', title: 'Net-Zero Hero!',
         msg: `Your ${stopCount}-stop trip emits ZERO kg of CO₂. You saved ${gasCo2.toFixed(1)} kg. The desert thanks you! 🌍`,
-        classes: 'bg-green-50 border-green-400 text-green-900',
+        classes: 'bg-[var(--teal)]/10 border-[var(--teal)] text-[var(--teal)]',
         netZero: true, pct: 100,
     };
     if (mode.id === 'ebus') return {
         icon: '🏆', title: 'Sustainable Choice!',
         msg: `Your ${stopCount}-stop trip is ${pct}% greener than a gas car. You prevented ${(gasCo2 - co2).toFixed(1)} kg of CO₂! 🌱`,
-        classes: 'bg-teal-50 border-teal-400 text-teal-900',
+        classes: 'bg-[var(--teal)]/10 border-[var(--teal)] text-[var(--teal)]',
         netZero: false, pct,
     };
     return {
@@ -312,8 +312,8 @@ function getBadge(mode, co2, gasCo2, stopCount) {
 function EmissionBar({ pct }) {
     const color = pct === 0 ? 'bg-orange-400'
         : pct < 50 ? 'bg-yellow-400'
-            : pct < 90 ? 'bg-teal-500'
-                : 'bg-green-500';
+            : pct < 90 ? 'bg-[var(--teal)]/80'
+                : 'bg-[var(--teal)]';
     return (
         <div className="mt-1">
             <div className="flex justify-between text-xs text-[#96786F] mb-1">
@@ -354,7 +354,7 @@ function SegmentRow({ from, to, km, co2, estimated }) {
 function EcoHeader() {
     return (
         <div className="text-center mb-8">
-            <span className="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full mb-3 tracking-wide uppercase">
+            <span className="inline-block bg-[var(--teal)]/10 text-[var(--teal)] border border-[var(--teal)]/30 text-xs font-bold px-3 py-1 rounded-full mb-3 tracking-wide uppercase">
                 🌍 Eco Travel · SDG 13
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#472825] mb-2">Trip Eco-Analyzer</h2>
@@ -523,9 +523,9 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                                 <p className="text-xs text-[#96786F] dark:text-gray-300 mb-1">Stops</p>
                                 <p className="text-lg font-bold text-[#472825] dark:text-gray-200">{addedAttractions.length}</p>
                             </div>
-                            <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-center col-span-2">
-                                <p className="text-xs text-green-700 mb-1">CO₂ Saved vs Gas Car 🌍</p>
-                                <p className="text-2xl font-extrabold text-green-700">
+                            <div className="bg-[var(--teal)]/10 border border-[var(--teal)]/30 rounded-xl p-3 text-center col-span-2">
+                                <p className="text-xs text-[var(--teal)] mb-1">CO₂ Saved vs Gas Car 🌍</p>
+                                <p className="text-2xl font-extrabold text-[var(--teal)]">
                                     {Math.max(0, gasCo2 - co2).toFixed(1)} kg
                                 </p>
                             </div>

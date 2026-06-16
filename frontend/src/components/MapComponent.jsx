@@ -70,11 +70,69 @@ const MapComponent = () => {
     // Initial Loading State (only if online)
     if (loading && !isOffline) return <div className="text-center p-10">Loading Map...</div>;
 
+    // Create custom SVG markers
+    const getCustomIcon = (type) => {
+        let iconContent = '';
+        let bgColor = '';
+        
+        switch(type) {
+            case 'Attraction':
+                iconContent = '🏛️';
+                bgColor = 'var(--accent)';
+                break;
+            case 'Hotel':
+                iconContent = '🏨';
+                bgColor = 'var(--text-secondary)';
+                break;
+            case 'Service':
+                iconContent = '🏥';
+                bgColor = 'var(--teal)';
+                break;
+            default:
+                iconContent = '📍';
+                bgColor = 'var(--terracotta)';
+        }
+
+        return L.divIcon({
+            className: 'custom-map-marker',
+            html: `
+                <div style="
+                    background-color: ${bgColor};
+                    border: 3px solid #FFF;
+                    border-radius: 50%;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+                    transition: transform 0.2s;
+                ">
+                    <span style="font-size: 18px;">${iconContent}</span>
+                </div>
+                <div style="
+                    width: 0;
+                    height: 0;
+                    border-left: 6px solid transparent;
+                    border-right: 6px solid transparent;
+                    border-top: 8px solid ${bgColor};
+                    position: absolute;
+                    bottom: -6px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                "></div>
+            `,
+            iconSize: [36, 44],
+            iconAnchor: [18, 44],
+            popupAnchor: [0, -44]
+        });
+    };
+
     // Default center: Kharga Oasis (roughly)
     const center = [25.4390, 30.5586];
 
     return (
-        <div className="h-[600px] min-h-[400px] w-full rounded-xl overflow-hidden shadow-lg border border-gray-200 z-0 relative">
+        <div className="h-[600px] min-h-[400px] w-full rounded-xl overflow-hidden shadow-lg border border-white/10 z-0 relative">
             {isOffline ? (
                 <div className="w-full h-full relative bg-gray-100 flex items-center justify-center">
                     <img
@@ -90,20 +148,30 @@ const MapComponent = () => {
                 </div>
             ) : (
                 <MapContainer center={center} zoom={8} style={{ height: '100%', width: '100%' }}>
+                    {/* Warm desert-toned map tiles (CartoDB Voyager) */}
                     <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                        attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
                     />
 
                     {locations.map(loc => (
-                        <Marker key={`${loc.type}-${loc.id}`} position={[loc.latitude, loc.longitude]}>
-                            <Popup>
+                        <Marker 
+                            key={`${loc.type}-${loc.id}`} 
+                            position={[loc.latitude, loc.longitude]}
+                            icon={getCustomIcon(loc.type)}
+                        >
+                            <Popup className="custom-popup">
                                 <div className="p-1">
-                                    <h3 className="font-bold text-gray-900">{loc.name}</h3>
-                                    <div className="badge badge-sm mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                                    <h3 className="font-bold text-lg mb-1" style={{ color: 'var(--text-primary)' }}>{loc.name}</h3>
+                                    <span className="inline-block px-2 py-1 rounded text-xs font-bold uppercase tracking-wider mb-2 text-white" style={{ backgroundColor: getCustomIcon(loc.type).options.html.match(/background-color: ([^;]+)/)[1] }}>
                                         {loc.type}
-                                    </div>
-                                    <p className="text-sm text-gray-600 line-clamp-2 my-1">{loc.description}</p>
+                                    </span>
+                                    <p className="text-sm line-clamp-2 my-1" style={{ color: 'var(--text-secondary)' }}>{loc.description}</p>
+                                    {loc.type === 'Attraction' && (
+                                        <a href={`/attractions/${loc.id}`} className="mt-2 text-xs font-bold uppercase tracking-widest inline-flex items-center gap-1" style={{ color: 'var(--accent)' }}>
+                                            View Details <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </a>
+                                    )}
                                 </div>
                             </Popup>
                         </Marker>

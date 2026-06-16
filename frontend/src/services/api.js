@@ -12,6 +12,7 @@ const api = axios.create({
 });
 
 export const getAttractions = () => api.get('tourism/attractions/');
+export const getAttractionById = (id) => api.get(`tourism/attractions/${id}/`);
 export const getArtifacts = () => api.get('tourism/artifacts/');
 export const getServices = () => api.get('services/items/');
 export const getServiceCategories = () => api.get('services/categories/');

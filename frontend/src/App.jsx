@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AttractionsPage from './pages/AttractionsPage';
+import AttractionDetailPage from './pages/AttractionDetailPage';
 import ServicesPage from './pages/ServicesPage';
 import HotelsPage from './pages/HotelsPage';
 import MapPage from './pages/MapPage';
@@ -20,6 +21,7 @@ import OfflineIndicator from './components/OfflineIndicator';
 import SOSButton from './components/SOSButton';
 import ChatbotWidget from './components/ChatbotWidget';
 import BackToTop from './components/BackToTop';
+import Breadcrumbs from './components/Breadcrumbs';
 
 import './index.css';
 
@@ -34,9 +36,11 @@ function App() {
             <ChatbotWidget />
             <Navbar />
             <main className="pt-20 flex-grow">
+              <Breadcrumbs />
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/attractions" element={<AttractionsPage />} />
+                <Route path="/attractions/:id" element={<AttractionDetailPage />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/hotels" element={<HotelsPage />} />
                 <Route path="/map" element={<MapPage />} />

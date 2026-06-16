@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AttractionCard = ({ attraction }) => {
     return (
-        <div
-            className="rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group relative"
+        <Link
+            to={`/attractions/${attraction.id}`}
+            className="rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group relative block"
             style={{
                 backgroundColor: 'var(--bg-card)',
                 border: '1px solid var(--border-color)',
@@ -35,7 +37,7 @@ const AttractionCard = ({ attraction }) => {
 
             {/* Content */}
             <div className="p-6">
-                <h3 className="text-headline-md mb-2" style={{ color: 'var(--text-primary)' }}>
+                <h3 className="text-headline-md mb-2 group-hover:underline" style={{ color: 'var(--text-primary)' }}>
                     {attraction.name}
                 </h3>
                 <p className="text-body-md mb-6 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
@@ -52,8 +54,14 @@ const AttractionCard = ({ attraction }) => {
                         {parseFloat(attraction.ticket_price) === 0 ? 'Free Entry' : `EGP ${attraction.ticket_price}`}
                     </span>
                 </div>
+                
+                {/* CTA */}
+                <div className="mt-4 pt-4 border-t transition-colors duration-300 flex items-center justify-between" style={{ borderColor: 'var(--border-color)' }}>
+                    <span className="text-label-sm font-bold uppercase tracking-widest transition-colors duration-300" style={{ color: 'var(--accent)' }}>Explore Details</span>
+                    <span className="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style={{ color: 'var(--accent)' }}>arrow_forward</span>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
