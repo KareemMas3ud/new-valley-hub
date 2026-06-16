@@ -427,8 +427,8 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                 <div className="space-y-5">
 
                     {/* Stop list */}
-                    <div className="bg-white border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
-                        <h3 className="text-base font-bold text-[#472825] mb-4">
+                    <div className="bg-white dark:bg-[#2A2621] border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
+                        <h3 className="text-base font-bold text-[#472825] dark:text-gray-200 mb-4">
                             📍 Your Itinerary — {addedAttractions.length} Stops
                         </h3>
                         <ol className="space-y-2">
@@ -437,7 +437,7 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#D3AB80] text-white text-xs font-bold flex items-center justify-center">
                                         {i + 1}
                                     </span>
-                                    <span className="text-[#472825] font-medium truncate">{a.name}</span>
+                                    <span className="text-[#472825] dark:text-gray-200 font-medium truncate">{a.name}</span>
                                     {findKey(a.name) === null && (
                                         <span className="text-[10px] text-[#96786F] italic">(unknown location)</span>
                                     )}
@@ -447,9 +447,9 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                     </div>
 
                     {/* Segment breakdown */}
-                    <div className="bg-white border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
-                        <h3 className="text-base font-bold text-[#472825] mb-3">🛣️ Segment Breakdown</h3>
-                        <div className="flex justify-between text-[10px] font-semibold text-[#96786F] mb-2 uppercase tracking-wide">
+                    <div className="bg-white dark:bg-[#2A2621] border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
+                        <h3 className="text-base font-bold text-[#472825] dark:text-gray-200 mb-3">🛣️ Segment Breakdown</h3>
+                        <div className="flex justify-between text-[10px] font-semibold text-[#96786F] dark:text-gray-300 mb-2 uppercase tracking-wide">
                             <span>From → To</span>
                             <span className="flex gap-3">
                                 <span>km</span>
@@ -466,7 +466,7 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                                 estimated={seg.estimated}
                             />
                         ))}
-                        <div className="flex justify-between items-center mt-3 pt-3 border-t border-[#D3AB80]/30 font-bold text-sm text-[#472825]">
+                        <div className="flex justify-between items-center mt-3 pt-3 border-t border-[#D3AB80]/30 font-bold text-sm text-[#472825] dark:text-gray-200">
                             <span>Total</span>
                             <span className="flex gap-3">
                                 <span>{totalKm} km</span>
@@ -480,8 +480,8 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                 <div className="space-y-5">
 
                     {/* Transport mode picker */}
-                    <div className="bg-white border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
-                        <h3 className="text-base font-bold text-[#472825] mb-4">⚡ How Will You Travel?</h3>
+                    <div className="bg-white dark:bg-[#2A2621] border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
+                        <h3 className="text-base font-bold text-[#472825] dark:text-gray-200 mb-4">⚡ How Will You Travel?</h3>
                         <div className="space-y-3">
                             {TRANSPORT_MODES.map(m => (
                                 <button
@@ -489,8 +489,8 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                                     onClick={() => setSelectedModeId(m.id)}
                                     className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 font-semibold text-sm transition-all duration-200
                                         ${selectedModeId === m.id
-                                            ? 'border-[#D3AB80] bg-[#FDE4BC] text-[#472825] shadow-md'
-                                            : 'border-[#D3AB80]/20 bg-white text-[#96786F] hover:border-[#D3AB80]/50 hover:bg-[#FFF4E2]'
+                                            ? 'border-[#D3AB80] bg-[#FDE4BC] dark:bg-[#3A352F] text-[#472825] dark:text-gray-200 shadow-md'
+                                            : 'border-[#D3AB80]/20 bg-white dark:bg-[#211E18] text-[#96786F] dark:text-gray-300 hover:border-[#D3AB80]/50 hover:bg-[#FFF4E2] dark:hover:bg-[#4A453F]'
                                         }`}
                                 >
                                     <span className="flex items-center gap-2">
@@ -504,8 +504,8 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                     </div>
 
                     {/* CO₂ summary */}
-                    <div className="bg-white border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
-                        <h3 className="text-base font-bold text-[#472825] mb-4">📊 Trip Footprint</h3>
+                    <div className="bg-white dark:bg-[#2A2621] border border-[#D3AB80]/30 rounded-2xl shadow-md p-6 hover:shadow-xl hover:border-[#D3AB80]/60 transition-all duration-300">
+                        <h3 className="text-base font-bold text-[#472825] dark:text-gray-200 mb-4">📊 Trip Footprint</h3>
                         <div className="flex items-end gap-2 mb-4">
                             <span className={`text-5xl font-extrabold tracking-tight transition-all duration-500
                                 ${co2 === 0 ? 'text-green-600' : co2 < 20 ? 'text-teal-600' : 'text-orange-600'}`}>
@@ -515,13 +515,13 @@ const TripPlanner = ({ addedAttractions = [] }) => {
                         </div>
                         <EmissionBar pct={pct} />
                         <div className="grid grid-cols-2 gap-3 mt-5">
-                            <div className="bg-[#FFF4E2] border border-[#D3AB80]/20 rounded-xl p-3 text-center">
-                                <p className="text-xs text-[#96786F] mb-1">Total Distance</p>
-                                <p className="text-lg font-bold text-[#472825]">{totalKm} km</p>
+                            <div className="bg-[#FFF4E2] dark:bg-[#3A352F] border border-[#D3AB80]/20 rounded-xl p-3 text-center">
+                                <p className="text-xs text-[#96786F] dark:text-gray-300 mb-1">Total Distance</p>
+                                <p className="text-lg font-bold text-[#472825] dark:text-gray-200">{totalKm} km</p>
                             </div>
-                            <div className="bg-[#FFF4E2] border border-[#D3AB80]/20 rounded-xl p-3 text-center">
-                                <p className="text-xs text-[#96786F] mb-1">Stops</p>
-                                <p className="text-lg font-bold text-[#472825]">{addedAttractions.length}</p>
+                            <div className="bg-[#FFF4E2] dark:bg-[#3A352F] border border-[#D3AB80]/20 rounded-xl p-3 text-center">
+                                <p className="text-xs text-[#96786F] dark:text-gray-300 mb-1">Stops</p>
+                                <p className="text-lg font-bold text-[#472825] dark:text-gray-200">{addedAttractions.length}</p>
                             </div>
                             <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-center col-span-2">
                                 <p className="text-xs text-green-700 mb-1">CO₂ Saved vs Gas Car 🌍</p>

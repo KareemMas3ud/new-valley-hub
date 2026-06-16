@@ -151,28 +151,28 @@ const SouvenirMaker = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Controls */}
-            <div className="md:col-span-1 bg-[#FDE4BC] p-6 rounded-lg shadow-md h-fit">
-                <h3 className="text-xl font-bold mb-4 text-[#D3AB80]">Customize Souvenir</h3>
+            <div className="md:col-span-1 bg-[#FEF7EC] dark:bg-[#2A2621] p-6 rounded-lg shadow-md h-fit">
+                <h3 className="text-xl font-bold mb-4 text-[#D3AB80] dark:text-[#D3AB80]">Customize Souvenir</h3>
 
                 <div className="mb-4">
-                    <label className="block text-[#472825] font-bold mb-2">Message</label>
+                    <label className="block text-gray-900 dark:text-gray-200 font-bold mb-2">Message</label>
                     <input
                         type="text"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full border border-[#96786F]/30 p-2 rounded focus:ring-2 focus:ring-[#D3AB80] text-[#472825]"
+                        className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded focus:ring-2 focus:ring-[#D3AB80] bg-white dark:bg-[#3A352F] text-gray-900 dark:text-white"
                         maxLength="30"
                     />
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-[#472825] font-bold mb-2">Font Style</label>
+                    <label className="block text-gray-900 dark:text-gray-200 font-bold mb-2">Font Style</label>
                     <div className="grid grid-cols-1 gap-2">
                         {['Ancient', 'Hieroglyphs', 'Default'].map((f) => (
                             <button
                                 key={f}
                                 onClick={() => setFont(f)}
-                                className={`p-2 border rounded text-left px-4 transition-all ${font === f ? 'bg-[#D3AB80]/30 border-[#D3AB80] text-[#472825]' : 'bg-[#FFF4E2] hover:bg-[#FDE4BC] text-[#472825]'
+                                className={`p-2 border rounded text-left px-4 transition-all ${font === f ? 'bg-[#D3AB80]/30 border-[#D3AB80] text-gray-900 dark:text-gray-200' : 'bg-white hover:bg-[#FEF7EC] text-gray-900 dark:bg-[#3A352F] dark:hover:bg-[#4A453F] dark:text-gray-300'
                                     }`}
                             >
                                 <span className={`text-lg ${f === 'Ancient' ? 'souvenir-font-ancient' :
@@ -186,9 +186,9 @@ const SouvenirMaker = () => {
                 </div>
 
                 <div className="mb-6">
-                    <label className="block text-[#472825] font-bold mb-2">Background</label>
+                    <label className="block text-gray-900 dark:text-gray-200 font-bold mb-2">Background</label>
 
-                    <p className="text-xs text-[#96786F] mb-2">Select a Background:</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Select a Background:</p>
 
                     {loading ? (
                         <p className="text-sm text-gray-500 italic mb-4">Loading backgrounds...</p>
@@ -230,24 +230,24 @@ const SouvenirMaker = () => {
                     )}
 
                     {/* Custom URL or File */}
-                    <div className="bg-[#FFF4E2] p-3 rounded border border-[#96786F]/20">
-                        <p className="text-xs text-[#96786F] mb-2 font-bold">Or use your own:</p>
+                    <div className="bg-white dark:bg-[#3A352F] p-3 rounded border border-gray-300 dark:border-gray-600">
+                        <p className="text-xs text-gray-700 dark:text-gray-300 mb-2 font-bold">Or use your own:</p>
 
                         <input
                             type="text"
                             placeholder="Paste Image URL..."
                             value={customUrl}
                             onChange={handleCustomUrlChange}
-                            className="w-full border border-[#96786F]/30 p-2 rounded text-sm mb-2 focus:ring-2 focus:ring-[#D3AB80] text-[#472825]"
+                            className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded text-sm mb-2 focus:ring-2 focus:ring-[#D3AB80] bg-white dark:bg-[#2A2621] text-gray-900 dark:text-white"
                         />
 
                         <div className="flex items-center my-2">
-                            <div className="flex-grow border-t border-gray-300"></div>
+                            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
                             <span className="flex-shrink-0 mx-2 text-xs text-gray-400">OR</span>
-                            <div className="flex-grow border-t border-gray-300"></div>
+                            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
                         </div>
 
-                        <label className="flex items-center justify-center w-full px-4 py-2 bg-white text-[#D3AB80] rounded-lg shadow-sm tracking-wide uppercase border border-[#D3AB80] cursor-pointer hover:bg-[#D3AB80]/10 transition-colors">
+                        <label className="flex items-center justify-center w-full px-4 py-2 bg-white dark:bg-[#2A2621] text-[#D3AB80] rounded-lg shadow-sm tracking-wide uppercase border border-[#D3AB80] cursor-pointer hover:bg-gray-50 dark:hover:bg-[#3A352F] transition-colors">
                             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 0 0 1 0 1 0 0 0 0-4.88-3.9z" />
                             </svg>
@@ -321,7 +321,7 @@ const SouvenirMaker = () => {
             </div>
 
             {/* Preview */}
-            <div className="md:col-span-2 flex items-center justify-center bg-[#FFF4E2] rounded-lg p-4 border border-[#96786F]/20">
+            <div className="md:col-span-2 flex items-center justify-center bg-[#FEF7EC] dark:bg-[#2A2621] rounded-lg p-4 border border-gray-300 dark:border-gray-700">
                 <canvas
                     ref={canvasRef}
                     className="max-w-full h-auto shadow-lg rounded"

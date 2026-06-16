@@ -73,14 +73,14 @@ const ARViewer = ({
     };
 
     return (
-        <div className={`bg-[#FFF4E2] rounded-2xl shadow-xl shadow-[#472825]/10 p-6 border-2 border-[#D3AB80]/30 ${className}`}>
+        <div className={`bg-[#FEF7EC] dark:bg-[#2A2621] rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-[#472825]/10 p-6 border-2 border-gray-200 dark:border-[#D3AB80]/30 ${className}`}>
 
             {/* Header */}
             {title && (
                 <div className="mb-6 text-center">
-                    <h3 className="text-3xl font-bold text-[#472825] mb-2">{title}</h3>
+                    <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-200 mb-2">{title}</h3>
                     {description && (
-                        <p className="text-[#96786F] leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
                             {description}
                         </p>
                     )}
@@ -132,7 +132,7 @@ const ARViewer = ({
                     )}
 
                     {/* AR Viewfinder Container */}
-                    <div className="relative bg-gradient-to-br from-[#FFF4E2] to-[#FDE4BC] rounded-xl overflow-hidden border-2 border-[#D3AB80]/40 shadow-lg"
+                    <div className="relative bg-gradient-to-br from-[#FEF7EC] to-white dark:from-[#2A2621] dark:to-[#211E18] rounded-xl overflow-hidden border-2 border-gray-200 dark:border-[#D3AB80]/40 shadow-lg"
                         style={{ height: '600px' }}>
 
                         {/* Layer 1: Webcam Video (Background) */}
@@ -251,23 +251,23 @@ const ARViewer = ({
                 {/* QR Code Panel (Desktop Only) */}
                 {showQROnDesktop && !isMobile && (
                     <div className="lg:col-span-1 hidden lg:block">
-                        <div className="bg-gradient-to-br from-[#FDE4BC] to-[#FFF4E2] rounded-xl p-6 border-2 border-[#D3AB80]/40 shadow-lg h-full flex flex-col justify-center">
+                        <div className="bg-gradient-to-br from-white to-[#FEF7EC] dark:from-[#2A2621] dark:to-[#211E18] rounded-xl p-6 border-2 border-gray-200 dark:border-[#D3AB80]/40 shadow-lg h-full flex flex-col justify-center">
                             <div className="text-center">
-                                <h4 className="text-xl font-bold text-[#472825] mb-3 flex items-center justify-center gap-2">
+                                <h4 className="text-xl font-bold text-gray-900 dark:text-[#D3AB80] mb-3 flex items-center justify-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#D3AB80]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                             d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                                     </svg>
                                     Mobile AR
                                 </h4>
-                                <p className="text-[#96786F] text-sm mb-4">
-                                    Scan with your phone 📱
+                                <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                                    Scan this QR code with your phone's camera to place this artifact in your room!
                                 </p>
 
                                 {/* QR Code */}
-                                <div className="bg-white p-4 rounded-lg inline-block shadow-md border-2 border-[#D3AB80]/30">
+                                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg inline-block shadow-md border-2 border-gray-200 dark:border-[#D3AB80]/30">
                                     <img
-                                        src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(currentUrl)}&bgcolor=FFF4E2&color=472825`}
+                                        src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(currentUrl)}&bgcolor=FFFFFF&color=000000`}
                                         alt="QR Code for AR View"
                                         className="w-44 h-44"
                                     />
@@ -278,12 +278,12 @@ const ARViewer = ({
                                 </p>
 
                                 {/* Divider */}
-                                <div className="my-4 h-px bg-[#D3AB80]/30"></div>
+                                <div className="my-4 h-px bg-gray-200 dark:bg-[#D3AB80]/30"></div>
 
                                 {/* Desktop Simulator Info */}
-                                <div className="text-left bg-[#FFF4E2]/50 rounded-lg p-3 border border-[#D3AB80]/20">
-                                    <p className="text-[#472825] font-semibold text-xs mb-2">💡 Desktop Tip:</p>
-                                    <p className="text-[#96786F] text-xs leading-relaxed">
+                                <div className="text-left bg-white/50 dark:bg-[#3A352F]/50 rounded-lg p-3 border border-gray-200 dark:border-[#D3AB80]/20">
+                                    <p className="text-gray-900 dark:text-gray-200 font-semibold text-xs mb-2">💡 Desktop Tip:</p>
+                                    <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                                         Click "Camera Simulator" above to preview AR using your webcam (works with Camo Studio too!)
                                     </p>
                                 </div>
@@ -295,17 +295,17 @@ const ARViewer = ({
 
             {/* Features Info */}
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-[#FDE4BC] rounded-lg p-4 border border-[#D3AB80]/20 text-center">
-                    <p className="text-[#96786F] text-sm font-semibold mb-1">Feature</p>
-                    <p className="text-[#472825] font-bold">360° Rotation</p>
+                <div className="bg-white dark:bg-[#3A352F] rounded-lg p-4 border border-gray-200 dark:border-[#D3AB80]/20 text-center">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm font-semibold mb-1">Feature</p>
+                    <p className="text-gray-900 dark:text-gray-200 font-bold">360° Rotation</p>
                 </div>
-                <div className="bg-[#FDE4BC] rounded-lg p-4 border border-[#D3AB80]/20 text-center">
-                    <p className="text-[#96786F] text-sm font-semibold mb-1">Platform</p>
-                    <p className="text-[#472825] font-bold">iOS & Android AR</p>
+                <div className="bg-white dark:bg-[#3A352F] rounded-lg p-4 border border-gray-200 dark:border-[#D3AB80]/20 text-center">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm font-semibold mb-1">Platform</p>
+                    <p className="text-gray-900 dark:text-gray-200 font-bold">iOS & Android AR</p>
                 </div>
-                <div className="bg-[#FDE4BC] rounded-lg p-4 border border-[#D3AB80]/20 text-center">
-                    <p className="text-[#96786F] text-sm font-semibold mb-1">Technology</p>
-                    <p className="text-[#472825] font-bold">WebXR & WebGL</p>
+                <div className="bg-white dark:bg-[#3A352F] rounded-lg p-4 border border-gray-200 dark:border-[#D3AB80]/20 text-center">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm font-semibold mb-1">Technology</p>
+                    <p className="text-gray-900 dark:text-gray-200 font-bold">WebXR & WebGL</p>
                 </div>
             </div>
         </div>

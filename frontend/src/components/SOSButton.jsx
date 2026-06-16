@@ -22,13 +22,19 @@ const SOSButton = () => {
                         <button
                             key={contact.name}
                             onClick={() => handleCall(contact.number)}
-                            className="flex items-center justify-between bg-[#FDE4BC] text-[#472825] px-4 py-2 rounded-lg shadow-lg hover:bg-[#FFF4E2] transition-colors w-48 border-l-4 border-[#D3AB80]"
+                            className="flex items-center justify-between px-4 py-3 rounded-lg shadow-lg transition-all duration-200 w-52 hover:scale-[1.02]"
+                            style={{
+                                backgroundColor: 'var(--bg-card)',
+                                color: 'var(--text-primary)',
+                                borderLeft: '4px solid var(--terracotta)',
+                                boxShadow: '0 4px 16px var(--shadow-strong)',
+                            }}
                         >
                             <div className="flex items-center space-x-2">
                                 <span className="text-xl">{contact.icon}</span>
                                 <span className="font-bold text-sm">{contact.name}</span>
                             </div>
-                            <span className="text-[#D3AB80] font-bold">{contact.number}</span>
+                            <span className="font-bold" style={{ color: 'var(--terracotta)' }}>{contact.number}</span>
                         </button>
                     ))}
                 </div>
@@ -39,16 +45,19 @@ const SOSButton = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className={`
                     w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 transform hover:scale-110
-                    ${isOpen ? 'bg-[#96786F] rotate-45' : 'bg-[#472825] animate-pulse'}
+                    ${isOpen ? 'rotate-45 bg-[var(--text-muted)] dark:bg-gray-500' : 'animate-pulse bg-[var(--terracotta)] dark:bg-[#ff4444]'}
                 `}
+                style={{
+                    boxShadow: isOpen ? 'none' : '0 4px 20px rgba(196, 87, 58, 0.4)',
+                }}
                 aria-label="SOS Emergency"
             >
                 {isOpen ? (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg className="w-8 h-8 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 ) : (
                     <div className="flex flex-col items-center">
                         <span className="text-2xl">🆘</span>
-                        <span className="text-[10px] font-bold text-white uppercase mt-[-2px]">SOS</span>
+                        <span className="text-[10px] font-bold text-white dark:text-gray-900 uppercase mt-[-2px]">SOS</span>
                     </div>
                 )}
             </button>

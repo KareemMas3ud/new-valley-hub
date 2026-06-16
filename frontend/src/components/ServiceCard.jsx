@@ -13,7 +13,7 @@ const ServiceCard = ({ service }) => {
                 <p className="text-brand-taupe text-sm">{service.category_name}</p>
                 <div className="mt-2 text-sm">
                     {service.phone_number && (
-                        <p className="text-gray-700">📞 {service.phone_number}</p>
+                        <p style={{ color: 'var(--text-secondary)' }}>📞 {service.phone_number}</p>
                     )}
                     {service.website && (
                         <a href={service.website} target="_blank" rel="noopener noreferrer" className="text-brand-sand hover:underline">

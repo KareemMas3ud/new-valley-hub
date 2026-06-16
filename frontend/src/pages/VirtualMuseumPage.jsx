@@ -26,21 +26,21 @@ const VirtualMuseumPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#FFF4E2] py-12">
+        <div className="min-h-screen py-12" style={{ backgroundColor: 'var(--bg-primary)' }}>
             <div className="container mx-auto px-4">
 
                 {/* Page Header */}
                 <div className="text-center mb-12">
-                    <h1 className="text-6xl font-bold text-[#472825] mb-4 flex items-center justify-center gap-4">
+                    <h1 className="text-6xl font-bold mb-4 flex items-center justify-center gap-4" style={{ color: 'var(--text-primary)' }}>
                         <span>🏛️</span>
                         The Virtual Museum
                         <span>🏺</span>
                     </h1>
-                    <p className="text-xl text-[#96786F] max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                         Experience Ancient Egyptian History in Your Space
                     </p>
-                    <div className="mt-4 inline-block bg-[#FDE4BC] px-6 py-3 rounded-full border border-[#D3AB80]/30">
-                        <p className="text-[#472825] font-semibold">
+                    <div className="mt-4 inline-block px-6 py-3 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] dark:bg-[#2A2621]">
+                        <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>
                             📱 View artifacts in 3D and place them in your real environment using AR
                         </p>
                     </div>
@@ -49,16 +49,16 @@ const VirtualMuseumPage = () => {
                 {/* Loading State */}
                 {loading && (
                     <div className="text-center py-12">
-                        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#D3AB80] mx-auto"></div>
-                        <p className="mt-4 text-[#472825] font-semibold">Loading Museum Artifacts...</p>
+                        <div className="animate-spin rounded-full h-16 w-16 mx-auto" style={{ borderBottom: '4px solid var(--accent)' }}></div>
+                        <p className="mt-4 font-semibold" style={{ color: 'var(--text-primary)' }}>Loading Museum Artifacts...</p>
                     </div>
                 )}
 
                 {/* Error State */}
                 {error && (
                     <div className="text-center py-12">
-                        <p className="text-red-600 font-semibold">{error}</p>
-                        <p className="text-[#96786F] mt-2">Please check your backend server is running</p>
+                        <p className="font-semibold" style={{ color: 'var(--terracotta)' }}>{error}</p>
+                        <p className="mt-2" style={{ color: 'var(--text-muted)' }}>Please check your backend server is running</p>
                     </div>
                 )}
 
@@ -82,9 +82,9 @@ const VirtualMuseumPage = () => {
 
                                     {/* Artifact Details */}
                                     {artifact.related_attraction && (
-                                        <div className="mt-6 bg-[#FDE4BC] rounded-xl p-4 border border-[#D3AB80]/30 text-center">
-                                            <p className="text-[#96786F] text-sm">
-                                                📍 Found at: <span className="font-bold text-[#472825]">{artifact.related_attraction.name || 'New Valley'}</span>
+                                        <div className="mt-6 rounded-xl p-4 text-center bg-[var(--bg-secondary)] border border-[var(--border)] dark:bg-[#2A2621]">
+                                            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                                                📍 Found at: <span className="font-bold" style={{ color: 'var(--text-primary)' }}>{artifact.related_attraction.name || 'New Valley'}</span>
                                             </p>
                                         </div>
                                     )}
@@ -98,18 +98,18 @@ const VirtualMuseumPage = () => {
                 {!loading && !error && artifacts.length === 0 && (
                     <div className="max-w-4xl mx-auto text-center py-12">
                         <div className="text-8xl mb-6">🏺</div>
-                        <h2 className="text-3xl font-bold text-[#472825] mb-4">
+                        <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
                             No Artifacts Yet
                         </h2>
-                        <p className="text-[#96786F] mb-6">
+                        <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
                             The museum collection is being prepared. Check back soon!
                         </p>
-                        <div className="bg-[#FDE4BC] rounded-xl p-6 border-2 border-[#D3AB80]/30 inline-block">
-                            <p className="text-[#472825] font-semibold mb-2">
+                        <div className="rounded-xl p-6 inline-block" style={{ backgroundColor: 'var(--bg-secondary)', border: '2px solid var(--border)' }}>
+                            <p className="font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
                                 💡 For Administrators:
                             </p>
-                            <p className="text-[#96786F] text-sm">
-                                Upload 3D artifacts via Django Admin at <code className="bg-white px-2 py-1 rounded">/admin/tourism/museumartifact/</code>
+                            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                                Upload 3D artifacts via Django Admin at <code className="px-2 py-1 rounded" style={{ backgroundColor: 'var(--bg-card)' }}>/admin/tourism/museumartifact/</code>
                             </p>
                         </div>
                     </div>
@@ -117,17 +117,17 @@ const VirtualMuseumPage = () => {
 
                 {/* Educational Section (shown when artifacts exist) */}
                 {!loading && artifacts.length > 0 && (
-                    <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-r from-[#FDE4BC] to-[#FFF4E2] rounded-2xl p-8 border-2 border-[#D3AB80]/40 shadow-xl">
-                        <h2 className="text-3xl font-bold text-[#472825] mb-4 text-center">
+                    <div className="mt-16 max-w-4xl mx-auto rounded-2xl p-8 shadow-xl" style={{ background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-primary))', border: '2px solid var(--border)' }}>
+                        <h2 className="text-3xl font-bold mb-4 text-center" style={{ color: 'var(--text-primary)' }}>
                             About Ancient Egyptian Artifacts
                         </h2>
-                        <div className="text-[#96786F] leading-relaxed space-y-4">
+                        <div className="leading-relaxed space-y-4" style={{ color: 'var(--text-muted)' }}>
                             <p>
-                                The <strong className="text-[#472825]">New Valley Governorate</strong> is home to numerous archaeological treasures
+                                The <strong style={{ color: 'var(--text-primary)' }}>New Valley Governorate</strong> is home to numerous archaeological treasures
                                 dating back thousands of years. These artifacts provide invaluable insights into ancient Egyptian civilization.
                             </p>
                             <p>
-                                The oasis regions of <strong className="text-[#D3AB80]">Kharga, Dakhla, Farafra, and Bahariya</strong> have yielded
+                                The oasis regions of <strong style={{ color: 'var(--accent)' }}>Kharga, Dakhla, Farafra, and Bahariya</strong> have yielded
                                 remarkable finds, including statues, pottery, and religious artifacts that tell the story of life in ancient times.
                             </p>
                             <p>
