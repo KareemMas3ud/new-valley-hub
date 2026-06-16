@@ -89,19 +89,15 @@ const Navbar = () => {
     return (
         <nav
             className={`
-                fixed top-0 left-0 right-0 z-50 transition-all duration-500
+                fixed left-0 right-0 z-50 transition-all duration-300 ease-in-out mx-auto
                 ${isScrolled
-                    ? 'glass-nav shadow-md'
-                    : 'border-b border-white/10'
+                    ? 'top-4 w-[calc(100%-2rem)] max-w-7xl rounded-full bg-white/80 dark:bg-[#1A1814]/80 backdrop-blur-md shadow-lg'
+                    : 'top-0 w-full border-b border-white/10 backdrop-blur-md'
                 }
             `}
-            style={{
-                backgroundColor: isScrolled
-                    ? (theme === 'dark' ? 'rgba(17,14,12,0.92)' : 'rgba(253,249,244,0.92)')
-                    : (theme === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)'),
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-            }}
+            style={!isScrolled ? {
+                backgroundColor: theme === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)',
+            } : {}}
         >
             <div className="flex justify-between items-center w-full px-5 md:px-16 py-4 mx-auto" style={{ maxWidth: '1280px' }}>
                 {/* Logo */}
